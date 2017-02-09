@@ -5,64 +5,70 @@
     <link href="../../../MDB Pro/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../MDB Pro/css/mdb.min.css" rel="stylesheet">
     <link href="../../../MDB Pro/css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
 	<title>Memo</title>
 </head>
 <body>
 
 <div class="container">
-  <div class="categories row">
-    <div class="col-md-1">
-      Music
-    </div>
-    <div class="col-md-1">
-      Recipes
-    </div>
-    <a class="btn-floating btn-small blue" id="myBtn"><i class="fa fa-plus"></i></a>
+    <div class="row">
+        <div class="categories col-md-11">
+            Music | Recipes | Games | Movies | Misc
+        </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+        <div class="add_snippet col-md-1">
+            <a class="btn-floating btn-small blue" id="myBtn"><i class="fa fa-plus"></i></a>
+        </div>
+    </div>
 
-      <!-- Modal content -->
+    <div class="content row">
+        <div class="col-md-2">
+        Created
+        </div>
+
+        <div class="col-md-1">
+        Urgency
+        </div>
+
+        <div class="col-md-6">
+        Snippet
+        </div>
+        
+        <div class="md-form col-md-2">
+        Due by
+        </div>
+
+        <div class="col-md-1">
+        Checkbox
+        </div>
+    </div>
+</div>
+
+    <!-- The Modal
+    <div id="myModal" class="modal"> -->
+
+      <!-- Modal content
       <div class="modal-content">
         <div class="modal-header">
-          <span class="close">&times;</span>
-          <input type="form" placeholder="Type in your memo" name="memo">
+            <div class="md-form">
+                <input type="text" id="snippet" class="form-control">
+                <label for="form1" class="">Snippet</label>
+            </div>
         </div>
         <div class="modal-body">
-          <p>Text</p>
+            <p>Text</p>
         </div>
         <div class="modal-footer">
-          <h3>Due Date</h3>
+            <h3>Due Date</h3>
         </div>
       </div>
+    </div> -->
 
 
 
-</div>
-  </div><br>
-  <div class="row">
-    <div class="col-md-2">
-      Created
-    </div>
-    <div class="col-md-1">
-      Urgency
-    </div>
-    <div class="col-md-6">
-      Snippet
-    </div>
-    
-    <div class="md-form col-md-2">
-     Due by
-    </div>
-    <div class="col-md-1">
-      Checkbox
-    </div>
-  
-</div>
-
-<input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">
-    </div>
+<!-- <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">
+    </div> -->
 
 
     <script type="text/javascript" src="../../../MDB Pro/js/jquery-3.1.1.min.js"></script>

@@ -38,7 +38,24 @@
     to {top:0; opacity:1}
 }
 
-/* The Close Button */
+.categories {
+    padding-top: 20px;
+    border: solid 1px black;
+}
+
+.content {
+    margin-top: 30px;
+    height: 50%;
+    border: solid 1px black;
+}
+
+.add_snippet {
+    border: solid 1px black;
+    align-content: right;
+}
+
+
+/* The Close Button 
 .close {
     color: white;
     float: right;
@@ -64,4 +81,4 @@
 .modal-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
-    color: white;
+    color: white;*/
