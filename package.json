@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/what-to-do/memo/issues"
   },
-  "homepage": "https://github.com/what-to-do/memo#readme"
+  "homepage": "https://github.com/what-to-do/memo#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.7",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.2"
+  }
 }
