@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/what-to-do/memo/issues"
   },
-  "homepage": "https://github.com/what-to-do/memo#readme"
+  "homepage": "https://github.com/what-to-do/memo#readme",
+  "dependencies": {
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0"
+  }
 }
