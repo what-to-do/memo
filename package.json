@@ -1,0 +1,19 @@
+{
+  "name": "memo",
+  "version": "1.0.0",
+  "description": "To save snippets of memo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/what-to-do/memo.git"
+  },
+  "author": "Justin Besteman, Rick Dotchin, Jessica Prado, Jeff Swearingen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/what-to-do/memo/issues"
+  },
+  "homepage": "https://github.com/what-to-do/memo#readme"
+}
