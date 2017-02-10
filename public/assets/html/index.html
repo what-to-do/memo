@@ -14,82 +14,73 @@
 <div class="container">
     <div class="row">
         <div class="categories col-md-11">
-            Music | Recipes | Games | Movies | Misc
+            The difference categories will go here.
         </div>
 
         <div class="add_snippet col-md-1">
             <a class="btn-floating btn-small blue" id="modal_btn"><i class="fa fa-plus"></i></a>
         </div>
     </div>
-
-
-    <div class="content row">
-        <div class="col-md-2">
-        Created
-        </div>
-
-        <div class="col-md-1">
-        Urgency
-        </div>
-
-        <div class="col-md-6">
-        Snippet
-        </div>
-        
-        <div class="md-form col-md-2">
-        Due by
-        </div>
-
-        <div class="col-md-1">
-        Checkbox
-        </div>
-    </div>
-</div>
-
-
-<div id="myModal" class="modal">
-        <h3>Add your snippet</h3>
-        <br>
-    <div class="row modal-content">
-        <div class="modal-body col-md-5">
-                <div class="md-form">
-                    <input type="text" id="snippet" class="form-control">
-                    <label for="form1" class="">Snippet</label>
+    
+    <div class="content">  
+        <div class="row filter">
+            <div class="btn-group">
+                <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter by
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Due Date</a>
+                    <a class="dropdown-item" href="#">Urgency</a>
+                    <a class="dropdown-item" href="#">Category</a>
                 </div>
-                
-        <h3>Choose your category</h3>
-         <br>
-        <div class="row">
-            <div class="col-md-5">
-                <fieldset class="form-group">
-                    <input name="group1" type="radio" id="radio1">
-                    <label for="radio1">Music</label>
-                </fieldset>
-
-                <fieldset class="form-group">
-                    <input name="group1" type="radio" id="radio2">
-                    <label for="radio2">Videos</label>
-                </fieldset>
-
-                <fieldset class="form-group">
-                    <input name="group1" type="radio" id="radio3">
-                    <label for="radio3">Man</label>
-                </fieldset>
-            </div>
+            </div>         
         </div>
 
-        <h3>Choose your urgency</h3>
-        <br>
-        <div class="row">
-            <div class="col-md-5">
-            <form class="range-field">
-                <input type="range" min="1" max="5" />
-            </form>
+        <div class="row db col-md-12">
+            <h1> Handlebars will deliver this db to the screen</h1>  
+        </div>  
+    </div>
+
+
+    <div id="myModal" class="modal">
+        <div class="row modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body col-md-5">
+                    <div class="md-form">
+                        <input type="text" id="snippet" class="form-control">
+                        <label for="form1" class="">Snippet</label>
+                    </div>
+                    
+            <h3>Choose your category</h3>
+             <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio1">
+                        <label for="radio1">Music</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio2">
+                        <label for="radio2">Videos</label>
+                    </fieldset>
+                </div>
             </div>
-        </div>
+
+            <h3>Choose your urgency</h3>
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                <form class="range-field">
+                    <input type="range" min="1" max="5" />
+                </form>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">

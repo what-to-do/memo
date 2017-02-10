@@ -54,8 +54,6 @@
     align-content: right;
 }
 
-
-/* The Close Button 
 .close {
     color: white;
     float: right;
@@ -81,4 +79,13 @@
 .modal-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
-    color: white;*/
+    color: white;
+}
+
+body {
+    margin-top: 50px;
+}
+
+.filter {
+    float: right;
+}
