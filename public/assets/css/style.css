@@ -84,8 +84,16 @@
 
 body {
     margin-top: 50px;
+    width: 100%;
+    position:relative; 
 }
 
 .filter {
     float: right;
+}
+
+footer {
+    height: 75px;
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
 }
