@@ -30,8 +30,8 @@
 
   	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script type="text/javascript" src="../js/test.js"></script>
-
+   <!--  <script type="text/javascript" src="../js/test.js"></script>
+ -->
 
 </head>
 
@@ -69,19 +69,19 @@
     <div class="md-form">
         <i class="fa fa-user prefix"></i>
         <input type="text" id="snippet" class="form-control">
-        <label for="form3">Snippet</label>
+        <label for="form3"></label>
     </div>
 
     <div class="md-form">
         <i class="fa fa-envelope prefix"></i>
         <input type="text" id="category" class="form-control">
-        <label for="form2">Category</label>
+        <label for="form2"></label>
     </div>
 
     <div class="md-form">
         <i class="fa fa-tag prefix"></i>
         <input type="text" id="urgency" class="form-control">
-        <label for="form34">Urgency </label>
+        <label for="form34"> </label>
     </div>
     
 
@@ -93,9 +93,177 @@
 </div>
 <!--Naked Form-->
 
+<div id="content"></div>
+
 </div>
 
+<script type="text/javascript">
+	
+	$(document).ready(function(){
 
+		viewing();
+
+
+		// Question: What does this code do?
+		$("#add-button").on("click", function(event) {
+		  event.preventDefault();
+
+		  var new_category = {
+
+		    snippet: $("#snippet").val().trim(),
+		    category: $("#category").val().trim(),
+		    urgency: $("#urgency").val().trim()
+	
+
+		  };
+		  // Question: What does this code do??
+		  $.post("/api/add", new_category)
+		  .done(function(data) {
+		    console.log(data);
+
+		    viewing();
+
+		  });
+		});
+		
+		function viewing(){
+
+		$.get("/api/view", function(data) {
+		  console.log(data);
+
+		  $("#content").html("");
+
+		  var table = $("<table>");
+
+		  table.addClass("table");
+
+		  table.appendTo("#content");
+
+		  var thead = $("<thead>");
+
+		  thead.appendTo(table);
+
+		  var tr = $("<tr>");
+
+		  tr.appendTo(thead);
+
+		  var heading = ["Snippet","Category" , "Urgency"];
+
+		  for (let i = 0; i < heading.length; i++) {
+		  	
+		  	var th = $("<th>")
+
+		  	th.text(heading[i]);
+
+		  	th.appendTo(tr);
+
+		  } // End of For Loop I
+		  
+		  var tbody = $("<tbody>");
+
+		  tbody.appendTo(table);
+
+		  for (let i = 0; i < data.length; i++) {
+
+		  	var tr2 = $("<tr>");
+
+		  	tr2.appendTo(tbody);
+		  	
+		  	let th = $("<th>");
+
+		  	th.attr({
+		  		"scope": i + 1
+		  	});
+
+		  	th.appendTo(tr2);
+
+		  	let td = $("<td>");
+
+		  	td.text(data[i].category);
+
+		  	td.appendTo(tr2);
+
+		  } // End of For Loop I
+
+		  	});
+
+		 }
+
+
+
+		 });
+	
+
+	// <table class="table">
+	//     <thead>
+	//         <tr>
+	//             <th>#</th>
+	//             <th></th>
+	//             <th>First Name</th>
+	//             <th>Last Name</th>
+	//             <th>Username</th>
+	//             <th>Actions</th>
+	//         </tr>
+	//     </thead>
+	//     <tbody>
+	//         <tr>
+	//             <th scope="row">1</th>
+	//             <td>
+	//                 <fieldset class="form-group">
+	//                     <input type="checkbox" id="checkbox1">
+	//                     <label for="checkbox1"></label>
+	//                 </fieldset>
+	//             </td>
+	//             <td>Ashley</td>
+	//             <td>Lynwood</td>
+	//             <td>@ashow</td>
+	//             <td>
+	//                 <a class="blue-text"><i class="fa fa-user"></i></a>
+	//                 <a class="teal-text"><i class="fa fa-pencil"></i></a>
+	//                 <a class="red-text"><i class="fa fa-times"></i></a>
+	//             </td>
+	//         </tr>
+	//         <tr>
+	//             <th scope="row">2</th>
+	//             <td>
+	//                 <fieldset class="form-group">
+	//                     <input type="checkbox" id="checkbox2">
+	//                     <label for="checkbox2"></label>
+	//                 </fieldset>
+	//             </td>
+	//             <td>Billy</td>
+	//             <td>Cullen</td>
+	//             <td>@cullby</td>
+	//             <td>
+	//                 <a class="blue-text"><i class="fa fa-user"></i></a>
+	//                 <a class="teal-text"><i class="fa fa-pencil"></i></a>
+	//                 <a class="red-text"><i class="fa fa-times"></i></a>
+	//             </td>
+	//         </tr>
+	//         <tr>
+	//             <th scope="row">3</th>
+	//             <td>
+	//                 <fieldset class="form-group">
+	//                     <input type="checkbox" id="checkbox3">
+	//                     <label for="checkbox3"></label>
+	//                 </fieldset>
+	//             </td>
+	//             <td>Ariel</td>
+	//             <td>Macy</td>
+	//             <td>@arielsea</td>
+	//             <td>
+	//                 <a class="blue-text"><i class="fa fa-user"></i></a>
+	//                 <a class="teal-text"><i class="fa fa-pencil"></i></a>
+	//                 <a class="red-text"><i class="fa fa-times"></i></a>
+	//             </td>
+	//         </tr>
+
+	//     </tbody>
+	// </table>
+
+
+
+</script>
 
 
 </body>
