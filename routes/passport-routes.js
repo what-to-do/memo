@@ -1,3 +1,9 @@
+var passport = require('passport');
+var config = require('./oauth/oauth.js');
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+
+
 // passport authentication routes
 var path = require('path');
 
