@@ -18,7 +18,7 @@ var Snippets = sequelize.define('Snippets', {
 			len: [1, 5]
 		}
 	},
-	time: {
+	/*time: {
 		type: DataTypes.DATE,
 		allowNull: true,
 		defaultValue: sequelize.literal("CURRENT_TIMESTAMP")
@@ -26,6 +26,9 @@ var Snippets = sequelize.define('Snippets', {
 	deadline: {
 		type: DataTypes.DATE,
 		allowNull: true
+	},*/
+	user_id: {
+		type: DataTypes.INTEGER
 	},
 	completed: {
 		type: DataTypes.BOOLEAN,
@@ -33,6 +36,19 @@ var Snippets = sequelize.define('Snippets', {
 	}
 
 }, {
+	classMethods: {
+			associate: function(models){
+				Snippets.belongsTo(models.Users, {
+					foreignKey: 'user_id'
+				});
+				Snippets.hasMany(models.Categories, {
+					foreignKey: 'category_id'
+				});
+			}
+		}
+	},
+
+	{
 	/*!!!!!!once we are finished with testing we will remove this and time because we can use createdAt*/
 	timestamps: false
 });

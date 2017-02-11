@@ -24,9 +24,9 @@ module.exports = function(app){
 			console.log(err);
 		});
 		//create snippet
-	/*	db.Snippets.create({
+		db.Snippets.create({
 			snippet: req.body.snippet,
-			importance: req.body.importance,
+			importance: req.body.urgency,
 		}).then(function(data){
 			console.log(data);
 		}).catch(function(err){
@@ -35,15 +35,15 @@ module.exports = function(app){
 		});
 	});
 	
-	app.delete('/delete/:id', function(req, res){
+/*	app.delete('/delete/:id', function(req, res){
 		db. Categories.destroy({
 			where: req.params.id
 		}).then(function(data){
 			console.log(data);
 		}).catch(function(err){
 			console.log(err);
-		});*/
-	});
+		});
+	});*/
 
 
 
