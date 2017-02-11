@@ -70,28 +70,23 @@
 
 	<h3>Choose your category</h3>
 
+
+
 	<br>
 
 	<div class="row">
 
 		<div class="col-md-5">
 
-		
+			<div class="md-form">
 
-			<!-- <fieldset class="form-group">
-			    <input name="group1" type="radio" id="radio1">
-			    <label for="radio1">Music</label>
-			</fieldset>
+			    <input type="text" id="category" class="form-control">
+			    <label for="form1" class="">Category</label>
 
-			<fieldset class="form-group">
-			    <input name="group1" type="radio" id="radio2">
-			    <label for="radio2">Videos</label>
-			</fieldset>
+			</div>
 
-			<fieldset class="form-group">
-			    <input name="group1" type="radio" id="radio3">
-			    <label for="radio3">Man</label>
-			</fieldset> -->
+			<button id="add-button">Add</button>
+
 
 		</div>
 
@@ -125,6 +120,23 @@
 	
 
 		  $.get("/api/view", function(data) {
+		    console.log(data);
+
+		  });
+		});
+
+		// Question: What does this code do?
+		$("#add-button").on("click", function(event) {
+		  event.preventDefault();
+
+		  var new_category = {
+
+		    category: $("#category").val().trim(),
+
+		  };
+		  // Question: What does this code do??
+		  $.post("/api/add", new_category)
+		  .done(function(data) {
 		    console.log(data);
 
 		  });
