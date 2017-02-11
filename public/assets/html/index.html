@@ -12,88 +12,99 @@
 
 <body>
 
+<!--container for whole website-->
 <div class="container">
     <h1>Memo</h1>
-    <div class="row">
-        <div data-toggle="collapse" class="categories col-md-11">
-             
-        </div>
+    <!--categories bar & filter-->
+   <div class="row">
+        <!--categories buttons-->
+        <div class="categories col-md-11"></div>
 
+        <!--add new note BUTTON-->
         <div class="add_snippet col-md-1">
-            <a class="btn-floating btn-small blue" id="modal_btn"><i class="fa fa-plus"></i></a>
+            <a class="btn-floating btn-small blue" id="modal_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i></a>
         </div>
     </div>
 
 
-<div class="row filter">
-            <div class="btn-group">
-                <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filter by
+<!-- Modal -->
+<div class="modal fade" id="snippet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Due Date</a>
-                    <a class="dropdown-item" href="#">Urgency</a>
-                    <a class="dropdown-item" href="#">Category</a>
-                </div>
-            </div>    
- </div>  
-              
-    <div class="content"></div>
-
-        
-   
-
-
-
-    <div id="myModal" class="modal">
-        <div class="row modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-body col-md-5">
-                    <div class="md-form">
+                <h4 class="modal-title w-100" id="myModalLabel">Add New Memo</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
                         <input type="text" id="snippet" class="form-control">
                         <label for="form1" class="">Snippet</label>
                     </div>
+                            
+                    <h3>Choose your category</h3>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <fieldset class="form-group">
+                                <input name="group1" type="radio" id="radio1">
+                                <label for="radio1">Music</label>
+                            </fieldset>
+
+                            <fieldset class="form-group">
+                                <input name="group1" type="radio" id="radio2">
+                                <label for="radio2">Videos</label>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <h3>Choose your urgency</h3>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-5">
+                        <form class="range-field">
+                            <input type="range" min="1" max="5" />
+                        </form>
+                        </div>
+                    </div>
                     
-            <h3>Choose your category</h3>
-             <br>
-            <div class="row">
-                <div class="col-md-5">
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio1">
-                        <label for="radio1">Music</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio2">
-                        <label for="radio2">Videos</label>
-                    </fieldset>
-                </div>
+                    <div class="row submit">
+                        <input type="submit" name="submit" class="submit">
+                    </div>  
             </div>
-
-            <h3>Choose your urgency</h3>
-            <br>
-            <div class="row">
-                <div class="col-md-5">
-                <form class="range-field">
-                    <input type="range" min="1" max="5" />
-                </form>
-                </div>
-            </div>
-            
-            <div class="row submit">
-                <input type="submit" name="submit" class="submit">
-            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+        <!--/.Content-->
     </div>
 </div>
 
+<div class="row filter">
+    <!--filter button-->
+    <div class="btn-group">
+        <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Due Date</a>
+            <a class="dropdown-item" href="#">Urgency</a>
+            <a class="dropdown-item" href="#">Category</a>
+        </div>
+    </div>    
+ </div>  
+    
+    <!--CONTENT-->        
+
+<div class="content"></div>
 
 
-<!-- <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">
-    </div> -->
 
-    <!--Footer-->
+<!--Footer-->
 <footer class="page-footer blue center-on-small-only">
     <!--Copyright-->
     <div class="footer-copyright">
@@ -105,8 +116,6 @@
 
 </footer>
 <!--/.Footer-->
-
-
 
     <script type="text/javascript" src="../../MDB Pro/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../../MDB Pro/js/jquery-2.2.3.min.js"></script>
