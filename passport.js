@@ -8,6 +8,9 @@ var passport = require('passport');
 var config = require('./oauth/oauth.js');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
+var initializedPassport = passport.initialize();
+var passportSession = passport.session();
+
 // configure Facebook Strategy for use by passport
 // client ID, clientSecret, callbackURL come from ./oauth/oauth.js
 passport.use(new FacebookStrategy({
@@ -16,9 +19,8 @@ passport.use(new FacebookStrategy({
         callbackURL: config.facebook.callbackURL
     },
     function (accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({facebookId: profile.id}, function (err, user) {
-            return cb(err, user);
-        });
+            console.log(profile);
+            return cb(null, profile);
     }
 ));
 
