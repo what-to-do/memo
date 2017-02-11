@@ -1,31 +1,52 @@
+$( document ).ready(function() {
+//dynamic categories
+var categories = ["music", "movies", "recipes"];
+
+for (var i = 0; i < categories.length; i++) {
+  var cat_btn = $("<button>");
+  $(cat_btn).addClass(categories[i]);
+  $(cat_btn).addClass("btn btn-primary");
+  $(cat_btn).text(categories[i]);
+  $(cat_btn).data("toogle", "collapse");
+  $(cat_btn).data("target", "#collapseExample");
+  $(cat_btn).appendTo(".categories");
+  $(cat_btn).attr("aria-expanded","false");
+  $(cat_btn).attr("aria-controls","collapseExample");
+ };
+
+$('.collapse').collapse();
+
 // Get the modal
+//var modal = $('#myModal');
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
+//var modal_btn = $('#modal_btn');
 var modal_btn = document.getElementById("modal_btn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
+
 modal_btn.onclick = function() {
     modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+};
+});
 
-
-
+/*
 $('.datepicker').pickadate({// Strings and translations
 monthsFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -145,4 +166,4 @@ klass: {
   buttonClear: 'picker__button--clear',
   buttonClose: 'picker__button--close',
   buttonToday: 'picker__button--today'
-}});
+}});*/
