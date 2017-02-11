@@ -2,34 +2,43 @@
 <html>
 <head>
 	<title>Test Prototype</title>
+
 	<script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
-    <script type="text/javascript" src="../MDB Pro/js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="../MDB Pro/js/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript" src="../MDB Pro/js/tether.min.js"></script>
-    <script type="text/javascript" src="../MDB Pro/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../MDB Pro/js/mdb.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link href="../MDB Pro/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../MDB Pro/css/mdb.min.css" rel="stylesheet">
-    <link href="../MDB Pro/css/style.css" rel="stylesheet">
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css" />
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+	 
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+	<link href="../../MDB Pro/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="../../MDB Pro/css/mdb.min.css" rel="stylesheet">
+
+   <!--  <script type="text/javascript" src="../../MDB Pro/js/jquery-3.1.1.min.js"></script> -->
 
 
-    
 
-	<!-- <script type="text/javascript" src="../js/test.js"></script> -->
+
+    <script type="text/javascript" src="../../MDB Pro/js/tether.min.js"></script>
+
+    <script type="text/javascript" src="../../MDB Pro/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../../MDB Pro/js/mdb.min.js"></script>
+
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/af.js"></script>
+
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script type="text/javascript" src="../js/test.js"></script>
+
 
 </head>
 
 <style type="text/css">
 	
 	.main{
-		margin-left: 400px;
+		margin-left: 100px;
 		margin-top: 100px;
 	}
 
@@ -44,107 +53,48 @@
 
 <body>
 
-<a href="/login/facebook">Log In with Facebook</a>
+<!--Naked Form-->
+<div class="card-block">
 
+    <!--Header-->
+    <div class="text-center">
+        <h3><i class="fa fa-envelope"></i> Add your snippet</h3>
+        <hr class="mt-2 mb-2">
+    </div>
 
-<div class="container main">
+    <!--Body-->
+    <br>
 
-	<h3>Add your snippet</h3>
+    <!--Body-->
+    <div class="md-form">
+        <i class="fa fa-user prefix"></i>
+        <input type="text" id="snippet" class="form-control">
+        <label for="form3">Snippet</label>
+    </div>
 
-	<br>
+    <div class="md-form">
+        <i class="fa fa-envelope prefix"></i>
+        <input type="text" id="category" class="form-control">
+        <label for="form2">Category</label>
+    </div>
 
-	<div class="row">
+    <div class="md-form">
+        <i class="fa fa-tag prefix"></i>
+        <input type="text" id="urgency" class="form-control">
+        <label for="form34">Urgency </label>
+    </div>
+    
 
+    <div class="text-center">
+        <button class="btn btn-default" id="add-button">Submit</button>
 
+    </div>
 
-		<div class="col-md-5">
-
-			<div class="md-form">
-
-			    <input type="text" id="snippet" class="form-control">
-			    <label for="form1" class="">Snippet</label>
-
-			</div>
-
-		</div> 
-
-	</div>
-
-	<h3>Choose your category</h3>
-
-
-
-	<br>
-
-	<div class="row">
-
-		<div class="col-md-5">
-
-			<div class="md-form">
-
-			    <input type="text" id="category" class="form-control">
-			    <label for="form1" class="">Category</label>
-
-			</div>
-
-			<button id="add-button">Add</button>
-
-
-		</div>
-
-	</div>
-
-	<h3>Choose your urgency</h3>
-
-	<br>
-
-	<div class="row">
-
-	<div class="col-md-5">
-
-
-
-	<form class="range-field">
-	    <input type="range" min="1" max="5" />
-	</form>
-
-	</div>
-
-	</div>
-
-	<button id="search-btn">Click me</button>
+</div>
+<!--Naked Form-->
 
 </div>
 
-	<script type="text/javascript">
-		
-		$("#search-btn").on("click", function() {
-	
-
-		  $.get("/api/view", function(data) {
-		    console.log(data);
-
-		  });
-		});
-
-		// Question: What does this code do?
-		$("#add-button").on("click", function(event) {
-		  event.preventDefault();
-
-		  var new_category = {
-
-		    category: $("#category").val().trim(),
-
-		  };
-		  // Question: What does this code do??
-		  $.post("/api/add", new_category)
-		  .done(function(data) {
-		    console.log(data);
-
-		  });
-		});
-
-	</script>
 
 
 
