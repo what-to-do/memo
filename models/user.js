@@ -21,6 +21,15 @@ var Users = sequelize.define('Users', {
 	}
 
 }, {
+	classMethods: {
+		associate: function(models){
+			Users.hasMany(models.Snippets, {
+				foreignKey: 'user_id'
+			});
+		}
+	}
+},
+	{
 	timestamps: false
 	}
 );
