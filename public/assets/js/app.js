@@ -1,20 +1,48 @@
-$( document ).ready(function() {
+
 //dynamic categories
+//
+$(document).ready(function(){
+
+
 var categories = ["music", "movies", "recipes"];
 
 for (var i = 0; i < categories.length; i++) {
   var cat_btn = $("<button>");
-  $(cat_btn).addClass(categories[i]);
-  $(cat_btn).addClass("btn btn-primary");
-  $(cat_btn).text(categories[i]);
-  $(cat_btn).data("toogle", "collapse");
-  $(cat_btn).data("target", "#collapseExample");
-  $(cat_btn).appendTo(".categories");
-  $(cat_btn).attr("aria-expanded","false");
-  $(cat_btn).attr("aria-controls","collapseExample");
- };
+  cat_btn.text(categories[i]);
+  cat_btn.attr({
+    "class" : "btn btn-primary",
+    "type" : "button",
+    "data-toogle" : "collapse",
+    "data-target" : "#collapseExample",
+    "aria-expanded": false,
+    "aria-controls": "collapseExample",
+    "data-index" : i
+    });
+  cat_btn.appendTo(".categories");
 
-$('.collapse').collapse();
+
+  var cat_div = $("<div>");
+  cat_div.attr({
+    "class" : "col-md-12 collapse",
+    "id" : "collapseExample",
+    "aria-expanded": false,
+  });
+  cat_div.appendTo(".content")
+
+  var cat_block = $("<div>");
+  cat_block.attr ({
+    "class" : "card card-block"
+  });
+  cat_block.appendTo(cat_div);
+
+  var cat_para = $('<p>');
+  cat_para.text("Hello World");
+  cat_para.appendTo(cat_block)
+};  
+ 
+  
+
+
 
 // Get the modal
 //var modal = $('#myModal');
@@ -44,6 +72,11 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
+
+  $('.collapse').collapse();
+
+
+
 });
 
 /*
