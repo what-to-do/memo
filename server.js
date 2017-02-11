@@ -28,7 +28,8 @@ require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 require("./routes/passport-routes.js")(app);
 
-
+//Passport
+require("./passport.js");
 //register a Handlebars view engine
 /*app.engine('handlebars', exphbs({defaultLayout: 'test'}));
 app.set('view engine', 'handlebars');*/
