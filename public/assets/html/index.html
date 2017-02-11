@@ -14,61 +14,91 @@
 <div class="container">
     <div class="row">
         <div class="categories col-md-11">
-            Music | Recipes | Games | Movies | Misc
+            The difference categories will go here.
         </div>
 
         <div class="add_snippet col-md-1">
-            <a class="btn-floating btn-small blue" id="myBtn"><i class="fa fa-plus"></i></a>
+            <a class="btn-floating btn-small blue" id="modal_btn"><i class="fa fa-plus"></i></a>
         </div>
     </div>
-
-    <div class="content row">
-        <div class="col-md-2">
-        Created
+    
+    <div class="content">  
+        <div class="row filter">
+            <div class="btn-group">
+                <button class="btn btn-danger btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter by
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Due Date</a>
+                    <a class="dropdown-item" href="#">Urgency</a>
+                    <a class="dropdown-item" href="#">Category</a>
+                </div>
+            </div>         
         </div>
 
-        <div class="col-md-1">
-        Urgency
-        </div>
+        <div class="row db col-md-12">
+            <h1> Handlebars will deliver this db to the screen</h1>  
+        </div>  
+    </div>
 
-        <div class="col-md-6">
-        Snippet
-        </div>
-        
-        <div class="md-form col-md-2">
-        Due by
-        </div>
 
-        <div class="col-md-1">
-        Checkbox
+    <div id="myModal" class="modal">
+        <div class="row modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body col-md-5">
+                    <div class="md-form">
+                        <input type="text" id="snippet" class="form-control">
+                        <label for="form1" class="">Snippet</label>
+                    </div>
+                    
+            <h3>Choose your category</h3>
+             <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio1">
+                        <label for="radio1">Music</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio2">
+                        <label for="radio2">Videos</label>
+                    </fieldset>
+                </div>
+            </div>
+
+            <h3>Choose your urgency</h3>
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                <form class="range-field">
+                    <input type="range" min="1" max="5" />
+                </form>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
-
-    <!-- The Modal
-    <div id="myModal" class="modal"> -->
-
-      <!-- Modal content
-      <div class="modal-content">
-        <div class="modal-header">
-            <div class="md-form">
-                <input type="text" id="snippet" class="form-control">
-                <label for="form1" class="">Snippet</label>
-            </div>
-        </div>
-        <div class="modal-body">
-            <p>Text</p>
-        </div>
-        <div class="modal-footer">
-            <h3>Due Date</h3>
-        </div>
-      </div>
-    </div> -->
 
 
 
 <!-- <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">
     </div> -->
+
+    <!--Footer-->
+<footer class="page-footer blue center-on-small-only">
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+           <h4> © 2015 Copyright: Team Awesome </h4>
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+
 
 
     <script type="text/javascript" src="../../../MDB Pro/js/jquery-3.1.1.min.js"></script>

@@ -33,6 +33,7 @@
     to {top:0; opacity:1}
 }
 
+
 @keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
@@ -54,8 +55,6 @@
     align-content: right;
 }
 
-
-/* The Close Button 
 .close {
     color: white;
     float: right;
@@ -81,4 +80,21 @@
 .modal-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
-    color: white;*/
+    color: white;
+}
+
+body {
+    margin-top: 50px;
+    width: 100%;
+    position:relative; 
+}
+
+.filter {
+    float: right;
+}
+
+footer {
+    height: 75px;
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+}
