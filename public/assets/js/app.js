@@ -1,31 +1,85 @@
+
+//dynamic categories
+//
+$(document).ready(function(){
+
+
+var categories = ["music", "movies", "recipes"];
+
+for (var i = 0; i < categories.length; i++) {
+  var cat_btn = $("<button>");
+  cat_btn.text(categories[i]);
+  cat_btn.attr({
+    "class" : "btn btn-primary",
+    "type" : "button",
+    "data-toogle" : "collapse",
+    "data-target" : "#collapseExample",
+    "aria-expanded": false,
+    "aria-controls": "collapseExample",
+    "data-index" : i
+    });
+  cat_btn.appendTo(".categories");
+
+
+  var cat_div = $("<div>");
+  cat_div.attr({
+    "class" : "col-md-12 collapse",
+    "id" : "collapseExample",
+    "aria-expanded": false,
+  });
+  cat_div.appendTo(".content")
+
+  var cat_block = $("<div>");
+  cat_block.attr ({
+    "class" : "card card-block"
+  });
+  cat_block.appendTo(cat_div);
+
+  var cat_para = $('<p>');
+  cat_para.text("Hello World");
+  cat_para.appendTo(cat_block)
+};  
+ 
+  
+
+
+
 // Get the modal
+//var modal = $('#myModal');
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
+//var modal_btn = $('#modal_btn');
 var modal_btn = document.getElementById("modal_btn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
+
 modal_btn.onclick = function() {
     modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+};
+
+  $('.collapse').collapse();
 
 
 
+});
+
+/*
 $('.datepicker').pickadate({// Strings and translations
 monthsFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -145,4 +199,4 @@ klass: {
   buttonClear: 'picker__button--clear',
   buttonClose: 'picker__button--close',
   buttonToday: 'picker__button--today'
-}});
+}});*/
