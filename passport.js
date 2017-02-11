@@ -41,13 +41,19 @@ app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUnitialized: true }));
-
+var bodyParser = require('body-parser');
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static("./public"));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.get('/',
 	function(req, res) {
-		res.render('home', { user: req.user });
+		res.render('index', { user: req.user });
 	});
 app.get('/login',
 	function(req, res) {
