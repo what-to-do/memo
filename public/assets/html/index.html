@@ -11,6 +11,13 @@
 </head>
 
 <body>
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-login">
+    Modal Login
+</button>
+                                
+
+
+
 
 <!--container for whole website-->
 <div class="container">
@@ -22,7 +29,7 @@
 
         <!--add new note BUTTON-->
         <div class="add_snippet col-md-1">
-            <a class="btn-floating btn-small blue" id="modal_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i></a>
+            <a class="btn-floating btn-small blue" id="modal_btn" data-toggle="modal" data-target="#snippet"><i class="fa fa-plus"></i></a>
         </div>
     </div>
 
@@ -62,7 +69,7 @@
                         </div>
                     </div>
 
-                    <h3>Choose your urgency</h3>
+                    <h3>Importance</h3>
                     <br>
                     <div class="row">
                         <div class="col-md-5">
@@ -71,15 +78,10 @@
                         </form>
                         </div>
                     </div>
-                    
-                    <div class="row submit">
-                        <input type="submit" name="submit" class="submit">
-                    </div>  
             </div>
             <!--Footer-->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         <!--/.Content-->

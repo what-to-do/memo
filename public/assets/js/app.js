@@ -27,12 +27,9 @@ for (var i = 0; i < categories.length; i++) {
   cat_div.appendTo(".content");
 
 
-$(".add_snippet").on("click", function() {
-  $('#snippet').modal('toggle'); 
+$('#myModal').modal({
+  keyboard: false
 })
-
-
-  $('.collapse').collapse('toggle');
 
 
 
