@@ -78,11 +78,34 @@
         <label for="form2"></label>
     </div>
 
-    <div class="md-form">
-        <i class="fa fa-tag prefix"></i>
-        <input type="text" id="urgency" class="form-control">
-        <label for="form34"> </label>
-    </div>
+    <form class="form-inline">
+
+        <fieldset class="form-group">
+            <input name="group1" type="radio" id="radio11" value="1">
+            <label for="radio11">1</label>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <input name="group1" type="radio" id="radio21" value="2">
+            <label for="radio21">2</label>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <input name="group1" type="radio" id="radio31" value="3">
+            <label for="radio31">3</label>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <input name="group1" type="radio" id="radio41" value="4">
+            <label for="radio41">4</label>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <input name="group1" type="radio" id="radio51" value="5">
+            <label for="radio51">5</label>
+        </fieldset>
+
+    </form>
     
 
     <div class="text-center">
@@ -112,10 +135,13 @@
 
 		    snippet: $("#snippet").val().trim(),
 		    category: $("#category").val().trim(),
-		    urgency: $("#urgency").val().trim()
+		    urgency: $("input[name='group1']:checked").val()
 	
 
 		  };
+
+		  console.log(new_category);
+
 		  // Question: What does this code do??
 		  $.post("/api/add", new_category)
 		  .done(function(data) {
@@ -128,66 +154,122 @@
 		
 		function viewing(){
 
-		$.get("/api/view", function(data) {
-		  console.log(data);
+			$.get("/api/view", function(data) {
+				  console.log(data);
 
-		  $("#content").html("");
+				  $("#content").html("");
 
-		  var table = $("<table>");
+				  var table = $("<table>");
 
-		  table.addClass("table");
+				  table.addClass("table");
 
-		  table.appendTo("#content");
+				  table.appendTo("#content");
 
-		  var thead = $("<thead>");
+				  var thead = $("<thead>");
 
-		  thead.appendTo(table);
+				  thead.appendTo(table);
 
-		  var tr = $("<tr>");
+				  var tr = $("<tr>");
 
-		  tr.appendTo(thead);
+				  tr.appendTo(thead);
 
-		  var heading = ["Snippet","Category" , "Urgency"];
+				  var heading = ["#","Created","Snippet","Category" , "Urgency","Actions"];
 
-		  for (let i = 0; i < heading.length; i++) {
-		  	
-		  	var th = $("<th>")
+				  for (let i = 0; i < heading.length; i++) {
+				  	
+				  	var th = $("<th>")
 
-		  	th.text(heading[i]);
+				  	th.text(heading[i]);
 
-		  	th.appendTo(tr);
+				  	th.appendTo(tr);
 
-		  } // End of For Loop I
-		  
-		  var tbody = $("<tbody>");
+				  } // End of For Loop I
+				  
+				  var tbody = $("<tbody>");
 
-		  tbody.appendTo(table);
+				  tbody.appendTo(table);
 
-		  for (let i = 0; i < data.length; i++) {
+				  for (let i = 0; i < data.length; i++) {
 
-		  	var tr2 = $("<tr>");
+				  	var tr2 = $("<tr>");
 
-		  	tr2.appendTo(tbody);
-		  	
-		  	let th = $("<th>");
+				  	tr2.appendTo(tbody);
+				  	
+				  	let th = $("<th>");
 
-		  	th.attr({
-		  		"scope": i + 1
-		  	});
+				  	th.attr({
+				  		"scope": i + 1
+				  	});
 
-		  	th.appendTo(tr2);
+				  	th.text(i);
 
-		  	let td = $("<td>");
+				  	th.appendTo(tr2);
 
-		  	td.text(data[i].category);
+				  	let td_created = $("<td>");
 
+				  	td_created.text(data[i].createdAt);
+
+				  	td_created.appendTo(tr2);
+
+				  	let td_category = $("<td>");
+
+				  	let td_action = $("<td>");
+
+				  	td_category.text(data[i].category);
+
+				  	td_category.appendTo(tr2);
+
+				  	td_action.appendTo(tr2);
+
+				  	var a_edit = $("<a>");
+
+				  	var i_edit = $("<i>");
+
+				  	a_edit.attr({
+
+				  		"class": "teal-text"
+
+				  	});
+
+				  	i_edit.attr({
+
+				  		"class" : "fa fa-pencil"
+
+				  	});
+
+				  	var a_delete = $("<a>");
+
+				  	var i_delete = $("<i>");
+
+				  	a_delete.attr({
+
+				  		"class": "red-text"
+
+				  	});
+
+				  	i_delete.attr({
+
+				  		"class" : "fa fa-times"
+
+				  	});
+
+				  	a_edit.appendTo(td_action);
+				  	i_edit.appendTo(a_edit);
+
+
+				  	a_delete.appendTo(td_action);
+				  	i_delete.appendTo(a_delete);
+
+				  } // End of For Loop I
+				  
 		  	td.appendTo(tr2);
 		  	
 		  	td.append(' ' + data[i].Snippet.snippet);
 		  	td.append(' ' + data[i].Snippet.importance);
 		  } // End of For Loop I
 
-		  	});
+
+			  });
 
 		 }
 
