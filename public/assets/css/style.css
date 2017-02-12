@@ -1,5 +1,6 @@
-.categories {
-    padding-top: 20px;
+.fixed-action-btn {
+    bottom: 45px; 
+    right: 24px;
 }
 
 .content {
@@ -14,19 +15,29 @@
 body {
     margin-top: 50px;
     width: 100%;
-    position:relative; 
+    background-color: #EBF3FF
 }
 
 .filter {
     float: right;
 }
 
-footer {
+.page-footer {
     height: 75px;
     position: absolute; 
     left: 0 ; right: 0; bottom: 0; 
+    background-color: #0788D9
+}
+
+button {
+    font-family: 'Signika', sans-serif;
 }
 
 h1 {
     font-family: 'Signika', sans-serif;
+}
+
+h4 {
+    font-family: 'Signika', sans-serif;
+    text-align: center;
 }

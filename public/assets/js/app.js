@@ -23,7 +23,7 @@ for (var i = 0; i < categories.length; i++) {
     "id" : "collapseExample",
     "aria-expanded": false,
   });
-  cat_div.text("hello");
+  cat_div.text("This is test text.Blah blah blah");
   cat_div.appendTo(".content");
 
 
