@@ -15,7 +15,9 @@ var Categories = sequelize.define('Categories', {
 	classMethods: {
 		associate: function(models){
 			Categories.belongsTo(models.Snippets,{
-				foreignKey: 'category_id'
+				foreignKey: {
+					allowNull: false
+				}
 			});
 		}
 	}
