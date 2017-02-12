@@ -256,10 +256,18 @@
 				  	a_edit.appendTo(td_action);
 				  	i_edit.appendTo(a_edit);
 
+
 				  	a_delete.appendTo(td_action);
 				  	i_delete.appendTo(a_delete);
 
 				  } // End of For Loop I
+				  
+		  	td.appendTo(tr2);
+		  	
+		  	td.append(' ' + data[i].Snippet.snippet);
+		  	td.append(' ' + data[i].Snippet.importance);
+		  } // End of For Loop I
+
 
 			  });
 

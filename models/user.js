@@ -7,20 +7,15 @@ module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
 var Users = sequelize.define('Users', {
 	//validate len will check if the title submitted will be between 6 and 15 letters
-	email: {
-		type: DataTypes.STRING,
-		//validates the user entered an email and responds with an error message if not
-		validate: {
-			isEmail: {
-				args: true,
-				msg: "Please enter your email address"}
-			}
-	},
-	password: {
+	displayName: {
 		type: DataTypes.STRING
+		//validates the user entered an email and responds with an error message if not
+	},
+	facebook_id: {
+		type: DataTypes.INTEGER
 	}
 
-}, {
+},/* {
 	classMethods: {
 		associate: function(models){
 			Users.hasMany(models.Snippets, {
@@ -28,7 +23,7 @@ var Users = sequelize.define('Users', {
 			});
 		}
 	}
-},
+},*/
 	{
 	timestamps: false
 	}
