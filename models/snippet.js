@@ -38,11 +38,11 @@ var Snippets = sequelize.define('Snippets', {
 }, {
 	classMethods: {
 			associate: function(models){
-				Snippets.belongsTo(models.Users, {
+				/*Snippets.belongsTo(models.Users, {
 					foreignKey: 'user_id'
-				});
+				});*/
 				Snippets.hasMany(models.Categories, {
-					foreignKey: 'category_id'
+					onDelete: 'cascade',
 				});
 			}
 		}

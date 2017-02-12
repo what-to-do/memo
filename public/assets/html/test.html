@@ -182,7 +182,9 @@
 		  	td.text(data[i].category);
 
 		  	td.appendTo(tr2);
-
+		  	
+		  	td.append(' ' + data[i].Snippet.snippet);
+		  	td.append(' ' + data[i].Snippet.importance);
 		  } // End of For Loop I
 
 		  	});

@@ -4,11 +4,10 @@ var path = require('path');
 module.exports = function(app){
 	app.get('/api/view', function(req, res){
 		db.Categories.findAll({
-			/*include: [db.Snippets]*/
+			include: [db.Snippets]
 		}).then(function(data){
 			console.log('\nfindall categories data\n');
 			res.json(data);
-			console.log(data);
 		}).catch(function(err){
 			console.log("\ncategories find all error\n");
 			console.log(err);
@@ -16,6 +15,7 @@ module.exports = function(app){
 
 		/*db.Snippets.findAll().then(function(data){
 			res.json(data);
+			console.log(data[0].dataValues)
 		}).catch(function(err){
 			console.log(err);
 		});*/
@@ -23,7 +23,8 @@ module.exports = function(app){
 	
 	app.post('/api/add', function(req, res){
 		db.Categories.create({
-			category: req.body.category
+			category: req.body.category,
+			SnippetId: 1
 		}).then(function(data){
 			res.json(data);
 			/*console.log(data);*/
@@ -44,15 +45,16 @@ module.exports = function(app){
 		});
 	});
 	
-/*	app.delete('/delete/:id', function(req, res){
+	app.delete('/api/delete/:id', function(req, res){
 		db. Categories.destroy({
 			where: req.params.id
 		}).then(function(data){
 			console.log(data);
+			res.redirect('/');
 		}).catch(function(err){
 			console.log(err);
 		});
-	});*/
+	});
 
 
 
