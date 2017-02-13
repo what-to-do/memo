@@ -1,6 +1,7 @@
 var db = require('../models');
 var path = require('path');
 
+/*where we will retrieve data from MySQL using sequelize and send to the client*/
 module.exports = function(app){
 	app.get('/', function(req, res){
 		db.Snippets.findAll({
