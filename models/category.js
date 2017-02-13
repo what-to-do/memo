@@ -4,13 +4,13 @@ used by multiple users sharing categories if they enter the same category*/
 /*=================================CATEGORIES TABLE MODEL=============================================*/
 
 module.exports = function(sequelize, DataTypes){
-var Categories = sequelize.define('categories', {
+var Categories = sequelize.define('Categories', {
 	category: {
 		type: DataTypes.STRING
 	}
 
 }, {
-	classMethods: {
+	class_methods: {
 		associate: function(models){
 			Categories.hasMany(models.Snippets,{
 				foreignKey: 'category_id'

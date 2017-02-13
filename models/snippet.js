@@ -5,7 +5,7 @@ completed.  This will be joined to the category table to order all the snippets 
 /*=================================SNIPPETS TABLE MODEL=============================================*/
 
 module.exports = function(sequelize, DataTypes){
-var Snippets = sequelize.define('snippets', {
+var Snippets = sequelize.define('Snippets', {
 	//user_id joins users to snippets
 	user_id: {
 		type: DataTypes.INTEGER
