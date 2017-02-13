@@ -156,7 +156,7 @@
 
 			$.get("/api/view", function(data) {
 				  console.log(data);
-
+				  console.log("hello");
 				  $("#content").html("");
 
 				  var table = $("<table>");
@@ -177,7 +177,7 @@
 
 				  for (let i = 0; i < heading.length; i++) {
 				  	
-				  	var th = $("<th>")
+				  	var th = $("<th>");
 
 				  	th.text(heading[i]);
 
@@ -262,11 +262,11 @@
 
 				  } // End of For Loop I
 				  
-		  	td.appendTo(tr2);
+		  	td.appendTo(tr2)
 		  	
 		  	td.append(' ' + data[i].Snippet.snippet);
 		  	td.append(' ' + data[i].Snippet.importance);
-		  } // End of For Loop I
+		   // End of For Loop I
 
 
 			  });
