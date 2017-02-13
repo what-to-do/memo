@@ -13,7 +13,7 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session);
 	app.get('/', function(req, res) {
 		res.render('index', { user: req.user });
 	});
@@ -31,6 +31,18 @@ app.use(passport.session());
 		function(req, res) {
 			res.redirect('/');
 	});
+
+	app.get('/auth/google',
+		passport.authenticate('google'));
+
+	app.get('/auth/google/return',
+		passport.authenticate('google', {
+			failureRedirect: '/login' }),
+		function(req, res) {
+			res.redirect('/');
+	});
+	
+	
 	
 	app.get('/profile',
 		require('connect-ensure-login').ensureLoggedIn(),
