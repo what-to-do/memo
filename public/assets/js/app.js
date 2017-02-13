@@ -27,9 +27,7 @@ for (var i = 0; i < categories.length; i++) {
   cat_div.appendTo(".content");
 
 
-$('#myModal').modal({
-  keyboard: false
-})
+
 
 
 
