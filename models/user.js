@@ -9,8 +9,8 @@ var Users = sequelize.define('Users', {
 	//validate len will check if the title submitted will be between 6 and 15 letters
 	display_name: {
 		type: DataTypes.STRING
-		//validates the user entered an email and responds with an error message if not
 	},
+	//facbook id# provided from passport
 	facebook_id: {
 		type: DataTypes.INTEGER
 	}
