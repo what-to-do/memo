@@ -2,9 +2,9 @@ var db = require('../models');
 var path = require('path');
 
 module.exports = function(app){
-	app.get('/api/view', function(req, res){
-		db.Categories.findAll({
-			include: [db.Snippets]
+	app.get('/', function(req, res){
+		db.Snippets.findAll({
+			include: [db.Categories, db.Users]
 		}).then(function(data){
 			console.log('\nfindall categories data\n');
 			res.json(data);
