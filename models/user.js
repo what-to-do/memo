@@ -5,7 +5,7 @@ snippets to retrieve all the snippets for the user*/
 
 module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
-var Users = sequelize.define('Users', {
+var Users = sequelize.define('users', {
 	//validate len will check if the title submitted will be between 6 and 15 letters
 	displayName: {
 		type: DataTypes.STRING

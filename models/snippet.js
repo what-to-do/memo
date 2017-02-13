@@ -5,19 +5,20 @@ completed.  This will be joined to the category table to order all the snippets 
 /*=================================SNIPPETS TABLE MODEL=============================================*/
 
 module.exports = function(sequelize, DataTypes){
-//create a model of the table for sequelize
-var Snippets = sequelize.define('Snippets', {
-	//validate len will check if the title submitted will be between 6 and 15 letters
+var Snippets = sequelize.define('snippets', {
+	//user_id joins users to snippets
 	user_id: {
 		type: DataTypes.INTEGER
 	},
+	//category_id joins snippets to categories
 	category_id: {
 		type: DataTypes.INTEGER
 	},
+	//the users snippet text 
 	snippet: {
 		type: DataTypes.TEXT
 	},
-	
+	//the importance from 1-5
 	importance: {
 		type: DataTypes.INTEGER,
 		//validate the importance level is between 1-5
@@ -35,7 +36,7 @@ var Snippets = sequelize.define('Snippets', {
 		allowNull: true
 	},*/
 	//user_id joins the two tables together
-	
+	//if task is completed
 	completed: {
 		type: DataTypes.BOOLEAN,
 		defaultValue: 0
