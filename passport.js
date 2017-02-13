@@ -7,6 +7,7 @@
 var passport = require('passport');
 var config = require('./oauth/oauth.js');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google').Strategy;
 
 var initializedPassport = passport.initialize();
 var passportSession = passport.session();
@@ -22,6 +23,16 @@ passport.use(new FacebookStrategy({
             console.log(profile);
             return cb(null, profile);
     }
+));
+
+passport.use(new GoogleStrategy({
+	returnURL: 'http://localhost:8080/auth/google/return',
+	realm: 'http://localhost:8080/'
+  },
+  function(identifier, done) {
+	console.log(identifier);
+	return done(err, user);
+  }
 ));
 
 passport.serializeUser(function(user, cb) {
