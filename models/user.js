@@ -15,7 +15,7 @@ var Users = sequelize.define('Users', {
 		type: DataTypes.INTEGER
 	}
 
-},/* {
+}, {
 	classMethods: {
 		associate: function(models){
 			Users.hasMany(models.Snippets, {
@@ -23,7 +23,7 @@ var Users = sequelize.define('Users', {
 			});
 		}
 	}
-},*/
+},
 	{
 	timestamps: false
 	}

@@ -8,9 +8,16 @@ module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
 var Snippets = sequelize.define('Snippets', {
 	//validate len will check if the title submitted will be between 6 and 15 letters
+	user_id: {
+		type: DataTypes.INTEGER
+	},
+	category_id: {
+		type: DataTypes.INTEGER
+	},
 	snippet: {
 		type: DataTypes.TEXT
 	},
+	
 	importance: {
 		type: DataTypes.INTEGER,
 		//validate the importance level is between 1-5
@@ -27,22 +34,20 @@ var Snippets = sequelize.define('Snippets', {
 		type: DataTypes.DATE,
 		allowNull: true
 	},*/
-	user_id: {
-		type: DataTypes.INTEGER
-	},
+	//user_id joins the two tables together
+	
 	completed: {
 		type: DataTypes.BOOLEAN,
 		defaultValue: 0
-	}
-
+	},
 }, {
 	classMethods: {
 			associate: function(models){
-				/*Snippets.belongsTo(models.Users, {
+				Snippets.belongsTo(models.Users, {
 					foreignKey: 'user_id'
-				});*/
-				Snippets.hasMany(models.Categories, {
-					onDelete: 'cascade',
+				});
+				Snippets.belongsTo(models.Categories, {
+					foreignKey: 'category_id'
 				});
 			}
 		}
