@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 
 
 var categories = ["music", "movies", "recipes"];
@@ -225,4 +225,4 @@ for (var i = 0; i < categories.length; i++) {
 
      }
 });
-  
+  */

@@ -1,1 +1,0 @@
-powershell .\mergeJS.ps1 
