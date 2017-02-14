@@ -1,5 +1,8 @@
 var db = require('../models');
 var path = require('path');
+var bcrypt = require('bcrypt-nodejs');
+//var hash = bcrypt.hashSync("12345");
+
 
 /*where we will retrieve data from MySQL using sequelize and send to the client*/
 module.exports = function (app) {
@@ -130,20 +133,31 @@ module.exports = function (app) {
         db.Users.findOne({
             where: {username: req.body.email} 
         }).then(function(data){
-            res.json(data);
+            if (data == null) {
+                res.redirect('/login');
+            } else {
+            res.redirect('/');
+        }
         });
 
     });
 
     //log username and password to db when they signup
     app.post('/signup', function(req, res){
+        var newpassword = bcrypt.hash
+        // newpassword.password = newpassword.generateHash(req.body.password);
+        // console.log(newpassword.password);
         db.Users.create({
                 username: req.body.email,
-                password: req.body.password
+                password: generateHash(req.body.password)
             }).then(function(data){
                 res.redirect('/');
             }).catch(function(err){
                 console.log(err);
             });
         });
+};
+
+function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
