@@ -8,19 +8,23 @@ module.exports = function(sequelize, DataTypes){
 var Snippets = sequelize.define('Snippets', {
 	//user_id joins users to snippets
 	user_id: {
-		type: DataTypes.INTEGER
+		type: DataTypes.INTEGER,
+		allowNull: false
 	},
 	//category_id joins snippets to categories
 	category_id: {
-		type: DataTypes.INTEGER
+		type: DataTypes.INTEGER,
+		allowNull: false
 	},
 	//the users snippet text 
 	snippet: {
-		type: DataTypes.TEXT
+		type: DataTypes.TEXT,
+		allowNull: false
 	},
 	//the importance from 1-5
 	importance: {
 		type: DataTypes.INTEGER,
+		allowNull: false,
 		//validate the importance level is between 1-5
 		validate: {
 			len: [1, 5]
@@ -39,6 +43,7 @@ var Snippets = sequelize.define('Snippets', {
 	//if task is completed
 	completed: {
 		type: DataTypes.BOOLEAN,
+		allowNull: false,
 		defaultValue: 0
 	},
 }, {

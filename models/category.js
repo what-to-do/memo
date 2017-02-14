@@ -6,7 +6,11 @@ used by multiple users sharing categories if they enter the same category*/
 module.exports = function(sequelize, DataTypes){
 var Categories = sequelize.define('Categories', {
 	category: {
-		type: DataTypes.STRING
+		type: DataTypes.STRING,
+		allowNull: false,
+		validate: {
+			len: [1, 20]
+		}
 	}
 
 }, {
