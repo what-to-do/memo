@@ -137,7 +137,7 @@
 
 				console.log(user_delete);
 
-				$.post("/api/delete" , user_delete).
+				$.post("/api/delete" , {user_delete: user_delete}).
 				done(function(data){
 
 					viewing();
