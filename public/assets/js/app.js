@@ -9,13 +9,13 @@ function making_cat_buttons() {
       var cat_btn = $("<button>");
       cat_btn.text(data[i].category);
       cat_btn.attr({
-        "class" : "btn btn-primary",
+        "class" : "btn btn-primary category_buttons",
         "type" : "button",
         "data-toggle" : "collapse",
         "data-target" : "#collapseExample",
         "aria-expanded": false,
         "aria-controls": "collapseExample",
-        "data-index" : data[i].category
+        "data-index" : data[i].id
         });
       cat_btn.appendTo(".categories");
     };
@@ -36,7 +36,12 @@ function making_cat_buttons() {
 
 making_cat_buttons()
 
+  $(".categories").on('click', '.category_buttons', function(){
+    var category_id = $(this).data('index');
+    console.log(category_id);
 
+    viewing(category_id);
+  })
 
   $(".modal-footer").on("click", ".submit" , function(event) {
 
@@ -107,9 +112,9 @@ making_cat_buttons()
 
 
    
-function viewing(){
+function viewing(category_id){
 
-  $.get("/api/view", function(data) {
+  $.get("/api/view", category_id, function(data) {
     $("#content").html("");
 
     var table = $("<table>");
