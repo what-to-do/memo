@@ -3,6 +3,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var db = require('./models');
 var User = require('./models/user');
 var configAuth = require('./oauth/oauth');
+var sequelize = require('sequelize');
 
 module.exports = function(passport) {
 
@@ -54,7 +55,19 @@ module.exports = function(passport) {
   },
   function(req, email, password, done) {
        console.log(email, password);
- 
+        db.Users.findOne({
+          where: {username: req.body.email} 
+        }).then(function(err, data){
+            if (err)
+              return done(err);
+            if (username) 
+              return done(null, false, req.flash('loginMessage', 'No user found.'));
+            
+            if (!user.validPassword(password))
+              return done(null, false, req.flash('loginMessage', 'Invalid password.'));
+            
+            return done(null, user);
+        });
 
   }));
 
