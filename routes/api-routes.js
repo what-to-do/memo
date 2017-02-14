@@ -6,15 +6,16 @@ module.exports = function (app) {
     app.get('/api/view', function (req, res) {
         db.Snippets.findAll({
             include: [db.Categories, db.Users]
-        }).then(function (data) {
+        }).then(function(data) {
             console.log('\nfindall categories data\n');
             res.json(data);
         }).catch(function (err) {
             console.log("\ncategories find all error\n");
             console.log(err);
         });
-
     });
+
+    
 
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
@@ -28,7 +29,7 @@ module.exports = function (app) {
     });
 
     //get snippets by category
-    app.get('/api/:cateogory', function(req, res){
+    app.get('/api/:category', function(req, res){
         if(req.params.category){
             db.Snippets.findAll({
                 include: [db.Categories, db.Users],
@@ -62,7 +63,7 @@ module.exports = function (app) {
         db.Snippets.create({
             snippet: req.body.snippet,
             importance: req.body.urgency,
-            category: req.body.category
+            category_id: req.body.category
         }).then(function (data) {
             res.json(data);
             /*console.log(data);*/
@@ -100,6 +101,8 @@ module.exports = function (app) {
         });
     });
 
+
+/*=====================================USER QUERRIES=============================================*/
     //find the user when they login
     app.post('/login/complete', function(req, res){
         db.Users.findOne({
@@ -107,9 +110,17 @@ module.exports = function (app) {
         }).then(function(data){
             res.json(data);
         });
-    });
+    }); 
 
     
+    app.post('/signup', function(req, res){
+        db.Users.create({
+                username: req.body.email,
+                password: req.body.password
+            }).then(function(data){
+                res.redirect('/');
+            }).catch(function(err){
+                console.log(err);
+            });
+        });
 };
-
-

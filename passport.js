@@ -1,6 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-
+var db = require('./models');
 var User = require('./models/user');
 var configAuth = require('./oauth/oauth');
 
@@ -17,15 +17,15 @@ module.exports = function(passport) {
   });
 
   passport.use('local-signup', new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password',
+    username : 'email',
+    password: 'password',
     passReqToCallback : true
   },
   function(req, email, password, done) {
     console.log(email, password);
     process.nextTick(function() {
 
-      User.findOne({ 'local.email' : email }, function(err, user) {
+      db.User.findOne({ 'username' : email }, function(err, user) {
         if (err)
           return done(err);
 

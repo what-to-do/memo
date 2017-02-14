@@ -1,3 +1,5 @@
+var db = require('../models');
+
 module.exports = function(app, passport) {
 	app.get('/login', function(req, res) {
 		res.render('login', { message: req.flash('loginMessage') });
