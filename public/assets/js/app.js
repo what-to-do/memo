@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-viewing();
+viewing_all();
 
 function making_cat_buttons() {
   $.get("/api/categories" , function(data){
@@ -40,7 +40,7 @@ making_cat_buttons()
     var category_id = $(this).data('index');
     console.log(category_id);
 
-    viewing(category_id);
+    view_category(category_id);
   })
 
   $(".modal-footer").on("click", ".submit" , function(event) {
@@ -62,7 +62,7 @@ making_cat_buttons()
       });
 
      
-    viewing();
+  
 
   });
 
@@ -88,7 +88,7 @@ making_cat_buttons()
 
     });
 
-    viewing();
+  
 
   });
 
@@ -105,17 +105,34 @@ making_cat_buttons()
 
     });
 
-  viewing();
+  
 
 
   });
 
 
+function view_category(category_id){
+      console.log(category_id);
+  $.get("/api/view/category", {category_id: category_id}, function(data){
+    console.log(data);
+
+    render_view(data);
+  });
+}
    
-function viewing(category_id){
+function viewing_all(){
+      $.get("/api/view", function(data) {
+            render_view(data);
+      });
+}
+
 
   $.get("/api/view/:category", category_id, function(data) {
     $("#content").html("");
+
+function render_view(data){
+      $("#content").html("");
+
 
     var table = $("<table>");
     table.addClass("table");
@@ -196,9 +213,7 @@ function viewing(category_id){
        // End of For Loop I
           
 
-        });
 }
-
 
 });
   

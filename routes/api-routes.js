@@ -3,9 +3,10 @@ var path = require('path');
 
 /*where we will retrieve data from MySQL using sequelize and send to the client*/
 module.exports = function (app) {
-    app.get('/api/view', function (req, res) {
+    app.get('/api/view/', function (req, res) {
         db.Snippets.findAll({
-            include: [db.Categories, db.Users]
+            include: [db.Categories, db.Users],
+            order: '"updatedAt" DESC'
         }).then(function(data) {
             console.log('\nfindall categories data\n');
             res.json(data);
@@ -15,7 +16,20 @@ module.exports = function (app) {
         });
     });
 
-    
+    app.get('/api/view/:category', function(req, res){
+            console.log(req.params);
+            db.Snippets.findAll({
+            include: [db.Categories, db.Users],
+            where: {category_id: req.params.c},
+            order: '"updatedAt" DESC'
+        }).then(function(data) {
+            console.log('\nfindall categories data\n');
+            res.json(data);
+        }).catch(function (err) {
+            console.log("\ncategories find all error\n");
+            console.log(err);
+        });
+    });
 
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
@@ -120,7 +134,7 @@ module.exports = function (app) {
 
     });
 
-    
+    //log username and password to db when they signup
     app.post('/signup', function(req, res){
         db.Users.create({
                 username: req.body.email,
