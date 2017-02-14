@@ -19,46 +19,49 @@ function making_cat_buttons() {
         });
       cat_btn.appendTo(".categories");
     };
+
       for (let i = 0; i < data.length; i++) {
         var dropdown_cat = $('<option>');
         dropdown_cat.text(data[i].category);
         dropdown_cat.attr({
-          "value" : i+1,
-          "data-index" : data[i].category
+          "value" : data[i].id
         });
         dropdown_cat.appendTo('#selected_category');
+
       };
+
   });
+
 }
+
 making_cat_buttons()
 
-function crud(){
 
-  $(".submit").on("click", function(event) {
 
-   
+  $(".modal-footer").on("click", ".submit" , function(event) {
+
+
     var new_category = {
       snippet: $("#snippet_modal").val().trim(),
-      category: $("#selected_category option:selected").text(),
+      category: $("#selected_category :selected").val(),
       urgency: $("input[name='group1']:checked").val()
     };
-
-    console.log(new_category);
 
     // Question: What does this code do??
     $.post("/api/add/snippet", new_category)
     .done(function(data) {
+
       console.log(data);
 
     
       });
 
      
-
+    viewing();
 
   });
 
-  $(".edit").on("click" , function(event){
+  $("#content").on("click" , ".edit" , function(event){
 
     var user = $(this).data("index");
       // Question: What does this code do?
@@ -77,10 +80,14 @@ function crud(){
 
 
       });
+
     });
+
+    viewing();
+
   });
 
-  $(".del").on("click" , function(event){
+  $("#content").on("click" , ".del" , function(event){
       
   console.log("obj");
   var user_delete = $(this).data("index");
@@ -92,8 +99,13 @@ function crud(){
 
 
     });
+
+  viewing();
+
+
   });
-}
+
+
    
 function viewing(){
 
@@ -177,7 +189,7 @@ function viewing(){
           
 
        // End of For Loop I
-          crud();
+          
 
         });
 }

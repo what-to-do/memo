@@ -60,11 +60,18 @@ module.exports = function (app) {
 
     app.post('/api/add/snippet', function (req, res) {
         //create snippet
+
+        console.log(req.body);
+
         db.Snippets.create({
             snippet: req.body.snippet,
             importance: req.body.urgency,
             category_id: req.body.category
         }).then(function (data) {
+
+
+            console.log(data);
+
             res.json(data);
             /*console.log(data);*/
         }).catch(function (err) {
