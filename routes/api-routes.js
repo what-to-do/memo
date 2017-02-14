@@ -16,11 +16,12 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/view/:category', function(req, res){
+    //grab snippets by category using $.get("/api/view" + category_id)
+    app.get('/api/view/:category?', function(req, res){
             console.log(req.params);
             db.Snippets.findAll({
             include: [db.Categories, db.Users],
-            where: {category_id: req.params.c},
+            where: {category_id: req.params.category},
             order: '"updatedAt" DESC'
         }).then(function(data) {
             console.log('\nfindall categories data\n');

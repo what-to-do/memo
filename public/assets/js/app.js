@@ -110,22 +110,25 @@ making_cat_buttons()
 
   });
 
-
+//retrieves all snippets by category
 function view_category(category_id){
       console.log(category_id);
-  $.get("/api/view/category", {category_id: category_id}, function(data){
+  $.get("/api/view/" + category_id, function(data){
     console.log(data);
 
     render_view(data);
   });
 }
-   
+
+//retrieves all snippets for the user
 function viewing_all(){
       $.get("/api/view", function(data) {
             render_view(data);
       });
 }
 
+
+//renders all the data provided from the database
 function render_view(data){
       $("#content").html("");
 
