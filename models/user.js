@@ -15,7 +15,7 @@ var User = sequelize.define('Users', {
 	},
 	//facbook id# provided from passport
 	facebook_id: {
-		type: DataTypes.INTEGER/*,
+		type: DataTypes.BIGINT/*,
 		allowNull: false*/
 	},
 	//username
