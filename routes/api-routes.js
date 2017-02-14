@@ -50,9 +50,12 @@ module.exports = function (app) {
     //edit snippet
     app.post('/api/edit', function(req, res){
         db.Snippets.update({
-            snippet: req.body.snippet,
-            where: {id : req.body.user_edit}
+            snippet: req.body.snippet
+        },
+        {
+            where: {id : req.body.snippet_id}
         }).then(function(data){
+            res.redirect('/');
             console.log("updated\n" + data);
         }).catch(function(err){
             console.log(err);
