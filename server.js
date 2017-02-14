@@ -38,14 +38,14 @@ require("./routes/html-routes.js")(app);
 
 require('./passport')(passport);	// pass passport for configuration
 //register a Handlebars view engine
-/*app.engine('handlebars', exphbs({defaultLayout: 'test'}));
-app.set('view engine', 'handlebars');*/
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 app.use(morgan('dev'));		// log every request to the console
 app.use(cookieParser());	// read cookies (need for auth)
 app.use(bodyParser());		// get information from html forms
 
-app.use(ses({ secret: 'secretwordhere' }));
+app.use(session({ secret: 'secretwordhere' }));
 app.use(passport.initialize());
 app.use(passport.session());	// persistent login sessions
 app.use(flash());	// use connect-flash for flash messages stored in sessions

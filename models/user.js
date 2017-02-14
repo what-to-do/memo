@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
-var Users = sequelize.define('Users', {
+var User = sequelize.define('Users', {
 	//validate len will check if the title submitted will be between 6 and 15 letters
 	display_name: {
 		type: DataTypes.STRING,
@@ -30,7 +30,7 @@ var Users = sequelize.define('Users', {
 }, {
 	class_methods: {
 		associate: function(models){
-			Users.hasMany(models.Snippets, {
+			User.hasMany(models.Snippets, {
 				foreignKey: 'user_id'
 			});
 		}
@@ -48,7 +48,7 @@ var Users = sequelize.define('Users', {
 	timestamps: false
 	}
 );
-return Users;
+return User;
 };
 
 /*=================================END USERS TABLE MODEL=============================================*/
