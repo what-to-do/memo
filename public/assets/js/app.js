@@ -1,23 +1,25 @@
 $(document).ready(function(){
 
-var categories = ["music", "movies", "recipes"];
-
-for (var i = 0; i < categories.length; i++) {
-  var cat_btn = $("<button>");
-  cat_btn.text(categories[i]);
-  cat_btn.attr({
-    "class" : "btn btn-primary",
-    "type" : "button",
-    "data-toggle" : "collapse",
-    "data-target" : "#collapseExample",
-    "aria-expanded": false,
-    "aria-controls": "collapseExample",
-    "data-index" : i
-    });
-  cat_btn.appendTo(".categories");
-};  
-
 viewing();
+
+$.get("/api/categories" , function(data){
+  for (var i = 0; i < data.length; i++) {
+    var cat_btn = $("<button>");
+    cat_btn.text(data[i].category);
+    cat_btn.attr({
+      "class" : "btn btn-primary",
+      "type" : "button",
+      "data-toggle" : "collapse",
+      "data-target" : "#collapseExample",
+      "aria-expanded": false,
+      "aria-controls": "collapseExample",
+      "data-index" : data[i].category
+      });
+    cat_btn.appendTo(".categories");
+  };
+      console.log(data);
+
+    });
 
 
 function crud(){
@@ -51,7 +53,7 @@ function crud(){
     $("#edit-btn").on("click", function(){
     var edited_category = {
       snippet_id: user,
-      snippet: $("#snippet_modal").val().trim(),
+      snippet: $("#snippet_edit").val().trim(),
       urgency: $("input[name='group2']:checked").val()
       };
 
@@ -81,8 +83,7 @@ function crud(){
     });
   });
 }
-
-    
+   
 function viewing(){
 
   $.get("/api/view", function(data) {
