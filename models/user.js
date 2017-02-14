@@ -15,8 +15,16 @@ var Users = sequelize.define('Users', {
 	facebook_id: {
 		type: DataTypes.INTEGER,
 		allowNull: false
+	},
+	//username
+	username: {
+		type: DataTypes.STRING,
+		validate: {isEmail: true}
+	},
+	//password
+	password: {
+		type: DataTypes.STRING
 	}
-
 }, {
 	class_methods: {
 		associate: function(models){
