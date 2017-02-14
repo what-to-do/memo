@@ -118,21 +118,130 @@
 
 <div id="content"></div>
 
+<!-- Modal Register -->
+<div class="modal fade modal-ext" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header flex-column">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="card-block">
+
+                <!--Header-->
+                <div class="text-center">
+                    <h3><i class="fa fa-envelope"></i> Add your snippet</h3>
+                    <hr class="mt-2 mb-2">
+                </div>
+
+                <!--Body-->
+                <br>
+
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fa fa-user prefix"></i>
+                    <input type="text" id="snippet2" class="form-control">
+                    <label for="form3"></label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input type="text" id="category2" class="form-control">
+                    <label for="form2"></label>
+                </div>
+
+                <form class="form-inline">
+
+                    <fieldset class="form-group">
+                        <input name="group2" type="radio" id="radio110" value="1">
+                        <label for="radio110">1</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group2" type="radio" id="radio210" value="2">
+                        <label for="radio210">2</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group2" type="radio" id="radio310" value="3">
+                        <label for="radio310">3</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group2" type="radio" id="radio410" value="4">
+                        <label for="radio410">4</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group2" type="radio" id="radio510" value="5">
+                        <label for="radio510">5</label>
+                    </fieldset>
+
+                </form>
+                
+
+                <div class="text-center">
+                    <button class="btn btn-default" id="edit-btn">Submit</button>
+
+                </div>
+
+            </div>
+        <!--/.Content-->
+    </div>
+
+
 </div>
 
 <script type="text/javascript">
 	
 	$(document).ready(function(){
 
+
+		$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+		})
+
 		viewing();
 
 
 		function crud(){
 
+			$(".edit").on("click" , function(event){
+		
+				var user = $(this).data("index");
+
+				$("#edit-btn").on("click" , function(){
+
+					var edited_category = {
+
+						snippet_id: user,
+					    snippet: $("#snippet2").val().trim(),
+					    category: $("#category2").val().trim(),
+					    urgency: $("input[name='group2']:checked").val()
+					
+
+				    };
+
+				    console.log(edited_category);
+
+					$.post("/api/edit" , edited_category).
+					done(function(data){
+
+						viewing();
+
+					});
+
+				});
+
+			});
+
 
 			$(".del").on("click" , function(event){
 			
-				console.log("obj");
 				var user_delete = $(this).data("index");
 
 				console.log(user_delete);
@@ -275,9 +384,16 @@
 				  	a_edit.attr({
 
 				  		"class": "teal-text edit",
-                        "data-index": data[i].id
+                        "data-index": data[i].id,
+                        "data-toggle":"modal",
+                        "data-target": "#modal-register"
 
 				  	});
+
+				  	// <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-register">
+				  	//     Launch demo modal
+				  	// </button>
+
 
 				  	i_edit.attr({
 
