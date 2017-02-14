@@ -33,6 +33,7 @@ module.exports = function (app) {
             console.log("\ncategories create error\n");
             console.log(err);
         });
+
         //create snippet
         db.Snippets.create({
             snippet: req.body.snippet,
@@ -46,6 +47,19 @@ module.exports = function (app) {
         });
     });
 
+    //edit snippet
+    app.post('/api/edit', function(req, res){
+        db.Snippets.update({
+            snippet: req.body.snippet,
+            where: {id : req.body.user_edit}
+        }).then(function(data){
+            console.log("updated\n" + data);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    //delete snippet
     app.post('/api/delete', function (req, res) {
         console.log(req.body);
         db.Snippets.destroy({
