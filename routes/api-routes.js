@@ -14,6 +14,17 @@ module.exports = function (app) {
             console.log(err);
         });
 
+    app.get('/api/categories', function(req, res){
+        db.Categories.findAll({
+
+        }).then(function(data){
+            console.log(data);
+            res.json(data);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
         /*db.Snippets.findAll().then(function(data){
          res.json(data);
          console.log(data[0].dataValues)

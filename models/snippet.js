@@ -30,13 +30,9 @@ var Snippets = sequelize.define('Snippets', {
 			len: [1, 5]
 		}
 	},
-	/*time: {
-		type: DataTypes.DATE,
-		allowNull: true,
-		defaultValue: sequelize.literal("CURRENT_TIMESTAMP")
-	},
+	/*to
 	deadline: {
-		type: DataTypes.DATE,
+		type: DataTypes.DATEONLY,
 		allowNull: true
 	},*/
 	//user_id joins the two tables together
