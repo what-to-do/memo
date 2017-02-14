@@ -29,9 +29,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
 
-//Routes
-require("./routes/api-routes.js")(app);
-require("./routes/html-routes.js")(app);
+
 
 //Passport
 //require("./passport.js");
@@ -50,6 +48,9 @@ app.use(passport.initialize());
 app.use(passport.session());	// persistent login sessions
 app.use(flash());	// use connect-flash for flash messages stored in sessions
 
+//Routes
+require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 require("./routes/passport-routes.js")(app, passport);
 
 
