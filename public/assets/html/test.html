@@ -202,6 +202,14 @@
 		viewing();
 
 
+		$.get("/api/categories" , function(data){
+
+			console.log(data);
+
+
+		});
+
+
 		function crud(){
 
 			$(".edit").on("click" , function(event){
@@ -281,7 +289,7 @@
 		function viewing(){
 
 			$.get("/api/view", function(data) {
-				  console.log(data);
+				  var new_date = [];
 				  console.log("hello");
 				  $("#content").html("");
 
@@ -317,6 +325,23 @@
 
 				  for (let i = 0; i < data.length; i++) {
 
+				  	//console.log(data[i].createdAt);
+
+				  	var string = toString(data[i].createdAt);
+
+				  	console.log(string);
+
+				  	// console.log(string);
+				  	// var date = new Date(string.replace(
+				  	//     /^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/,
+				  	//     '$4:$5:$6 $2/$3/$1'
+				  	// ));
+
+				  	
+				  	// new_date.push(date);
+
+				  	// console.log(new_date[i]);
+
 				  	var tr2 = $("<tr>");
 
 				  	tr2.appendTo(tbody);
@@ -335,7 +360,7 @@
 
 				  	let td_created = $("<td>");
 
-				  	td_created.text(data[i].createdAt);
+				  	td_created.text(new_date[i]);
 
 				  	td_created.appendTo(tr2);
 
