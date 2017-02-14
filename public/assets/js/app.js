@@ -114,7 +114,7 @@ making_cat_buttons()
    
 function viewing(category_id){
 
-  $.get("/api/view", category_id, function(data) {
+  $.get("/api/view/:category", category_id, function(data) {
     $("#content").html("");
 
     var table = $("<table>");
