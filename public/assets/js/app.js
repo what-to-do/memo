@@ -126,8 +126,13 @@ function viewing_all(){
       });
 }
 
+
+  $.get("/api/view/:category", category_id, function(data) {
+    $("#content").html("");
+
 function render_view(data){
       $("#content").html("");
+
 
     var table = $("<table>");
     table.addClass("table");
