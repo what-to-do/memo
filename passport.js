@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var User = require('./models/user');
+var configAuth = require('./oauth/oauth');
 
 module.exports = function(passport) {
 
@@ -53,18 +55,39 @@ module.exports = function(passport) {
   function(req, email, password, done) {
        console.log(email, password);
  
-    // User.findOne({ 'local.email': email }, function(err, user) {
-    //   if (err)
-    //     return done(err);
 
-    //   if (!user) 
-    //     return done(null, false, req.flash('loginMessage', 'No user found'));
+  }));
 
-    //   if (!user.validPassword(password))
-    //     return done(null, false, req.flash('loginMessage', 'Wrong Password.'));
+  passport.use(new FacebookStrategy({
+    clientID  : configAuth.facebookAuth.clientID,
+    clientSecret: configAuth.facebookAuth.clientSecret,
+    callbackURL : configAuth.facebookAuth.callbackURL
+  },
+  function(token, refreshToken, profile, done) {
+    process.nextTick(function() {
+      User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+        if (err)
+          return done(err);
+        if (user) {
+          return done(null, user);
+        } else {
+          var newUser = User();
+          newUser.facebook.id = profile.id;
+          newUser.facebook.token = token;
+          newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+          newUser.facebook.email = profile.emails[0].value;
 
-      // return done(null, user);
-    // });
+          newUser.save(function(err) {
+            if (err)
+              throw err;
+
+            return done(null, newUser);
+          });
+        }
+        
+      });
+    });
+
   }));
   
 };

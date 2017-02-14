@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
 	}));
 
 	app.get('/signup', function(req, res) {
-		res.render('signup.ejs', { message: req.flash('signupMessage') });
+		res.render('signup', { message: req.flash('signupMessage') });
 	});
 
 	app.post('/signup', passport.authenticate('local-signup', {
@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
 	}));
 
 	app.get('/signup', function(req, res) {
-		res.render('signup.ejs', { message: req.flash('signupMessage') });
+		res.render('signup', { message: req.flash('signupMessage') });
 	});
 
 	app.post('/signup', passport.authenticate('local-signup', {
@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
 //	
 
 	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
+		res.render('profile', {
 			user : req.user
 		});
 	});
@@ -40,6 +40,14 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+
+	app.get('/login/facebook', passport.authenticate('facebook', { scope : 'email'}));
+
+	app.get('/login/facebook/callback',
+		passport.authenticate('facebook', {
+			successRedirect: '/',
+			failureRedirect: '/signup'
+		}));
 };
 
 function isLoggedIn(req, res, next) {
