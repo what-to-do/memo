@@ -12,6 +12,18 @@ body {
     right: 24px;
 }
 
+#modal_btn {
+    float: right;
+    font-size: 35px;
+    display:block;
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.0);
+    color:grey;
+    border: none;
+    outline:none;
+    font-family: 'Rubik', sans-serif;
+}
+
 .content {
     margin-top: 30px;
     height: 50%;
@@ -36,6 +48,8 @@ body {
 }
 
 button {
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.0);
     font-family: 'Signika', sans-serif;
 }
 
