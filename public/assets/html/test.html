@@ -127,47 +127,53 @@
 		viewing();
 
 
-		// Question: What does this code do?
-		$("#add-button").on("click", function(event) {
-		  event.preventDefault();
-
-		  var new_category = {
-
-		    snippet: $("#snippet").val().trim(),
-		    category: $("#category").val().trim(),
-		    urgency: $("input[name='group1']:checked").val()
-	
-
-		  };
-
-		  console.log(new_category);
-
-		  // Question: What does this code do??
-		  $.post("/api/add", new_category)
-		  .done(function(data) {
-		    console.log(data);
-
-		    viewing();
-
-		  });
-		});
+		function crud(){
 
 
+			$(".del").on("click" , function(event){
+			
+				console.log("obj");
+				var user_delete = $(this).data("index");
 
-		$("#del").on("click" , function(){
+				console.log(user_delete);
 
-			var user_delete = $(this).data("index");
+				$.post("/api/delete" , user_delete).
+				done(function(data){
 
-			console.log(user_delete);
+					viewing();
 
-			$.delete("/api/delete" , user_delete).
-			done(function(data){
+				});
 
-				viewing();
+			});
 
-			})
 
-		});
+			// Question: What does this code do?
+			$("#add-button").on("click", function(event) {
+			  event.preventDefault();
+
+			  var new_category = {
+
+			    snippet: $("#snippet").val().trim(),
+			    category: $("#category").val().trim(),
+			    urgency: $("input[name='group1']:checked").val()
+			
+
+			  };
+
+			  console.log(new_category);
+
+			  // Question: What does this code do??
+			  $.post("/api/add", new_category)
+			  .done(function(data) {
+			    console.log(data);
+
+			    viewing();
+
+			  });
+			});
+
+
+		}
 
 		
 		function viewing(){
@@ -268,8 +274,7 @@
 
 				  	a_edit.attr({
 
-				  		"class": "teal-text",
-				  		"id": "edit",
+				  		"class": "teal-text edit",
                         "data-index": data[i].id
 
 				  	});
@@ -286,8 +291,7 @@
 
 				  	a_delete.attr({
 
-				  		"class": "red-text",
-				  		"id": "del",
+				  		"class": "red-text del",
                         "data-index": data[i].id
 
 				  	});
@@ -309,9 +313,11 @@
 				  
 
 		   // End of For Loop I
-
+		   		crud();
 
 			  });
+
+			
 
 		 }
 
