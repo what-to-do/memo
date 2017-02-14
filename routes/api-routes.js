@@ -110,7 +110,8 @@ module.exports = function (app) {
         }).then(function(data){
             res.json(data);
         });
-    }); 
+
+    });
 
     
     app.post('/signup', function(req, res){
