@@ -36,8 +36,7 @@ body {
 }
 
 .filter {
-    float: right;
-    margin-bottom: 20px;
+    margin-left: 90%;
 }
 
 .page-footer {
@@ -48,8 +47,6 @@ body {
 }
 
 button {
-    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
-    background: rgba(204, 204, 204, 0.0);
     font-family: 'Signika', sans-serif;
 }
 
