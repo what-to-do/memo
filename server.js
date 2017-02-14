@@ -26,7 +26,7 @@ app.use(express.static("./public"));
 //Routes
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
-require("./routes/passport-routes.js")(app);
+//require("./routes/passport-routes.js")(app);
 
 //Passport
 require("./passport.js");

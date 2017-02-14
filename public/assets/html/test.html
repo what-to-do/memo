@@ -7,7 +7,7 @@
 	  src="https://code.jquery.com/jquery-3.1.1.min.js"
 	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	  crossorigin="anonymous"></script>
-	 
+
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 
@@ -151,6 +151,24 @@
 
 		  });
 		});
+
+
+
+		$("#del").on("click" , function(){
+
+			var user_delete = $(this).data("index");
+
+			console.log(user_delete);
+
+			$.delete("/api/delete" , user_delete).
+			done(function(data){
+
+				viewing();
+
+			})
+
+		});
+
 		
 		function viewing(){
 
@@ -205,21 +223,44 @@
 
 				  	th.appendTo(tr2);
 
+
+
 				  	let td_created = $("<td>");
 
 				  	td_created.text(data[i].createdAt);
 
 				  	td_created.appendTo(tr2);
 
+
+				  	let td_snippet = $("<td>");
+
+				  	td_snippet.text(data[i].snippet);
+
+				  	td_snippet.appendTo(tr2)
+
+
+
 				  	let td_category = $("<td>");
 
-				  	let td_action = $("<td>");
-
-				  	td_category.text(data[i].category);
+				  	td_category.text(data[i].Category.category);
 
 				  	td_category.appendTo(tr2);
 
+
+
+
+				  	let td_import = $("<td>");
+
+				  	td_import.text(data[i].importance);
+
+				  	td_import.appendTo(tr2);
+
+
+
+				  	let td_action = $("<td>");
+
 				  	td_action.appendTo(tr2);
+
 
 				  	var a_edit = $("<a>");
 
@@ -227,7 +268,9 @@
 
 				  	a_edit.attr({
 
-				  		"class": "teal-text"
+				  		"class": "teal-text",
+				  		"id": "edit",
+                        "data-index": data[i].id
 
 				  	});
 
@@ -243,7 +286,9 @@
 
 				  	a_delete.attr({
 
-				  		"class": "red-text"
+				  		"class": "red-text",
+				  		"id": "del",
+                        "data-index": data[i].id
 
 				  	});
 
@@ -262,10 +307,7 @@
 
 				  } // End of For Loop I
 				  
-		  	td.appendTo(tr2)
-		  	
-		  	td.append(' ' + data[i].Snippet.snippet);
-		  	td.append(' ' + data[i].Snippet.importance);
+
 		   // End of For Loop I
 
 
