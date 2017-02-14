@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect: '/profile',
+		successRedirect: '/login',
 		failureRedirect: '/login',
 		failureFlash: true
 	}));
@@ -40,6 +40,12 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+
+	app.get('/auth/facebook/callback',
+		passport.authenticate('facebook', {
+			successRedirect: '/',
+			failureRedirect: '/signup'
+		}));
 };
 
 function isLoggedIn(req, res, next) {
