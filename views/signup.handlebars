@@ -21,7 +21,7 @@
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
  -->
-    {{#messageCheck}}
+    {{#if messageCheck}}
         <div class="alert alert-danger">{{this.message}}</div>
     {{/if}}
 
@@ -47,11 +47,13 @@
 </div>
 
 </div>
-</body>
-</html>
-
+<script type="text/javascript>"
 Handlebars.registerHelper('messageCheck', function(block) {
     if(this.message.length > 0) {
     return block.fn(this);
     }
 });
+</script>
+</body>
+</html>
+
