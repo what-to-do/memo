@@ -6,13 +6,14 @@ module.exports = function (app) {
     app.get('/api/view', function (req, res) {
         db.Snippets.findAll({
             include: [db.Categories, db.Users]
-        }).then(function (data) {
+        }).then(function(data) {
             console.log('\nfindall categories data\n');
             res.json(data);
         }).catch(function (err) {
             console.log("\ncategories find all error\n");
             console.log(err);
         });
+    });
 
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
