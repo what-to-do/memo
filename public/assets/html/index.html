@@ -19,8 +19,38 @@
    <div class="row">
         <!--categories buttons-->
         <div class="categories col-md-11">
+            <button type="button" class="add_new_cat btn btn-primary category_buttons" data-toggle='collapse' data-target='#add-category_button' aria-expanded=false aria-controls="collapseExample" data-index='0'>+</button>
             <button type="button" class="btn btn-primary category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
+            
         </div>
+
+<!--CREATE NEW CATEGORY-->
+<div class="modal fade" id="add-category_button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Add New Category</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
+                        <input type="text" id="snippet_modal" class="form-control" value="">
+                        <label for="form1" class="">Snippet</label>
+                </div>     
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="new_cat_submit btn btn-secondary" data-dismiss="modal">Create New Category</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
 
         <!--add new note BUTTON-->
         <div class="add_snippet col-md-1">
