@@ -128,9 +128,9 @@ function viewing_all(){
 }
 
 
-//renders all the data provided from the database
 function render_view(data){
       $("#content").html("");
+
 
     var table = $("<table>");
     table.addClass("table");
