@@ -31,6 +31,13 @@ $('#myModal').modal({
   keyboard: false
 })
 
-
+$('.submit').on('click', function() {
+  var newMemo = {
+    snippet : $('#snippet_modal').val(),
+    category : $('#selected_category :selected').text(),
+    urgency: $("input[name='group1']:checked").val()
+    }
+    console.log(newMemo);
+})
 
 });
