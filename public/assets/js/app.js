@@ -46,7 +46,7 @@ function crud(){
     console.log(new_category);
 
     // Question: What does this code do??
-    $.post("/api/add", new_category)
+    $.post("/api/add/snippet", new_category)
     .done(function(data) {
       console.log(data);
 
