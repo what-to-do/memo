@@ -86,12 +86,11 @@ module.exports = function (app) {
         });
     });
 
-    //find one user
-    app.get('/login', function(req, res){
+    //find the user when they login
+    app.post('/login/complete', function(req, res){
         db.Users.findOne({
-            where: {username: "rick"} 
+            where: {username: req.body.email} 
         }).then(function(data){
-            console.log(data);
             res.json(data);
         });
     });
