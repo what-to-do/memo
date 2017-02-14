@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 var status = 0;
 
-viewing_all();
+view_all();
 
 function making_cat_buttons() {
   $.get("/api/categories" , function(data){
@@ -37,8 +37,12 @@ making_cat_buttons()
 
   $(".categories").on('click', '.category_buttons', function(){
     var category_id = $(this).data('index');
+    if(category_id === 0){
+      view_all();
+    }else{
     console.log(category_id);
     view_category(category_id);
+      }     
   });
 
   $(".modal-footer").on("click", ".submit" , function(event) {
@@ -57,7 +61,11 @@ making_cat_buttons()
 
     
       });
-
+      if(status === 0){
+      view_all();
+      } else{
+      view_category(status);
+      }
      
   
 
@@ -84,7 +92,11 @@ making_cat_buttons()
       });
 
     });
-
+    if(status === 0){
+      view_all();
+      } else{
+      view_category(status);
+      }
   
 
   });
@@ -100,11 +112,21 @@ making_cat_buttons()
     done(function(data){
 
     });
+    /*if status === 0 that means the user is currently viewing all snippets.  If 
+    status === a number it means they are viewing by category and will show the 
+    appropriate category*/
+      if(status === 0){
+      view_all();
+      } else{
+      view_category(status);
+      }
   });
 
 //retrieves all snippets by category
 function view_category(category_id){
-      console.log(category_id);
+      console.log("before " + status);
+      status = category_id;
+      console.log("before " + status);
   $.get("/api/view/" + category_id, function(data){
     console.log(data);
 
@@ -113,7 +135,8 @@ function view_category(category_id){
 }
 
 //retrieves all snippets for the user
-function viewing_all(){
+function view_all(){
+      status = 0;
       $.get("/api/view", function(data) {
             render_view(data);
       });
