@@ -3,8 +3,8 @@ module.exports = function(app, passport) {
 		res.render('login', { message: req.flash('loginMessage') });
 	});
 
-	app.post('/login', passport.authenticate('local-login', {
-		successRedirect: '/login',
+	app.post('/login/complete', passport.authenticate('local-login', {
+		successRedirect: '/profile',
 		failureRedirect: '/login',
 		failureFlash: true
 	}));
