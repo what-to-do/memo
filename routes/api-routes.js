@@ -14,6 +14,8 @@ module.exports = function (app) {
             console.log(err);
         });
 
+    });
+
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
 
