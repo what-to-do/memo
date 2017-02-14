@@ -10,13 +10,13 @@ module.exports = function(sequelize, DataTypes){
 var User = sequelize.define('Users', {
 	//validate len will check if the title submitted will be between 6 and 15 letters
 	display_name: {
-		type: DataTypes.STRING,
-		allowNull: false
+		type: DataTypes.STRING/*,
+		allowNull: false*/
 	},
 	//facbook id# provided from passport
 	facebook_id: {
-		type: DataTypes.INTEGER,
-		allowNull: false
+		type: DataTypes.INTEGER/*,
+		allowNull: false*/
 	},
 	//username
 	username: {
