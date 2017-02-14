@@ -86,6 +86,15 @@ module.exports = function (app) {
         });
     });
 
+    //find one user
+    app.get('/api/login', function(req, res){
+        db.Users.findOne({
+            where: {username: "rick"} 
+        }).then(function(data){
+            console.log(data);
+            res.json(data);
+        });
+    });
 
     
 };
