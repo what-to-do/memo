@@ -26,16 +26,18 @@ for (var i = 0; i < categories.length; i++) {
   cat_div.text("This is test text.Blah blah blah");
   cat_div.appendTo(".content");
 
-
-
-
 $('.submit').on('click', function() {
   var newMemo = {
     snippet : $('#snippet_modal').val(),
     category : $('#selected_category :selected').text(),
     urgency: $("input[name='group1']:checked").val()
-    }
-    console.log(newMemo);
-})
+    };
+
+    $.post("/api/add", newMemo)
+        .done(function(data) {
+          console.log(data);
+    });
+
+});
 
 });

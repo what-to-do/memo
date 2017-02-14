@@ -11,7 +11,7 @@
 	<title>Memo</title>
 </head>
 
-<body>                           
+<body id="grad">                           
 <!--container for whole website-->
 <div class="container">
     <h1>reMemo</h1>
@@ -22,7 +22,7 @@
 
         <!--add new note BUTTON-->
         <div class="add_snippet col-md-1">
-            <a class="btn-floating btn-small" id="modal_btn" data-toggle="modal" data-target="#snippet"><i class="fa fa-sticky-note-o"></i></a>
+            <a class="btn-floating btn-small" id="modal_btn" data-toggle="modal" data-target="#snippet"><i class="fa fa-plus"></i></a>
         </div>
     </div>
 
@@ -57,7 +57,6 @@
                     <h3>Importance</h3>
                     <br>
                 <form class="form-inline">
-
                     <fieldset class="form-group">
                         <input name="group1" type="radio" id="radio11" value="1">
                         <label for="radio11">1</label>
@@ -82,7 +81,6 @@
                         <input name="group1" type="radio" id="radio51" value="5">
                         <label for="radio51">5</label>
                     </fieldset>
-
                 </form>
             </div>
             <!--Footer-->
@@ -98,7 +96,7 @@
  <div class="row filter">
     <!--filter button-->
     <div class="btn-group">
-        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+        <button class="btn light-blue accent-2 btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Urgency</a>
             <a class="dropdown-item" href="#">Category</a>
@@ -112,7 +110,7 @@
 
 
 <!--Footer-->
-<footer class="page-footer blue">
+<footer class="page-footer light-blue accent-2">
     <!--Copyright-->
     <h4> © 2017 Team Awesome </h4>
     <!--/.Copyright-->
