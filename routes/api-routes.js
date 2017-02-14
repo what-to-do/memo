@@ -3,23 +3,7 @@ var path = require('path');
 
 /*where we will retrieve data from MySQL using sequelize and send to the client*/
 module.exports = function (app) {
-    app.get('/api/view/:category?', function (req, res) {
-        if(req.params.category){
-            db.Snippets.findAll({
-            include: [db.Categories, db.Users],
-            where: {category: req.params.category},
-            order: '"updatedAt" DESC'
-        }).then(function(data) {
-            console.log('\nfindall categories data\n');
-            res.json(data);
-        }).catch(function (err) {
-            console.log("\ncategories find all error\n");
-            console.log(err);
-        });
-
-
-        }
-        else{
+    app.get('/api/view/', function (req, res) {
         db.Snippets.findAll({
             include: [db.Categories, db.Users],
             order: '"updatedAt" DESC'
@@ -30,10 +14,22 @@ module.exports = function (app) {
             console.log("\ncategories find all error\n");
             console.log(err);
         });
-    }
     });
 
-    
+    app.get('/api/view/:category', function(req, res){
+            console.log(req.params);
+            db.Snippets.findAll({
+            include: [db.Categories, db.Users],
+            where: {category_id: req.params.c},
+            order: '"updatedAt" DESC'
+        }).then(function(data) {
+            console.log('\nfindall categories data\n');
+            res.json(data);
+        }).catch(function (err) {
+            console.log("\ncategories find all error\n");
+            console.log(err);
+        });
+    });
 
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
