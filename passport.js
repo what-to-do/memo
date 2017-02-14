@@ -1,87 +1,67 @@
-// passport.js
-//
-// for authenticating with Facebook
-//
+var LocalStrategy = require('passport-local').Strategy;
 
-// load the appropriate dependencies
-var passport = require('passport');
-var config = require('./oauth/oauth.js');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google').Strategy;
+var User = require('./models/user');
 
-var initializedPassport = passport.initialize();
-var passportSession = passport.session();
+module.exports = function(passport) {
 
-// configure Facebook Strategy for use by passport
-// client ID, clientSecret, callbackURL come from ./oauth/oauth.js
-passport.use(new FacebookStrategy({
-        clientID: config.facebook.clientID,
-        clientSecret: config.facebook.clientSecret,
-        callbackURL: config.facebook.callbackURL
-    },
-    function (accessToken, refreshToken, profile, cb) {
-            console.log(profile);
-            return cb(null, profile);
-    }
-));
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
 
-passport.use(new GoogleStrategy({
-	returnURL: 'http://localhost:8080/auth/google/return',
-	realm: 'http://localhost:8080/'
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
+  });
+
+  passport.use('local-signup', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
   },
-  function(identifier, done) {
-	console.log(identifier);
-	return done(err, user);
-  }
-));
+  function(req, email, password, done) {
+    process.nextTick(function() {
 
-passport.serializeUser(function(user, cb) {
-	cb(null, user);
-});
+      User.findOne({ 'local.email' : email }, function(err, user) {
+        if (err)
+          return done(err);
 
-passport.deserializeUser(function(obj, cb) {
-	cb(null, obj);
-});
+        if (user) {
+          return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+        } else {
+          var newUser = new User();
 
+          newUser.local.email   = email;
+          newUser.local.password  = newUser.generateHash(password);
 
-// a test express application for passport
+          newUser.save(function(err) {
+            if (err) 
+              throw err;
+            return done(null, newUser);
+          });
+        }
+      });
+    });
+  }));
 
-// var express = require('express');
+  passport.use('local-login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback : true
+  },
+  function(req, email, password, done) {
+    User.findOne({ 'local.email': email }, function(err, user) {
+      if (err)
+        return done(err);
 
-// var app = express();
+      if (!user) 
+        return done(null, false, req.flash('loginMessage', 'No user found'));
 
-// app.use(require('morgan')('combined'));
-// app.use(require('cookie-parser')());
-// app.use(require('body-parser').urlencoded({ extended: true }));
-// app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUnitialized: true }));
-// var bodyParser = require('body-parser');
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(express.static("./public"));
+      if (!user.validPassword(password))
+        return done(null, false, req.flash('loginMessage', 'Wrong Password.'));
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.text());
-// app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-// app.get('/',
-// 	function(req, res) {
-// 		res.render('index', { user: req.user });
-// 	});
-// app.get('/login',
-// 	function(req, res) {
-// 		res.render('login');
-// 	});
-// app.get('/login/facebook',
-// 	passport.authenticate('facebook'));
-// app.get('/login/facebook/return',
-// 	passport.authenticate('facebook', { failureRedirect: '/login' }),
-// 	function(req, res) {
-// 		res.redirect('/');
-// 	});
-// app.get('/profile',
-// 	require('connect-ensure-login').ensureLoggedIn(),
-// 	function(req, res) {
-// 		res.render('profile', { user: req.user });
-// 	});
-// app.listen(3000);
+      return done(null, user);
+    });
+  }));
+  
+};

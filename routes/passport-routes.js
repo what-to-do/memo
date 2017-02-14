@@ -1,54 +1,50 @@
-var passport = require('passport');
-var config = require('../oauth/oauth.js');
-var FacebookStrategy = require('passport-facebook').Strategy;
-require('../passport.js');
-
-// passport authentication routes
-var path = require('path');
-
-module.exports = function(app){
-app.use(require('morgan')('combined'));
-app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-
-app.use(passport.initialize());
-app.use(passport.session);
-	app.get('/', function(req, res) {
-		res.render('index', { user: req.user });
-	});
-
+module.exports = function(app, passport) {
 	app.get('/login', function(req, res) {
-		res.render('login');
-	});
-	
-	app.get('/login/facebook', 
-		passport.authenticate('facebook'));
-	
-	app.get('/login/facebook/return',
-		passport.authenticate('facebook', { 
-			failureRedirect: '/login' }),
-		function(req, res) {
-			res.redirect('/');
+		res.render('login', { message: req.flash('loginMessage') });
 	});
 
-	app.get('/auth/google',
-		passport.authenticate('google'));
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}));
 
-	app.get('/auth/google/return',
-		passport.authenticate('google', {
-			failureRedirect: '/login' }),
-		function(req, res) {
-			res.redirect('/');
+	app.get('/signup', function(req, res) {
+		res.render('signup.ejs', { message: req.flash('signupMessage') });
 	});
-	
-	
-	
-	app.get('/profile',
-		require('connect-ensure-login').ensureLoggedIn(),
-		function(req, res) {
-			res.render('profile', { 
-				user: req.user 
-			});
+
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect : '/profile',
+		failureRedirect : '/signup',
+		failureFlash : true
+	}));
+
+	app.get('/signup', function(req, res) {
+		res.render('signup.ejs', { message: req.flash('signupMessage') });
+	});
+
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect : '/profile',
+		failureRedirect : '/signup',
+		failureFlash : true
+	}));
+//	
+
+	app.get('/profile', isLoggedIn, function(req, res) {
+		res.render('profile.ejs', {
+			user : req.user
+		});
+	});
+
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
 	});
 };
+
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+
+	res.redirect('/');
+}
