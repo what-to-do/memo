@@ -13,7 +13,7 @@ $.get("/api/categories" , function(data){
       "data-target" : "#collapseExample",
       "aria-expanded": false,
       "aria-controls": "collapseExample",
-      "data-index" : i
+      "data-index" : data[i].category
       });
     cat_btn.appendTo(".categories");
   };
@@ -53,7 +53,7 @@ function crud(){
     $("#edit-btn").on("click", function(){
     var edited_category = {
       snippet_id: user,
-      snippet: $("#snippet_modal").val().trim(),
+      snippet: $("#snippet_edit").val().trim(),
       urgency: $("input[name='group2']:checked").val()
       };
 
@@ -83,11 +83,8 @@ function crud(){
     });
   });
 }
-
-    
+   
 function viewing(){
-
-
 
   $.get("/api/view", function(data) {
     $("#content").html("");
