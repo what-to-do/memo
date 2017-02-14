@@ -25,32 +25,44 @@ module.exports = function (app) {
         });
     });
 
-        /*db.Snippets.findAll().then(function(data){
-         res.json(data);
-         console.log(data[0].dataValues)
-         }).catch(function(err){
-         console.log(err);
-         });*/
+    //get snippets by category
+    app.get('/api/:cateogory', function(req, res){
+        if(req.params.category){
+            db.Snippets.findAll({
+                include: [db.Categories, db.Users],
+                where: {category: req.params.category}
+            }).then(function(data){
+                res.json(data);
+            }).catch(function(err){
+                console.log(err);
+            });
+        }
     });
+    
 
-    app.post('/api/add', function (req, res) {
+    app.post('/api/add/category', function(req, res){
         db.Categories.create({
             category: req.body.category,
             SnippetId: 1
         }).then(function (data) {
             res.json(data);
-            /*console.log(data);*/
         }).catch(function (err) {
             console.log("\ncategories create error\n");
             console.log(err);
         });
+    });
 
+
+
+
+    app.post('/api/add/snippet', function (req, res) {
         //create snippet
         db.Snippets.create({
             snippet: req.body.snippet,
             importance: req.body.urgency,
+            category: req.body.category
         }).then(function (data) {
-            res.redirect('/api/view');
+            res.json(data);
             /*console.log(data);*/
         }).catch(function (err) {
             console.log('\nsnippet create error\n');
