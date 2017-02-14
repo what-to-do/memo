@@ -130,14 +130,24 @@ module.exports = function (app) {
 /*=====================================USER QUERRIES=============================================*/
     //find the user when they login
     app.post('/login/complete', function(req, res){
+        var pwd = req.body.password;
+        console.log(pwd);
         db.Users.findOne({
             where: {username: req.body.email} 
-        }).then(function(data){
-            if (data == null) {
+        }).then(function(data, pwd){
+            console.log(pwd);
+            console.log(data.dataValues.password);
+//            console.log(data.password);
+//            console.log(req.body.password);
+//            console.log(generateHash(req.body.password));
+            //console.log(data);
+             if (data == null) {
                 res.redirect('/login');
             } else {
             res.redirect('/');
         }
+        }).catch(function(err) {
+            console.log(err);
         });
 
     });
@@ -161,3 +171,7 @@ module.exports = function (app) {
 function generateHash(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
+
+function validPassword(password, storedPassword) {
+    return bcrypt.compareSync(password, storedPassword);
+}

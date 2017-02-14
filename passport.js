@@ -4,6 +4,8 @@ var db = require('./models');
 var User = require('./models/user');
 var configAuth = require('./oauth/oauth');
 var sequelize = require('sequelize');
+var bcrypt = require('bcrypt-nodejs');
+var hash = bcrypt.hashSync("12345");
 
 module.exports = function(passport) {
 
@@ -63,9 +65,10 @@ module.exports = function(passport) {
             if (username) 
               return done(null, false, req.flash('loginMessage', 'No user found.'));
             
-            if (!user.validPassword(password))
+            if (!user.validPassword(req.body.password, "12345")) {
+              console.log(req.body.password);
               return done(null, false, req.flash('loginMessage', 'Invalid password.'));
-            
+            }
             return done(null, user);
         });
 
@@ -77,30 +80,56 @@ module.exports = function(passport) {
     callbackURL : configAuth.facebookAuth.callbackURL
   },
   function(token, refreshToken, profile, done) {
-    process.nextTick(function() {
-      User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-        if (err)
-          return done(err);
-        if (user) {
-          return done(null, user);
-        } else {
-          var newUser = User();
-          newUser.facebook.id = profile.id;
-          newUser.facebook.token = token;
-          newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-          newUser.facebook.email = profile.emails[0].value;
+    console.log(profile.id);
+    console.log(profile.displayName);
 
-          newUser.save(function(err) {
-            if (err)
-              throw err;
-
-            return done(null, newUser);
-          });
-        }
-        
-      });
-    });
-
-  }));
-  
+            db.Users.create({
+                facebook_id: profile.id,
+                display_name: profile.displayName
+            }).then(function(data){
+                res.redirect('/');
+            }).catch(function(err){
+                console.log(err);
+            });
+    
+    return done(null);
+    }));
 };
+    // process.nextTick(function() {
+    //   db.Users.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+    //     if (err)
+    //       console.log(err);
+    //       return done(err);
+    //     if (user) {
+    //       return done(null, user);
+    //     } else {
+    //       var newUser = Users();
+    //       newUser.facebook.id = profile.id;
+    //       newUser.facebook.token = token;
+    //       newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+    //       newUser.facebook.email = profile.emails[0].value;
+
+    //       newUser.save(function(err) {
+    //         if (err)
+    //           throw err;
+
+    //         return done(null, newUser);
+        //   });
+        // }
+        
+      // });
+    // };
+
+  // }));
+  
+
+function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+function validPassword(password, storedPassword) {
+    console.log(password);
+    console.log(storedPassword);
+    console.log(bcrypt.compareSync(password, storedPassword));
+    return bcrypt.compareSync(password, storedPassword);
+}
