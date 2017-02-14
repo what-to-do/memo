@@ -3,7 +3,7 @@ var path = require('path');
 
 /*where we will retrieve data from MySQL using sequelize and send to the client*/
 module.exports = function(app){
-	app.get('/', function(req, res){
+	app.get('/api/view', function(req, res){
 		db.Snippets.findAll({
 			include: [db.Categories, db.Users]
 		}).then(function(data){
