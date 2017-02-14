@@ -35,8 +35,8 @@ making_cat_buttons()
 function crud(){
 
   $(".submit").on("click", function(event) {
-    event.preventDefault();
 
+   
     var new_category = {
       snippet: $("#snippet_modal").val().trim(),
       category: $("#selected_category option:selected").text(),
@@ -50,9 +50,12 @@ function crud(){
     .done(function(data) {
       console.log(data);
 
-      viewing();
-
+    
       });
+
+     
+
+
   });
 
   $(".edit").on("click" , function(event){
@@ -72,7 +75,6 @@ function crud(){
       $.post("/api/edit", edited_category).
       done(function(data){
 
-        viewing();
 
       });
     });
@@ -88,7 +90,6 @@ function crud(){
   $.post("/api/delete" , {user_delete: user_delete}).
   done(function(data){
 
-    viewing();
 
     });
   });
@@ -181,36 +182,6 @@ function viewing(){
         });
 }
 
-// function category_data() {
-//   $.get("/api/categories" , function(data){
-//   console.log(data);
-//   return data;
-// });
-// };
-
-// function populating_modal(data_category) {
-//   for (var i = 0; i < data_category.length; i++) {
-//     var cat_btn = $("<button>");
-//     cat_btn.text(data_category[i].category);
-//     cat_btn.attr({
-//       "class" : "btn btn-primary",
-//       "type" : "button",
-//       "data-toggle" : "collapse",
-//       "data-target" : "#collapseExample",
-//       "aria-expanded": false,
-//       "aria-controls": "collapseExample",
-//       "data-index" : data[i].category
-//       });
-//     cat_btn.appendTo(".categories");
-//   };
-//       console.log(data);
-
-// };
-
-
-function populating_category_bar() {
-
-};
 
 });
   

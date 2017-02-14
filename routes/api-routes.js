@@ -15,6 +15,8 @@ module.exports = function (app) {
         });
     });
 
+    });
+
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
 
