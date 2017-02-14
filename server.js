@@ -9,7 +9,7 @@ var PORT = process.env.PORT || 8080;
 var db = require("./models");
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
+app.use(express.static("public/assets"));
 
 //override POST when having ?_method=DELETE
 app.use(methodOverride('_method'));
@@ -21,7 +21,8 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
-app.use(express.static("./public"));
+//app.use('/static', express.static("/public"));
+
 
 //Routes
 require("./routes/api-routes.js")(app);

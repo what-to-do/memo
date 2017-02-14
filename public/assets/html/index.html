@@ -6,15 +6,15 @@
     <link href="../../MDB Pro/css/mdb.min.css" rel="stylesheet">
     <link href="../../MDB Pro/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
 	<title>Memo</title>
 </head>
 
-<body>                           
+<body id="grad">                           
 <!--container for whole website-->
 <div class="container">
-    <h1>reMemo</h1>
     <!--categories bar & filter-->
    <div class="row">
         <!--categories buttons-->
@@ -22,7 +22,7 @@
 
         <!--add new note BUTTON-->
         <div class="add_snippet col-md-1">
-            <a class="btn-floating btn-small" id="modal_btn" data-toggle="modal" data-target="#snippet"><i class="fa fa-sticky-note-o"></i></a>
+            <button id="modal_btn" data-toggle="modal" data-target="#snippet">+</button>
         </div>
     </div>
 
@@ -42,39 +42,55 @@
             <!--Body-->
             <div class="modal-body">
                 <div class="md-form">
-                        <input type="text" id="snippet" class="form-control">
+                        <input type="text" id="snippet_modal" class="form-control" value="">
                         <label for="form1" class="">Snippet</label>
                     </div>
                             
                     <h3>Choose your category</h3>
                     <br>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <fieldset class="form-group">
-                                <input name="group1" type="radio" id="radio1">
-                                <label for="radio1">Music</label>
-                            </fieldset>
-
-                            <fieldset class="form-group">
-                                <input name="group1" type="radio" id="radio2">
-                                <label for="radio2">Videos</label>
-                            </fieldset>
-                        </div>
-                    </div>
+                    <select id="selected_category" class="btn-group">
+                        <option value="1">Music</option>
+                        <option value="2">Videos</option>
+                        <option value="3">Notes</option>
+                        <option value="4">Create New Category</option>
+                    </select>
+                
+                <div>
+                    <input type="text" id="new_catrgory" class="form-control" value="" disabled>
+                </div>
 
                     <h3>Importance</h3>
                     <br>
-                    <div class="row">
-                        <div class="col-md-5">
-                        <form class="range-field">
-                            <input type="range" min="1" max="5" />
-                        </form>
-                        </div>
-                    </div>
+                <form class="form-inline">
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio11" value="1">
+                        <label for="radio11">1</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio21" value="2">
+                        <label for="radio21">2</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio31" value="3">
+                        <label for="radio31">3</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio41" value="4">
+                        <label for="radio41">4</label>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <input name="group1" type="radio" id="radio51" value="5">
+                        <label for="radio51">5</label>
+                    </fieldset>
+                </form>
             </div>
             <!--Footer-->
             <div class="modal-footer">
-                <button type="button submit" class="btn btn-secondary" data-dismiss="modal">Submit</button>
+                <button type="button " class="submit btn btn-secondary" data-dismiss="modal">Submit</button>
             </div>
         </div>
         <!--/.Content-->
@@ -82,25 +98,24 @@
 </div>
 
 
- <div class="row filter">
+ <div class="row">
     <!--filter button-->
-    <div class="btn-group">
-        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+    <div class="filter btn-group">
+        <button class="btn light-blue accent-2 btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Due Date</a>
             <a class="dropdown-item" href="#">Urgency</a>
             <a class="dropdown-item" href="#">Category</a>
         </div>
     </div>    
  </div>    
     <!--CONTENT-->        
-<div class="content"></div>
+<div class="content" id="content"></div>
 
 </div>
 
 
 <!--Footer-->
-<footer class="page-footer blue">
+<footer class="page-footer light-blue accent-2">
     <!--Copyright-->
     <h4> © 2017 Team Awesome </h4>
     <!--/.Copyright-->

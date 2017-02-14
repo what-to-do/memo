@@ -1,33 +1,49 @@
+#grad {
+    background: linear-gradient(to bottom right, #81d4fa, #a7ffeb); /* Standard syntax */
+}
+
+body {
+    margin-top: 50px;
+    width: 100%;
+}
+
 .fixed-action-btn {
     bottom: 45px; 
     right: 24px;
+}
+
+#modal_btn {
+    float: right;
+    font-size: 35px;
+    display:block;
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.0);
+    color:grey;
+    border: none;
+    outline:none;
+    font-family: 'Rubik', sans-serif;
 }
 
 .content {
     margin-top: 30px;
     height: 50%;
     background-color: white;
+    opacity: 0.5;
 }
 
 .add_snippet {
     align-content: right;
 }
 
-body {
-    margin-top: 50px;
-    width: 100%;
-    background-color: #EBF3FF
-}
-
 .filter {
-    float: right;
+    margin-left: 90%;
 }
 
 .page-footer {
-    height: 75px;
+    height: 50px;
     position: absolute; 
     left: 0 ; right: 0; bottom: 0; 
-    background-color: #0788D9
+    background-color: #a7ffeb
 }
 
 button {
