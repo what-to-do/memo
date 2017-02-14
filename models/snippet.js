@@ -9,12 +9,22 @@ var Snippets = sequelize.define('Snippets', {
 	//user_id joins users to snippets
 	user_id: {
 		type: DataTypes.INTEGER,
-		allowNull: false
+
+		//allowNull: false
+
+		defaultValue: 1/*,
+		allowNull: false*/
+
 	},
 	//category_id joins snippets to categories
 	category_id: {
 		type: DataTypes.INTEGER,
-		allowNull: false
+
+		//allowNull: false
+
+		defaultValue: 3/*,
+		allowNull: false*/
+
 	},
 	//the users snippet text 
 	snippet: {

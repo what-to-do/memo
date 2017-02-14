@@ -1,26 +1,36 @@
 $(document).ready(function(){
 
+
 viewing();
 
-$.get("/api/categories" , function(data){
-  for (var i = 0; i < data.length; i++) {
-    var cat_btn = $("<button>");
-    cat_btn.text(data[i].category);
-    cat_btn.attr({
-      "class" : "btn btn-primary",
-      "type" : "button",
-      "data-toggle" : "collapse",
-      "data-target" : "#collapseExample",
-      "aria-expanded": false,
-      "aria-controls": "collapseExample",
-      "data-index" : data[i].category
-      });
-    cat_btn.appendTo(".categories");
-  };
-      console.log(data);
-
-    });
-
+function making_cat_buttons() {
+  $.get("/api/categories" , function(data){
+    for (let i = 0; i < data.length; i++) {
+      var cat_btn = $("<button>");
+      cat_btn.text(data[i].category);
+      cat_btn.attr({
+        "class" : "btn btn-primary",
+        "type" : "button",
+        "data-toggle" : "collapse",
+        "data-target" : "#collapseExample",
+        "aria-expanded": false,
+        "aria-controls": "collapseExample",
+        "data-index" : data[i].category
+        });
+      cat_btn.appendTo(".categories");
+    };
+      for (let i = 0; i < data.length; i++) {
+        var dropdown_cat = $('<option>');
+        dropdown_cat.text(data[i].category);
+        dropdown_cat.attr({
+          "value" : i+1,
+          "data-index" : data[i].category
+        });
+        dropdown_cat.appendTo('#selected_category');
+      };
+  });
+}
+making_cat_buttons()
 
 function crud(){
 
@@ -36,7 +46,7 @@ function crud(){
     console.log(new_category);
 
     // Question: What does this code do??
-    $.post("/api/add", new_category)
+    $.post("/api/add/snippet", new_category)
     .done(function(data) {
       console.log(data);
 
@@ -170,6 +180,37 @@ function viewing(){
 
         });
 }
+
+// function category_data() {
+//   $.get("/api/categories" , function(data){
+//   console.log(data);
+//   return data;
+// });
+// };
+
+// function populating_modal(data_category) {
+//   for (var i = 0; i < data_category.length; i++) {
+//     var cat_btn = $("<button>");
+//     cat_btn.text(data_category[i].category);
+//     cat_btn.attr({
+//       "class" : "btn btn-primary",
+//       "type" : "button",
+//       "data-toggle" : "collapse",
+//       "data-target" : "#collapseExample",
+//       "aria-expanded": false,
+//       "aria-controls": "collapseExample",
+//       "data-index" : data[i].category
+//       });
+//     cat_btn.appendTo(".categories");
+//   };
+//       console.log(data);
+
+// };
+
+
+function populating_category_bar() {
+
+};
 
 });
   
