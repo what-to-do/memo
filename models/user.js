@@ -15,11 +15,8 @@ var User = sequelize.define('Users', {
 	//password entered from /login
 	password: {
 		type: DataTypes.STRING
-	},
-	// created only for comparison of stored hash with newly hashed pw
-	salt: {
-		type: DataTypes.STRING
 	}
+	
 }, {
 	class_methods: {
 		associate: function(models){

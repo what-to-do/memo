@@ -1,11 +1,40 @@
 var db = require('../models');
 var path = require('path');
-var bcrypt = require('bcrypt-nodejs');
-//var hash = bcrypt.hashSync("12345");
 
+/*=========================SNIPPET QUERRIES===================================*/
 
-/*where we will retrieve data from MySQL using sequelize and send to the client*/
+/*RETRIEVING DATA FROM THE SQL DATABASE*/
 module.exports = function (app) {
+    
+    //CREATE SNIPPET
+    app.post('/api/add/snippet', function (req, res) {
+        db.Snippets.create({
+            snippet: req.body.snippet,
+            importance: req.body.urgency,
+            category_id: req.body.category
+        }).then(function (data) {
+            console.log("\ncreated snippet\n");
+            res.json(data);
+        }).catch(function (err) {
+            console.log('\nsnippet create error\n');
+            console.log(err);
+        });
+    });
+
+     //CREATE CATEGORY
+    app.post('/api/add/category', function(req, res){
+        db.Categories.create({
+            category: req.body.category,
+            SnippetId: 1
+        }).then(function (data) {
+            res.json(data);
+        }).catch(function (err) {
+            console.log("\ncategories create error\n");
+            console.log(err);
+        });
+    });
+
+    //READ ALL SNIPPETS
     app.get('/api/view/', function (req, res) {
         db.Snippets.findAll({
             include: [db.Categories, db.Users],
@@ -19,7 +48,7 @@ module.exports = function (app) {
         });
     });
 
-    //grab snippets by category using $.get("/api/view" + category_id)
+    //READ SNIPPETS BY CATEGORY
     app.get('/api/view/:category?', function(req, res){
             console.log(req.params);
             db.Snippets.findAll({
@@ -27,7 +56,7 @@ module.exports = function (app) {
             where: {category_id: req.params.category},
             order: '"updatedAt" DESC'
         }).then(function(data) {
-            console.log('\nfindall categories data\n');
+            console.log("\nfind snippets by category\n");
             res.json(data);
         }).catch(function (err) {
             console.log("\ncategories find all error\n");
@@ -35,70 +64,18 @@ module.exports = function (app) {
         });
     });
 
+    //READ ALL CATEGORIES TO PRODUCE CATEGORY BUTTONS
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
-
         }).then(function(data){
-            console.log(data);
+            
             res.json(data);
         }).catch(function(err){
             console.log(err);
         });
     });
 
-    //get snippets by category
-    app.get('/api/:category', function(req, res){
-        if(req.params.category){
-            db.Snippets.findAll({
-                include: [db.Categories, db.Users],
-                where: {category: req.params.category}
-            }).then(function(data){
-                res.json(data);
-            }).catch(function(err){
-                console.log(err);
-            });
-        }
-    });
-    
-
-    app.post('/api/add/category', function(req, res){
-        db.Categories.create({
-            category: req.body.category,
-            SnippetId: 1
-        }).then(function (data) {
-            res.json(data);
-        }).catch(function (err) {
-            console.log("\ncategories create error\n");
-            console.log(err);
-        });
-    });
-
-
-
-
-    app.post('/api/add/snippet', function (req, res) {
-        //create snippet
-
-        console.log(req.body);
-
-        db.Snippets.create({
-            snippet: req.body.snippet,
-            importance: req.body.urgency,
-            category_id: req.body.category
-        }).then(function (data) {
-
-
-            console.log(data);
-
-            res.json(data);
-            /*console.log(data);*/
-        }).catch(function (err) {
-            console.log('\nsnippet create error\n');
-            console.log(err);
-        });
-    });
-
-    //edit snippet
+    //UPDATE SNIPPET
     app.post('/api/edit', function(req, res){
         db.Snippets.update({
             snippet: req.body.snippet
@@ -107,13 +84,13 @@ module.exports = function (app) {
             where: {id : req.body.snippet_id}
         }).then(function(data){
             res.redirect('/');
-            console.log("updated\n" + data);
+            console.log("\Nupdated snippet\n");
         }).catch(function(err){
             console.log(err);
         });
     });
 
-    //delete snippet
+    //DELETE SNIPPET
     app.post('/api/delete', function (req, res) {
         console.log(req.body);
         db.Snippets.destroy({
@@ -126,16 +103,10 @@ module.exports = function (app) {
         });
     });
 
+/*========================END OF SNIPPET QUERRIES============================*/
 
-/*=====================================USER QUERRIES=============================================*/
-// supposed to only display app page when user has successfully 
-// been located in user db
-
-    //find the user when they login
-   
-
-
-
+/*=============================USER QUERRIES=================================*/
+    //CREATE USER LOGIN DATA
     app.post('/signup/complete', function(req, res){
        console.log(req.body);
         db.Users.create({
@@ -148,4 +119,50 @@ module.exports = function (app) {
             });
     });
 
-}; //end of modules.export()
+    //CHECK IF USERNAME & PASSWORD ARE CORRECT
+    //IF CORRECT REDIRECT TO /view/:user?
+    app.post('/login', function(req, res){
+        db.Users.count({
+            where: {username: req.body.username, password: req.body.password}
+        }).then(function(data){
+            /*if count is true that means the username/password match
+            redirect the user to the url that finds all their snippets*/
+            if(count == 1){
+              
+            }else{
+                alert("incorrect username/password, please try again");
+                res.redirect('/login');
+            }
+        });
+    });
+
+    //FIND ALL SNIPPETS BY USER_ID
+    app.get('/view/:user_id?', function(req, res){
+        db.Snippets.findAll({
+            include: [db.Categories, db.Users],
+            where: {user_id: req.body.user}
+        }).then(function(data){
+            res.json(data);
+        }).catch(function(err){
+            console.log(err);
+        });
+    });
+
+    //READ USER SNIPPETS BY CATEGORY
+
+
+    //READ ALL USER CATEGORIES TO PRODUCE CATEGORY BUTTONS
+
+
+
+    //UPDATE USER SNIPPET
+
+    
+
+    //DELETE USER SNIPPET
+
+
+
+
+}; //END OF modules.export()
+

@@ -124,8 +124,8 @@ making_cat_buttons()
 
   $("#signup_submit").on("click", function(){
       var new_user = {
-            email: $("#email_val").text().trim(),
-            password: $("#password_val").text().trim()
+            email: $("#email_val").val().trim(),
+            password: $("#password_val").val().trim()
       };
       console.log(new_user);
       $.post("/signup/complete", new_user).

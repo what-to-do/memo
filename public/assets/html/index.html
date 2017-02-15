@@ -10,264 +10,263 @@
     <link href="../css/style.css" rel="stylesheet">
 
 	<title>Memo</title>
-    <button type="button" class="login btn-sm btn btn-danger" data-toggle="modal" data-target="#modal-login">
-        Login
-    </button> 
+    
 </head>
     
 <body id="grad"> 
-                            
-<!--container for whole website-->
-<div class="container">
-    
-    <!--categories bar & filter-->
-   <div class="row">
-        <!--categories buttons-->
-        <div class="categories col-md-11">
-            <button type="button" class="add_new_cat btn btn-primary" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">Add Category...</button>
-            <button type="button" class="btn btn-primary category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
+                     
+    <!--container for whole website-->
+    <div class="container">
+        <!-- login button -->
+        <button type="button" class="login btn-sm btn btn-danger" data-toggle="modal" data-target="#modal-login">Login</button> 
+        <!--categories bar & filter-->
+       <div class="row">
+            <!--categories buttons-->
+            <div class="categories col-md-11">
+                <button type="button" class="add_new_cat btn btn-primary" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">Add Category...</button>
+                <button type="button" class="btn btn-primary category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
+            </div>
+            <!--ADD NEW NOTE BUTTON-->
+            <div class="add_snippet col-md-1">
+                <button id="modal_btn" data-toggle="modal" data-target="#add-button">+</button>
+            </div>
+            <!--END NEW NOTE BUTTON-->
         </div>
-        <!--ADD NEW NOTE BUTTON-->
-        <div class="add_snippet col-md-1">
-            <button id="modal_btn" data-toggle="modal" data-target="#add-button">+</button>
-        </div>
-        <!--END NEW NOTE BUTTON-->
-    </div>
-    <!-- END categories bar & filter-->
+        <!-- END categories bar & filter-->
 
-<!-- MODAL: CREATE NEW CATEGORY-->
-<div class="modal fade" id="add-category_button" tabindex="-1" role="dialog" aria-labelledby="Cat_Label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title w-100" id="Cat_Label">Add New Category</h4>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-                <div class="md-form">
-                        <input type="text" id="category_modal" class="form-control" value="">
-                        <label for="form1" class="">Category</label>
-                </div>     
-            </div>
-            <!--Footer-->
-            <div class="modal-footer">
-                <button type="button" class="new_cat_submit btn btn-secondary" data-dismiss="modal">Create New Category</button>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
-<!--END OF MODAL: CREATE NEW CATEGORY-->
-
-
-<!-- MODAL: ADD NEW NOTE -->
-<div class="modal fade" id="add-button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title w-100" id="myModalLabel">Add New Memo</h4>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-                <div class="md-form">
-                        <input type="text" id="snippet_modal" class="form-control" value="">
-                        <label for="form1" class="">Snippet</label>
-                    </div>
-                            
-                    <h3>Choose your category</h3>
-                    <br>
-                    <select id="selected_category" class="btn-group">
-                        
-                    </select>
-
-                    <p>
-                    <h3>Importance</h3>
-                    <br>
-                <form class="form-inline">
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio11" value="1">
-                        <label for="radio11">1</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio21" value="2">
-                        <label for="radio21">2</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio31" value="3">
-                        <label for="radio31">3</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio41" value="4">
-                        <label for="radio41">4</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group1" type="radio" id="radio51" value="5">
-                        <label for="radio51">5</label>
-                    </fieldset>
-                </form>
-            </div>
-            <!--Footer-->
-            <div class="modal-footer">
-                <button type="button" class="submit btn btn-secondary" data-dismiss="modal">Submit</button>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
-<!-- END MODAL: ADD NEW NOTE -->
-
-<!-- EDIT MODAL-->
-<div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header flex-column">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!--Body-->
-            <div class="card-block">
-
+    <!-- MODAL: CREATE NEW CATEGORY-->
+    <div class="modal fade" id="add-category_button" tabindex="-1" role="dialog" aria-labelledby="Cat_Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
                 <!--Header-->
-                <div class="text-center">
-                    <h3><i class="fa fa-envelope"></i> Add your snippet</h3>
-                    <hr class="mt-2 mb-2">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="Cat_Label">Add New Category</h4>
                 </div>
                 <!--Body-->
-                <br>
-                <!--Body-->
-                <div class="md-form">
-                    <i class="fa fa-user prefix"></i>
-                    <input type="text" id="snippet_edit" class="form-control">
-                    <label for="form3"></label>
+                <div class="modal-body">
+                    <div class="md-form">
+                            <input type="text" id="category_modal" class="form-control" value="">
+                            <label for="form1" class="">Category</label>
+                    </div>     
                 </div>
-
-                <form class="form-inline">
-
-                    <fieldset class="form-group">
-                        <input name="group2" type="radio" id="radio110" value="1">
-                        <label for="radio110">1</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group2" type="radio" id="radio210" value="2">
-                        <label for="radio210">2</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group2" type="radio" id="radio310" value="3">
-                        <label for="radio310">3</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group2" type="radio" id="radio410" value="4">
-                        <label for="radio410">4</label>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <input name="group2" type="radio" id="radio510" value="5">
-                        <label for="radio510">5</label>
-                    </fieldset>
-
-                </form>
-                
-                <div class="text-center">
-                    <button class="btn btn-default" id="edit-btn">Submit</button>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="new_cat_submit btn btn-secondary" data-dismiss="modal">Create New Category</button>
                 </div>
-
             </div>
-        <!--/.Content-->
+            <!--/.Content-->
         </div>
     </div>
-</div>
-<!-- END EDIT MODAL-->
+    <!--END OF MODAL: CREATE NEW CATEGORY-->
 
 
+    <!-- MODAL: ADD NEW NOTE -->
+    <div class="modal fade" id="add-button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Add New Memo</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="md-form">
+                            <input type="text" id="snippet_modal" class="form-control" value="">
+                            <label for="form1" class="">Snippet</label>
+                        </div>
                                 
-<!-- MODAL: LOGIN -->
-<div class="modal fade modal-ext" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h3 class="w-100"><i class="fa fa-user"></i> Login</h3>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix"></i>
-                    <input type="text" id="form2" class="form-control">
-                    <label for="form2">Your email</label>
-                </div>
+                        <h3>Choose your category</h3>
+                        <br>
+                        <select id="selected_category" class="btn-group">
+                            
+                        </select>
 
-                <div class="md-form">
-                    <i class="fa fa-lock prefix"></i>
-                    <input type="password" id="form3" class="form-control">
-                    <label for="form3">Your password</label>
+                        <p>
+                        <h3>Importance</h3>
+                        <br>
+                    <form class="form-inline">
+                        <fieldset class="form-group">
+                            <input name="group1" type="radio" id="radio11" value="1">
+                            <label for="radio11">1</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group1" type="radio" id="radio21" value="2">
+                            <label for="radio21">2</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group1" type="radio" id="radio31" value="3">
+                            <label for="radio31">3</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group1" type="radio" id="radio41" value="4">
+                            <label for="radio41">4</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group1" type="radio" id="radio51" value="5">
+                            <label for="radio51">5</label>
+                        </fieldset>
+                    </form>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-primary btn-lg">Login</button>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="submit btn btn-secondary" data-dismiss="modal">Submit</button>
                 </div>
             </div>
-            <!--Footer-->
-            <div class="modal-footer">
-                <div class="options text-right">
-                    <p>Not a member? <a href="signup">Sign Up</a></p>
-                </div>
-                <button type="button" class="btn btn-default ml-auto" data-dismiss="modal">Close</button>
-            </div>
+            <!--/.Content-->
         </div>
-        <!--/.Content-->
     </div>
-</div>
+    <!-- END MODAL: ADD NEW NOTE -->
 
+    <!-- EDIT MODAL-->
+    <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header flex-column">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="card-block">
 
-<!--FILTER button-->
- <div class="row">
-    <div class="filter btn-group">
-        <button class="btn light-blue accent-2 btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Urgency</a>
-            <a class="dropdown-item" href="#">Category</a>
+                    <!--Header-->
+                    <div class="text-center">
+                        <h3><i class="fa fa-envelope"></i> Add your snippet</h3>
+                        <hr class="mt-2 mb-2">
+                    </div>
+                    <!--Body-->
+                    <br>
+                    <!--Body-->
+                    <div class="md-form">
+                        <i class="fa fa-user prefix"></i>
+                        <input type="text" id="snippet_edit" class="form-control">
+                        <label for="form3"></label>
+                    </div>
+
+                    <form class="form-inline">
+
+                        <fieldset class="form-group">
+                            <input name="group2" type="radio" id="radio110" value="1">
+                            <label for="radio110">1</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group2" type="radio" id="radio210" value="2">
+                            <label for="radio210">2</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group2" type="radio" id="radio310" value="3">
+                            <label for="radio310">3</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group2" type="radio" id="radio410" value="4">
+                            <label for="radio410">4</label>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <input name="group2" type="radio" id="radio510" value="5">
+                            <label for="radio510">5</label>
+                        </fieldset>
+
+                    </form>
+                    
+                    <div class="text-center">
+                        <button class="btn btn-default" id="edit-btn">Submit</button>
+                    </div>
+
+                </div>
+            <!--/.Content-->
+            </div>
         </div>
-    </div>    
- </div>  
-<!--END FILTER button-->
-
-<!--CONTENT-->        
-<div class="content" id="content"></div>
-<!--END CONTENT-->  
-</div>
+    </div>
+    <!-- END EDIT MODAL-->
 
 
-<!--Footer-->
-<div class="push"></div>
-<footer class="page-footer light-blue accent-2">
-    <!--Copyright-->
-    <h4> © 2017 Team Awesome </h4>
-    <!--/.Copyright-->
-</footer>
-<!--/.Footer-->
+                                    
+    <!-- MODAL: LOGIN -->
+    <div class="modal fade modal-ext" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="w-100"><i class="fa fa-user"></i> Login</h3>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input type="text" id="form2" class="form-control">
+                        <label for="form2">Your email</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix"></i>
+                        <input type="password" id="form3" class="form-control">
+                        <label for="form3">Your password</label>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-lg">Login</button>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="options text-right">
+                        <p>Not a member? <a href="signup">Sign Up</a></p>
+                    </div>
+                    <button type="button" class="btn btn-default ml-auto" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+
+
+    <!--FILTER button-->
+     <div class="row">
+        <div class="filter btn-group">
+            <button class="btn light-blue accent-2 btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Urgency</a>
+                <a class="dropdown-item" href="#">Category</a>
+            </div>
+        </div>    
+     </div>  
+    <!--END FILTER button-->
+
+    <!--CONTENT-->        
+    <div class="content" id="content"></div>
+    <!--END CONTENT-->  
+    </div>
+
+
+    <!--Footer-->
+    <div class="push"></div>
+    <footer class="page-footer light-blue accent-2">
+        <!--Copyright-->
+        <h4> © 2017 Team Awesome </h4>
+        <!--/.Copyright-->
+    </footer>
+    <!--/.Footer-->
 
     <script type="text/javascript" src="../MDB Pro/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../MDB Pro/js/jquery-2.2.3.min.js"></script>
