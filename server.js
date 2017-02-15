@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var app = express();
 var PORT = process.env.PORT || 8080;
+var nodemailer = require('./nodemailer');
 
 //requiring our models for syncing
 var db = require("./models");
@@ -31,7 +32,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var authConfig = require('./oauth/oauth');
 
-
+nodemailer('ellioy37@gmail.com', 'From Server', 'test message');
 
 //Passport
 // serialize and deserialize
@@ -81,7 +82,7 @@ require("./routes/passport-routes.js")(app, passport);
 
 
 //syncing our sequlize models and then starting our express app
-db.sequelize.sync(/*{force: true}*/).then(function(){
+db.sequelize.sync({force: true}).then(function(){
 	app.listen(PORT, function(){
 	console.log("listening on http://localhost:" + PORT);
 });
