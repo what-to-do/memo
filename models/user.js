@@ -8,16 +8,6 @@ var bcrypt = require('bcrypt-nodejs');
 module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
 var User = sequelize.define('Users', {
-	//validate len will check if the title submitted will be between 6 and 15 letters
-	display_name: {
-		type: DataTypes.STRING/*,
-		allowNull: false*/
-	},
-	//facbook id# provided from passport
-	facebook_id: {
-		type: DataTypes.BIGINT/*,
-		allowNull: false*/
-	},
 	//username
 	username: {
 		type: DataTypes.STRING,
@@ -37,7 +27,7 @@ var User = sequelize.define('Users', {
 				foreignKey: 'user_id'
 			});
 		}
-	},
+	}/*,
 	instanceMethods: {
 		generateHash: function(password) {
 			return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -45,7 +35,7 @@ var User = sequelize.define('Users', {
 		validPassword: function(password) {
 			return bcrypt.compareSync(password, this.password);
 		},
-	}
+	}*/
 },
 	{
 	timestamps: false

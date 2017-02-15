@@ -129,64 +129,19 @@ module.exports = function (app) {
 
 /*=====================================USER QUERRIES=============================================*/
     //find the user when they login
-    app.post('/login/complete', function(req, res){
-       db.Users.findOrCreate({
-            where: {username: req.body.email},
-            defaults: {username: req.body.email}
-       }).then(function(data){
-        var user_name = data[0],
-        created = data[1];
+   
 
-        if(created){
-            console.log('User already exists');
-        }
-        console.log('created author...');
-        res.redirect('/');
-       });
 
-        var pwd = req.body.password;
-        console.log(pwd);
-        db.Users.findOne({
-            where: {username: req.body.email} 
-        }).then(function(data, pwd){
-            console.log(pwd);
-            console.log(data.dataValues.password);
-//            console.log(data.password);
-//            console.log(req.body.password);
-//            console.log(generateHash(req.body.password));
-            //console.log(data);
-             if (data == null) {
-                res.redirect('/login');
-            } else {
-            res.redirect('/');
-        }
-        }).catch(function(err) {
-            console.log(err);
-        });
-
-    });
-
-    //log username and password to db when they signup
-    app.post('/signup', function(req, res){
-        var newpassword = bcrypt.hash;
-        // newpassword.password = newpassword.generateHash(req.body.password);
-        // console.log(newpassword.password);
+    app.post('/signup/complete', function(req, res){
+       console.log(req.body);
         db.Users.create({
                 username: req.body.email,
-                password: generateHash(req.body.password),
-                salt: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+                password: req.body.password
             }).then(function(data){
                 res.redirect('/');
             }).catch(function(err){
                 console.log(err);
             });
-        });
-};
+    });
 
-function generateHash(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-}
-
-function validPassword(password, storedPassword) {
-    return bcrypt.compareSync(password, storedPassword);
-}
+}; //end of modules.export()
