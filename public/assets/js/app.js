@@ -146,12 +146,18 @@ function render_view(data){
       $("#content").html("");
 
 
+
       var table = $("<table>");
       table.addClass("table");
       table.appendTo("#content");
       var thead = $("<thead>");
       thead.appendTo(table);
       var tr = $("<tr>");
+
+
+
+
+
       tr.appendTo(thead);
       var heading = ["#","Created","Snippet","Category" , "Urgency","Actions"];
         for (let i = 0; i < heading.length; i++) {    
@@ -164,7 +170,34 @@ function render_view(data){
         tbody.appendTo(table);
           for (let i = 0; i < data.length; i++) {
             var tr2 = $("<tr>");
+
+            console.log(data[i].importance);
+
+            var importance_type = data[i].importance;
+
+
+            switch(importance_type){
+
+              case 1: 
+                break;
+              case 2:
+                tr2.addClass("table-success");
+                break;
+              case 3:
+                tr2.addClass("table-info");
+                break;
+              case 4:
+                tr2.addClass("yellow accent-1");
+                break;
+              case 5:
+                tr2.addClass("table-danger");
+                break;
+            }
+
             tr2.appendTo(tbody);
+
+
+
             let th = $("<th>");
             th.attr({
               "scope": i + 1
