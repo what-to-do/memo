@@ -1,11 +1,10 @@
 #grad {
     background: linear-gradient(to bottom right, #81d4fa, #a7ffeb); /* Standard syntax */
-    height: 100%
+    height: 1600px;
 }
 
 body {
     margin-top: 50px;
-    width: 100%;
 
 }
 
@@ -45,7 +44,7 @@ body {
     margin-left: 90%;
 }
 
-.page-footer {
+/*.page-footer {
     background-color: #a7ffeb
 }
 
@@ -53,7 +52,7 @@ body {
 .push {
   height: 50px;
   padding-bottom: 30px;
-}
+}*/
 
 button {
     font-family: 'Signika', sans-serif;
