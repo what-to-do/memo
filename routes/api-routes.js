@@ -113,7 +113,7 @@ module.exports = function (app) {
                 username: req.body.email,
                 password: req.body.password
             }).then(function(data){
-                res.redirect('/');
+                console.log(data);
             }).catch(function(err){
                 console.log(err);
             });
