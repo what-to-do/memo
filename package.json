@@ -28,6 +28,7 @@
     "method-override": "^2.3.7",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
+    "nodemailer": "^3.1.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google": "^0.3.0",
