@@ -19,13 +19,19 @@
    <div class="row">
         <!--categories buttons-->
         <div class="categories col-md-11">
-            <button type="button" class="add_new_cat btn btn-primary category_buttons" data-toggle='collapse' data-target='#add-category_button' aria-expanded=false aria-controls="collapseExample" data-index='0'>+</button>
+            <button type="button" class="add_new_cat btn btn-primary" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">+</button>
             <button type="button" class="btn btn-primary category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
-            
         </div>
+        <!--ADD NEW NOTE BUTTON-->
+        <div class="add_snippet col-md-1">
+            <button id="modal_btn" data-toggle="modal" data-target="#add-button">+</button>
+        </div>
+        <!--END NEW NOTE BUTTON-->
+    </div>
+    <!-- END categories bar & filter-->
 
-<!--CREATE NEW CATEGORY-->
-<div class="modal fade" id="add-category_button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- MODAL: CREATE NEW CATEGORY-->
+<div class="modal fade" id="add-category_button" tabindex="-1" role="dialog" aria-labelledby="Cat_Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -34,13 +40,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title w-100" id="myModalLabel">Add New Category</h4>
+                <h4 class="modal-title w-100" id="Cat_Label">Add New Category</h4>
             </div>
             <!--Body-->
             <div class="modal-body">
                 <div class="md-form">
-                        <input type="text" id="snippet_modal" class="form-control" value="">
-                        <label for="form1" class="">Snippet</label>
+                        <input type="text" id="category_modal" class="form-control" value="">
+                        <label for="form1" class="">Category</label>
                 </div>     
             </div>
             <!--Footer-->
@@ -51,15 +57,10 @@
         <!--/.Content-->
     </div>
 </div>
-
-        <!--add new note BUTTON-->
-        <div class="add_snippet col-md-1">
-            <button id="modal_btn" data-toggle="modal" data-target="#add-button">+</button>
-        </div>
-    </div>
+<!--END OF MODAL: CREATE NEW CATEGORY-->
 
 
-<!-- Modal -->
+<!-- MODAL: ADD NEW NOTE -->
 <div class="modal fade" id="add-button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <!--Content-->
@@ -122,6 +123,7 @@
         <!--/.Content-->
     </div>
 </div>
+<!-- END MODAL: ADD NEW NOTE -->
 
 <!-- EDIT MODAL-->
 <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -189,9 +191,10 @@
         </div>
     </div>
 </div>
+<!-- END EDIT MODAL-->
 
+<!--FILTER button-->
  <div class="row">
-    <!--filter button-->
     <div class="filter btn-group">
         <button class="btn light-blue accent-2 btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
         <div class="dropdown-menu">
@@ -199,10 +202,12 @@
             <a class="dropdown-item" href="#">Category</a>
         </div>
     </div>    
- </div>    
-    <!--CONTENT-->        
-<div class="content" id="content"></div>
+ </div>  
+<!--END FILTER button-->
 
+<!--CONTENT-->        
+<div class="content" id="content"></div>
+<!--END CONTENT-->  
 </div>
 
 
