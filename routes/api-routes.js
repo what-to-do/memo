@@ -128,6 +128,9 @@ module.exports = function (app) {
 
 
 /*=====================================USER QUERRIES=============================================*/
+// supposed to only display app page when user has successfully 
+// been located in user db
+
     //find the user when they login
     app.post('/login/complete', function(req, res){
        db.Users.findOrCreate({
@@ -166,15 +169,20 @@ module.exports = function (app) {
 
     });
 
+
+   // supposed to add a user and hashed password to the users db upon 
+   // filling out the signup webpage 
+
     //log username and password to db when they signup
+
     app.post('/signup', function(req, res){
         var newpassword = bcrypt.hash;
         // newpassword.password = newpassword.generateHash(req.body.password);
         // console.log(newpassword.password);
         db.Users.create({
                 username: req.body.email,
-                password: generateHash(req.body.password),
-                salt: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+                password: bcrypt.genSaltSync(req.body.password, bcrypt.genSaltSync(10)),
+                salt: bcrypt.genSaltSync(10)
             }).then(function(data){
                 res.redirect('/');
             }).catch(function(err){
@@ -182,10 +190,15 @@ module.exports = function (app) {
             });
         });
 };
-
+// hash a password for encryption
 function generateHash(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
+};
+// check for valid hashed password
+
 }
+
 
 function validPassword(password, storedPassword) {
     return bcrypt.compareSync(password, storedPassword);
