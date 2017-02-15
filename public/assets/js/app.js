@@ -148,7 +148,7 @@ function render_view(data){
 
 
       var table = $("<table>");
-      table.addClass("table");
+      table.addClass("table table-hover");
       table.appendTo("#content");
       var thead = $("<thead>");
       thead.appendTo(table);
@@ -257,4 +257,6 @@ function render_view(data){
 }
 
 });
+
+
   

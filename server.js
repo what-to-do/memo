@@ -34,7 +34,7 @@ var passport = require('passport');
 //Passport
 //require("./passport.js");
 
-require('./passport')(passport);	// pass passport for configuration
+//require('./passport')(passport);	// pass passport for configuration
 //register a Handlebars view engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
