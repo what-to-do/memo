@@ -1,10 +1,12 @@
 #grad {
     background: linear-gradient(to bottom right, #81d4fa, #a7ffeb); /* Standard syntax */
+    height: 2400px
 }
 
 body {
     margin-top: 50px;
     width: 100%;
+
 }
 
 .fixed-action-btn {
@@ -69,4 +71,9 @@ h4 {
     float: right;
     margin-right: 10%;
     margin-top: -20px;
+}
+
+.field-wrap {
+    background-color: white;
+    margin: 5px;
 }

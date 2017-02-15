@@ -1,3 +1,7 @@
+// housing the fb client id, client secret and callback
+// retrieved from facebook SDK
+
+
 module.exports = {
     facebookAuth: {
         clientID: '235719623555512',
