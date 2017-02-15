@@ -1,15 +1,29 @@
+var currentUser = require('./../server');
+
 var db = require('../models');
 // display the login page
 module.exports = function(app, passport) {
+	
 	// OAuth
     app.get('/auth/facebook',
         passport.authenticate('facebook'),
-        function(req, res) {});
+        function(req, res) {
+        
+
+        	
+        });
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
-            res.redirect('/');
+        	console.log("auth/facebook/callback");
+        	//user facebook data after login
+        	console.log(req.user[0].id);
+        	console.log(req.user[0].name);
+        	console.log(req.user[0].oauthId);
+        	
+        	
+      
         });
 
     app.get('/login', function(req, res) {
@@ -20,9 +34,10 @@ module.exports = function(app, passport) {
 
     // should call after facebook login is complete
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile', {
+        console.log(req.user);
+        /*res.render('profile', {
             user: req.user
-        });
+        });*/
     });
     // universal logout route
     app.get('/logout', function(req, res) {
