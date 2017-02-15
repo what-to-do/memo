@@ -122,19 +122,7 @@ making_cat_buttons()
       }
   });
 
-  $("#signup_submit").on("click", function(){
-      var new_user = {
-            email: $("#email_val").val().trim(),
-            password: $("#password_val").val().trim()
-      };
-      console.log(new_user);
-      $.post("/signup/complete", new_user).
-      done(function(data){
-            console.log("signup\n");
-            console.log(data);
-               
-      });
-  });
+
 //retrieves all snippets by category
 function view_category(category_id){
       console.log("before " + status);
@@ -268,6 +256,20 @@ function render_view(data){
             } // End of For Loop I
 
 }
+  //USER SIGNUP
+  $("#signup_submit").on("click", function(){
+      var new_user = {
+            email: $("#email_val").val().trim(),
+            password: $("#password_val").val().trim()
+      };
+      console.log(new_user);
+      $.post("/signup/complete", new_user).
+      done(function(data){
+            console.log("signup\n");
+            console.log(data);
+               
+      });
+  });
 
 });
 

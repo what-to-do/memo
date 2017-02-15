@@ -7,15 +7,14 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
-var User = sequelize.define('Users', {
-	username: {
-		type: DataTypes.STRING,
-		validate: {isEmail: true}
-	},
-	//password entered from /login
-	password: {
+var Users = sequelize.define('Users', {
+	name: {
 		type: DataTypes.STRING
-	}
+	},
+
+	oauthId: {
+		type: DataTypes.STRING
+	},
 	
 }, {
 	class_methods: {
@@ -39,7 +38,7 @@ var User = sequelize.define('Users', {
 	timestamps: false
 	}
 );
-return User;
+return Users;
 };
 
 /*=================================END USERS TABLE MODEL=============================================*/

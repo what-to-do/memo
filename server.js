@@ -28,11 +28,37 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var authConfig = require('./oauth/oauth');
 
 
 
 //Passport
-//require("./passport.js");
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// config
+passport.use(new FacebookStrategy({
+  clientID: authConfig.facebook.clientID,
+  clientSecret: authConfig.facebook.clientSecret,
+  callbackURL: authConfig.facebook.callbackURL
+  },
+  function(accessToken, refreshToken, profile, done) {
+    db.Users.findOrCreate({
+        where: { oauthId: profile.id },
+        defaults: { name: profile.displayName }
+      })
+      .then(function(user, created) {
+        //null is where err should be
+          return done(null, user);
+      });
+  }
+));
 
 //require('./passport')(passport);	// pass passport for configuration
 //register a Handlebars view engine
