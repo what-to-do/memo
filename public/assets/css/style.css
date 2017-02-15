@@ -1,10 +1,12 @@
 #grad {
     background: linear-gradient(to bottom right, #81d4fa, #a7ffeb); /* Standard syntax */
+    height: 2400px
 }
 
 body {
     margin-top: 50px;
     width: 100%;
+
 }
 
 .fixed-action-btn {
@@ -21,6 +23,10 @@ body {
     color:grey;
     border: none;
     outline:none;
+    font-family: 'Rubik', sans-serif;
+}
+
+.add_new_cat {
     font-family: 'Rubik', sans-serif;
 }
 
@@ -43,11 +49,13 @@ body {
     height: 50px;
     position: absolute; 
     left: 0 ; right: 0; bottom: 0; 
+    margin-top: 30px;
     background-color: #a7ffeb
 }
 
 button {
     font-family: 'Signika', sans-serif;
+    cursor:pointer;
 }
 
 h1 {
@@ -57,4 +65,15 @@ h1 {
 h4 {
     font-family: 'Signika', sans-serif;
     text-align: center;
+}
+
+.login {
+    float: right;
+    margin-right: 10%;
+    margin-top: -20px;
+}
+
+.field-wrap {
+    background-color: white;
+    margin: 5px;
 }

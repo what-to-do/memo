@@ -6,9 +6,10 @@ var bcrypt = require('bcrypt-nodejs');
 
 /*where we will retrieve data from MySQL using sequelize and send to the client*/
 module.exports = function (app) {
-    app.get('/api/view', function (req, res) {
+    app.get('/api/view/', function (req, res) {
         db.Snippets.findAll({
-            include: [db.Categories, db.Users]
+            include: [db.Categories, db.Users],
+            order: '"updatedAt" DESC'
         }).then(function(data) {
             console.log('\nfindall categories data\n');
             res.json(data);
@@ -18,7 +19,21 @@ module.exports = function (app) {
         });
     });
 
-    
+    //grab snippets by category using $.get("/api/view" + category_id)
+    app.get('/api/view/:category?', function(req, res){
+            console.log(req.params);
+            db.Snippets.findAll({
+            include: [db.Categories, db.Users],
+            where: {category_id: req.params.category},
+            order: '"updatedAt" DESC'
+        }).then(function(data) {
+            console.log('\nfindall categories data\n');
+            res.json(data);
+        }).catch(function (err) {
+            console.log("\ncategories find all error\n");
+            console.log(err);
+        });
+    });
 
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
@@ -118,6 +133,20 @@ module.exports = function (app) {
 
     //find the user when they login
     app.post('/login/complete', function(req, res){
+       db.Users.findOrCreate({
+            where: {username: req.body.email},
+            defaults: {username: req.body.email}
+       }).then(function(data){
+        var user_name = data[0],
+        created = data[1];
+
+        if(created){
+            console.log('User already exists');
+        }
+        console.log('created author...');
+        res.redirect('/');
+       });
+
         var pwd = req.body.password;
         console.log(pwd);
         db.Users.findOne({
@@ -140,10 +169,14 @@ module.exports = function (app) {
 
     });
 
+
    // supposed to add a user and hashed password to the users db upon 
    // filling out the signup webpage 
+
+    //log username and password to db when they signup
+
     app.post('/signup', function(req, res){
-        var newpassword = bcrypt.hash
+        var newpassword = bcrypt.hash;
         // newpassword.password = newpassword.generateHash(req.body.password);
         // console.log(newpassword.password);
         db.Users.create({
@@ -160,8 +193,13 @@ module.exports = function (app) {
 // hash a password for encryption
 function generateHash(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
 };
 // check for valid hashed password
+
+}
+
+
 function validPassword(password, storedPassword) {
     return bcrypt.compareSync(password, storedPassword);
 }

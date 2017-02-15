@@ -10,24 +10,62 @@
     <link href="../css/style.css" rel="stylesheet">
 
 	<title>Memo</title>
+    <button type="button" class="login btn-sm btn btn-danger" data-toggle="modal" data-target="#modal-login">
+        Login
+    </button> 
 </head>
-
-<body id="grad">                           
+    
+<body id="grad"> 
+                            
 <!--container for whole website-->
 <div class="container">
+    
     <!--categories bar & filter-->
    <div class="row">
         <!--categories buttons-->
-        <div class="categories col-md-11"></div>
-
-        <!--add new note BUTTON-->
+        <div class="categories col-md-11">
+            <button type="button" class="add_new_cat btn btn-primary" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">Add Category...</button>
+            <button type="button" class="btn btn-primary category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
+        </div>
+        <!--ADD NEW NOTE BUTTON-->
         <div class="add_snippet col-md-1">
             <button id="modal_btn" data-toggle="modal" data-target="#add-button">+</button>
         </div>
+        <!--END NEW NOTE BUTTON-->
     </div>
+    <!-- END categories bar & filter-->
+
+<!-- MODAL: CREATE NEW CATEGORY-->
+<div class="modal fade" id="add-category_button" tabindex="-1" role="dialog" aria-labelledby="Cat_Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title w-100" id="Cat_Label">Add New Category</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
+                        <input type="text" id="category_modal" class="form-control" value="">
+                        <label for="form1" class="">Category</label>
+                </div>     
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="new_cat_submit btn btn-secondary" data-dismiss="modal">Create New Category</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--END OF MODAL: CREATE NEW CATEGORY-->
 
 
-<!-- Modal -->
+<!-- MODAL: ADD NEW NOTE -->
 <div class="modal fade" id="add-button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <!--Content-->
@@ -51,11 +89,8 @@
                     <select id="selected_category" class="btn-group">
                         
                     </select>
-                
-                <div>
-                    <input type="text" id="new_catrgory" class="form-control" value="" disabled>
-                </div>
 
+                    <p>
                     <h3>Importance</h3>
                     <br>
                 <form class="form-inline">
@@ -93,6 +128,7 @@
         <!--/.Content-->
     </div>
 </div>
+<!-- END MODAL: ADD NEW NOTE -->
 
 <!-- EDIT MODAL-->
 <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -113,10 +149,8 @@
                     <h3><i class="fa fa-envelope"></i> Add your snippet</h3>
                     <hr class="mt-2 mb-2">
                 </div>
-
                 <!--Body-->
                 <br>
-
                 <!--Body-->
                 <div class="md-form">
                     <i class="fa fa-user prefix"></i>
@@ -153,10 +187,8 @@
 
                 </form>
                 
-
                 <div class="text-center">
                     <button class="btn btn-default" id="edit-btn">Submit</button>
-
                 </div>
 
             </div>
@@ -164,9 +196,54 @@
         </div>
     </div>
 </div>
+<!-- END EDIT MODAL-->
 
+
+                                
+<!-- MODAL: LOGIN -->
+<div class="modal fade modal-ext" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="w-100"><i class="fa fa-user"></i> Login</h3>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input type="text" id="form2" class="form-control">
+                    <label for="form2">Your email</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix"></i>
+                    <input type="password" id="form3" class="form-control">
+                    <label for="form3">Your password</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary btn-lg">Login</button>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <div class="options text-right">
+                    <p>Not a member? <a href="signup">Sign Up</a></p>
+                </div>
+                <button type="button" class="btn btn-default ml-auto" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+
+<!--FILTER button-->
  <div class="row">
-    <!--filter button-->
     <div class="filter btn-group">
         <button class="btn light-blue accent-2 btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by</button>
         <div class="dropdown-menu">
@@ -174,10 +251,12 @@
             <a class="dropdown-item" href="#">Category</a>
         </div>
     </div>    
- </div>    
-    <!--CONTENT-->        
-<div class="content" id="content"></div>
+ </div>  
+<!--END FILTER button-->
 
+<!--CONTENT-->        
+<div class="content" id="content"></div>
+<!--END CONTENT-->  
 </div>
 
 
