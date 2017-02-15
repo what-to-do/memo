@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var app = express();
 var PORT = process.env.PORT || 8080;
-
+var currentUser = {};
 //requiring our models for syncing
 var db = require("./models");
 
@@ -43,7 +43,7 @@ passport.deserializeUser(function(obj, done) {
 });
 
 // config
-passport.use(new FacebookStrategy({
+  passport.use(new FacebookStrategy({
   clientID: authConfig.facebook.clientID,
   clientSecret: authConfig.facebook.clientSecret,
   callbackURL: authConfig.facebook.callbackURL
@@ -54,11 +54,15 @@ passport.use(new FacebookStrategy({
         defaults: { name: profile.displayName }
       })
       .then(function(user, created) {
+        /*console.log(currentUser);*/
+        
         //null is where err should be
           return done(null, user);
       });
   }
 ));
+
+
 
 //require('./passport')(passport);	// pass passport for configuration
 //register a Handlebars view engine
