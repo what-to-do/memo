@@ -10,16 +10,21 @@
     <link href="../css/style.css" rel="stylesheet">
 
 	<title>Memo</title>
+    <button type="button" class="login btn-sm btn btn-danger" data-toggle="modal" data-target="#modal-login">
+        Login
+    </button> 
 </head>
-
-<body id="grad">                           
+    
+<body id="grad"> 
+                            
 <!--container for whole website-->
 <div class="container">
+    
     <!--categories bar & filter-->
    <div class="row">
         <!--categories buttons-->
         <div class="categories col-md-11">
-            <button type="button" class="add_new_cat btn btn-primary" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">+</button>
+            <button type="button" class="add_new_cat btn btn-primary" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">Add Category...</button>
             <button type="button" class="btn btn-primary category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
         </div>
         <!--ADD NEW NOTE BUTTON-->
@@ -192,6 +197,51 @@
     </div>
 </div>
 <!-- END EDIT MODAL-->
+
+
+                                
+<!-- MODAL: LOGIN -->
+<div class="modal fade modal-ext" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="w-100"><i class="fa fa-user"></i> Login</h3>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input type="text" id="form2" class="form-control">
+                    <label for="form2">Your email</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix"></i>
+                    <input type="password" id="form3" class="form-control">
+                    <label for="form3">Your password</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary btn-lg">Login</button>
+                </div>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <div class="options text-right">
+                    <p>Not a member? <a href="signup.html">Sign Up</a></p>
+                    <p>Forgot <a href="#">Password?</a></p>
+                </div>
+                <button type="button" class="btn btn-default ml-auto" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
 
 <!--FILTER button-->
  <div class="row">
