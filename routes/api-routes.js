@@ -128,8 +128,12 @@ module.exports = function (app) {
 
 
 /*=====================================USER QUERRIES=============================================*/
+// supposed to only display app page when user has successfully 
+// been located in user db
+
     //find the user when they login
    
+
 
 
     app.post('/signup/complete', function(req, res){

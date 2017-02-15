@@ -8,15 +8,15 @@ var bcrypt = require('bcrypt-nodejs');
 module.exports = function(sequelize, DataTypes){
 //create a model of the table for sequelize
 var User = sequelize.define('Users', {
-	//username
 	username: {
 		type: DataTypes.STRING,
 		validate: {isEmail: true}
 	},
-	//password
+	//password entered from /login
 	password: {
 		type: DataTypes.STRING
 	},
+	// created only for comparison of stored hash with newly hashed pw
 	salt: {
 		type: DataTypes.STRING
 	}
@@ -28,6 +28,7 @@ var User = sequelize.define('Users', {
 			});
 		}
 	}/*,
+
 	instanceMethods: {
 		generateHash: function(password) {
 			return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

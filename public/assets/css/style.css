@@ -1,10 +1,12 @@
 #grad {
     background: linear-gradient(to bottom right, #81d4fa, #a7ffeb); /* Standard syntax */
+    height: 100%
 }
 
 body {
     margin-top: 50px;
     width: 100%;
+
 }
 
 .fixed-action-btn {
@@ -44,11 +46,13 @@ body {
 }
 
 .page-footer {
-    height: 50px;
-    position: absolute; 
-    left: 0 ; right: 0; bottom: 0; 
-    margin-top: 30px;
     background-color: #a7ffeb
+}
+
+.footer,
+.push {
+  height: 50px;
+  padding-bottom: 30px;
 }
 
 button {
@@ -69,4 +73,9 @@ h4 {
     float: right;
     margin-right: 10%;
     margin-top: -20px;
+}
+
+.field-wrap {
+    background-color: white;
+    margin: 5px;
 }
