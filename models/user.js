@@ -20,7 +20,7 @@ var Users = sequelize.define('Users', {
 	class_methods: {
 		associate: function(models){
 			User.hasMany(models.Snippets, {
-				foreignKey: 'user_id'
+				foreignKey: 'oauthId'
 			});
 		}
 	}/*,

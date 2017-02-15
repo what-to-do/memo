@@ -7,7 +7,7 @@ completed.  This will be joined to the category table to order all the snippets 
 module.exports = function(sequelize, DataTypes){
 var Snippets = sequelize.define('Snippets', {
 	//user_id joins users to snippets
-	user_id: {
+	oauthId: {
 		type: DataTypes.INTEGER,
 
 		//allowNull: false
@@ -56,7 +56,7 @@ var Snippets = sequelize.define('Snippets', {
 	classMethods: {
 			associate: function(models){
 				Snippets.belongsTo(models.Users, {
-					foreignKey: 'user_id'
+					foreignKey: 'oauthId'
 				});
 				Snippets.belongsTo(models.Categories, {
 					foreignKey: 'category_id'
