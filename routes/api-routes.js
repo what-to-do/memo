@@ -197,7 +197,7 @@ function generateHash(password) {
 };
 // check for valid hashed password
 
-}
+
 
 
 function validPassword(password, storedPassword) {
