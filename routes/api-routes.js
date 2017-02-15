@@ -130,6 +130,20 @@ module.exports = function (app) {
 /*=====================================USER QUERRIES=============================================*/
     //find the user when they login
     app.post('/login/complete', function(req, res){
+       db.Users.findOrCreate({
+            where: {username: req.body.email},
+            defaults: {username: req.body.email}
+       }).then(function(data){
+        var user_name = data[0],
+        created = data[1];
+
+        if(created){
+            console.log('User already exists');
+        }
+        console.log('created author...');
+        res.redirect('/');
+       });
+
         var pwd = req.body.password;
         console.log(pwd);
         db.Users.findOne({
@@ -154,7 +168,7 @@ module.exports = function (app) {
 
     //log username and password to db when they signup
     app.post('/signup', function(req, res){
-        var newpassword = bcrypt.hash
+        var newpassword = bcrypt.hash;
         // newpassword.password = newpassword.generateHash(req.body.password);
         // console.log(newpassword.password);
         db.Users.create({
@@ -170,7 +184,7 @@ module.exports = function (app) {
 
 function generateHash(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+}
 
 function validPassword(password, storedPassword) {
     return bcrypt.compareSync(password, storedPassword);
