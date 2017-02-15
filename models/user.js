@@ -26,6 +26,9 @@ var User = sequelize.define('Users', {
 	//password
 	password: {
 		type: DataTypes.STRING
+	},
+	salt: {
+		type: DataTypes.STRING
 	}
 }, {
 	class_methods: {

@@ -144,7 +144,8 @@ module.exports = function (app) {
         // console.log(newpassword.password);
         db.Users.create({
                 username: req.body.email,
-                password: generateHash(req.body.password)
+                password: generateHash(req.body.password),
+                salt: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
             }).then(function(data){
                 res.redirect('/');
             }).catch(function(err){

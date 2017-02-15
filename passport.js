@@ -59,20 +59,33 @@ module.exports = function(passport) {
        console.log(email, password);
         db.Users.findOne({
           where: {username: req.body.email} 
-        }).then(function(err, data){
-            if (err)
-              return done(err);
-            if (username) 
-              return done(null, false, req.flash('loginMessage', 'No user found.'));
-            
-            if (!user.validPassword(req.body.password, "12345")) {
-              console.log(req.body.password);
-              return done(null, false, req.flash('loginMessage', 'Invalid password.'));
-            }
-            return done(null, user);
-        });
+        }).then(function(user) {
+          if (user == null) {
+            return done(null, false, { message: 'Incorrect credentials.' })
+          }
 
-  }));
+          var hashedPassword = bcrypt.hashSync(password, user.salt)
+
+          if (user.password === hashedPassword) {
+            return done(null, user)
+          }
+
+          return done(null, false, { message: 'Incorrect credentials.'})
+        })
+        // }).then(function(err, data){
+        //     if (err)
+        //       return done(err);
+        //     if (username) 
+        //       return done(null, false, req.flash('loginMessage', 'No user found.'));
+            
+        //     if (!user.validPassword(req.body.password, "12345")) {
+        //       console.log(req.body.password);
+        //       return done(null, false, req.flash('loginMessage', 'Invalid password.'));
+        //     }
+        //     return done(null, user);
+        }));
+
+  
 
   passport.use(new FacebookStrategy({
     clientID  : configAuth.facebookAuth.clientID,
