@@ -122,13 +122,26 @@ making_cat_buttons()
       }
   });
 
+  $("#signup_submit").on("click", function(){
+      var new_user = {
+            email: $("#email_val").text().trim(),
+            password: $("#password_val").text().trim()
+      };
+      console.log(new_user);
+      $.post("/signup/complete", new_user).
+      done(function(data){
+            console.log("signup\n");
+            console.log(data);
+               
+      });
+  });
 //retrieves all snippets by category
 function view_category(category_id){
       console.log("before " + status);
       status = category_id;
       console.log("before " + status);
   $.get("/api/view/" + category_id, function(data){
-    console.log(data);
+    /*console.log(data);*/
 
     render_view(data);
   });

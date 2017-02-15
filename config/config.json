@@ -1,7 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": null,
+
     "database": "memo_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

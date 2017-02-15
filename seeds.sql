@@ -1,6 +1,6 @@
 /*Use for testing the sequelize models*/
 USE `memo_db`
-INSERT INTO `Users` (`display_name`, `facebook_id`, `createdAt`, `updatedAt`) VALUES ('Rick Dotchin', 1123, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), 
+INSERT INTO `Users` (`username`, `password`, `createdAt`, `updatedAt`) VALUES ('Rick Dotchin', 1123, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), 
 																					 ('Justin Bestman', 2154, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																					 ('Jessica Prado', 3521, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																					 ('Jeff "Party Boy" Searinger', 6666, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
