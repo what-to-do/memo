@@ -3,6 +3,7 @@ $(document).ready(function(){
 var status = 0;
 
 view_all();
+making_cat_buttons()
 
 function making_cat_buttons() {
   $.get("/api/categories" , function(data){
@@ -35,7 +36,6 @@ function making_cat_buttons() {
 
 
 
-making_cat_buttons()
 
   $(".categories").on('click', '.category_buttons', function(){
     var category_id = $(this).data('index');
@@ -281,15 +281,21 @@ function render_view(data){
     console.log(created_cat);
     $.post('/api/add/category', created_cat).
     done(function(data){
-       
-        $(".categories").html('');
-        making_cat_buttons();
+      console.log(data);
+        var cat_btn = $("<button>");
+        cat_btn.text(data.category);
+        cat_btn.attr({
+        "class" : "btn btn-primary category_buttons",
+        "type" : "button",
+        "data-toggle" : "collapse",
+        "data-target" : "#collapseExample",
+        "aria-expanded": false,
+        "aria-controls": "collapseExample",
+        "data-index" : data.id
+        });
+      cat_btn.appendTo(".categories");
       });
-   
    });
-
-
 });
 
 
-  
