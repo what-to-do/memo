@@ -236,8 +236,22 @@ function render_view(data){
             td_import.appendTo(tr2);
             let td_action = $("<td>");
             td_action.appendTo(tr2);
+
+
+            // Make the anchor and icons
+
+
             var a_edit = $("<a>");
             var i_edit = $("<i>");
+
+
+            var a_delete = $("<a>");
+            var i_delete = $("<i>");
+
+
+            var a_envelope = $("<a>");
+            var i_envelope = $("<i>");
+
             a_edit.attr({
               "class": "teal-text edit",
                         "data-index": data[i].id,
@@ -249,8 +263,22 @@ function render_view(data){
               "class" : "fa fa-pencil"
             });
 
-              var a_delete = $("<a>");
-              var i_delete = $("<i>");
+            i_envelope.attr({
+              "class" : "fa fa-envelope",
+              "aria-hidden": true
+
+            });
+
+            a_envelope.attr({
+
+              "class": "blue-text email",
+                        "data-index": data[i].id,
+                        "data-toggle" : "modal",
+                        "data-target": "#modal-register"
+
+            });
+
+        
               a_delete.attr({
 
                 "class": "red-text del",
@@ -264,8 +292,12 @@ function render_view(data){
 
               a_edit.appendTo(td_action);
               i_edit.appendTo(a_edit);
+
               a_delete.appendTo(td_action);
               i_delete.appendTo(a_delete);
+
+              a_envelope.appendTo(td_action);
+              i_envelope.appendTo(a_envelope)
 
             } // End of For Loop I
 
