@@ -83,6 +83,7 @@ module.exports = function (app) {
 
     //UPDATE SNIPPET
     app.post('/api/edit', function(req, res){
+        console.log(req.body.snippet_id);
         db.Snippets.update({
             snippet: req.body.snippet
         },
@@ -110,7 +111,6 @@ module.exports = function (app) {
     });
 
     //SORT
-    
     app.get('/api/sort/:arrow/:column', function(req, res){
         console.log(req.params.arrow);
         db.Snippets.findAll({

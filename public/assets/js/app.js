@@ -228,7 +228,7 @@ $(document).ready(function(){
 
           $.post("/api/edit", edited_category).
           done(function(data){
-
+            console.log(data);
 
           });
 

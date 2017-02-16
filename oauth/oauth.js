@@ -6,7 +6,7 @@ module.exports = {
     facebook: {
         clientID: '1849016142034784',
         clientSecret: '675272d867ad2de3dfb3c7f7c88aecf5',
-        callbackURL: 'http://localhost:8080/auth/facebook/callback'
+        callbackURL: 'https://dry-crag-49826.herokuapp.com/auth/facebook/callback'
         //
     }
 };
