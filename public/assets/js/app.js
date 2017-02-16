@@ -162,7 +162,7 @@ function render_view(data){
 
 
       tr.appendTo(thead);
-      var heading = ["#","Created","Snippet","Category" , "Urgency","Actions"];
+      var heading = ["#","Created","Snippet","Category" , "Importance","Actions"];
         for (let i = 0; i < heading.length; i++) {    
           var th = $("<th>");
           th.text(heading[i]);
@@ -294,6 +294,13 @@ function render_view(data){
         "data-index" : data.id
         });
       cat_btn.appendTo(".categories");
+
+      var dropdown_cat = $('<option>');
+        dropdown_cat.text(data.category);
+        dropdown_cat.attr({
+          "value" : data.id
+        });
+        dropdown_cat.appendTo('#selected_category');
       });
    });
 });
