@@ -274,7 +274,7 @@ function render_view(data){
               "class": "blue-text email",
                         "data-index": data[i].id,
                         "data-toggle" : "modal",
-                        "data-target": "#modal-register"
+                        "data-target": "#email_user"
 
             });
 

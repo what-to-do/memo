@@ -17,16 +17,16 @@
                
     <!--container for whole website-->
     <div class="container">
-        <!-- login button -->
+        <!-- LOGIN button -->
         <div class="panel panel-default">
-                <div class="panel-body text-center">
-                    <a class="btn btn-primary btn-sm" href="/auth/facebook">
-                    <i class="fa fa-facebook"></i>
-                    Login With Facebook
-                    </a>
-                </div>
+            <div class="panel-body text-center">
+                <a class="btn btn-primary facebook_login btn-sm" href="/auth/facebook">
+                <i class="fa fa-facebook"></i>
+                Login With Facebook
+                </a>
             </div>
         </div>
+        
         <!--categories bar & filter-->
        <div class="row refresh_cat">
             <!--categories buttons-->
@@ -70,7 +70,6 @@
         </div>
     </div>
     <!--END OF MODAL: CREATE NEW CATEGORY-->
-
 
     <!-- MODAL: ADD NEW NOTE -->
     <div class="modal fade" id="add-button" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -204,6 +203,45 @@
         </div>
     </div>
     <!-- END EDIT MODAL-->
+
+    <!-- EMAIL MODAL-->
+    <div class="modal fade" id="email_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header flex-column">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="card-block">
+
+                    <!--Header-->
+                    <div class="text-center">
+                        <h3><i class="fa fa-envelope"></i> Enter your email</h3>
+                        <hr class="mt-2 mb-2">
+                    </div>
+                    <!--Body-->
+                    <br>
+                    <!--Body-->
+                    <div class="md-form">
+                        <i class="fa fa-user prefix"></i>
+                        <input type="text" id="email" class="form-control">
+                        <label for="form3"></label>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-default" id="edit-btn">Submit</button>
+                    </div>
+
+                </div>
+            <!--/.Content-->
+            </div>
+        </div>
+    </div>
+    <!-- END EMAIL MODAL-->
 
     <!--CONTENT-->        
     <div class="content" id="content"></div>

@@ -38,21 +38,12 @@ body {
 
 .add_snippet {
     align-content: right;
+    margin-top: 10px;
 }
 
 .filter {
     margin-left: 90%;
 }
-
-/*.page-footer {
-    background-color: #a7ffeb
-}
-
-.footer,
-.push {
-  height: 50px;
-  padding-bottom: 30px;
-}*/
 
 button {
     font-family: 'Signika', sans-serif;
@@ -77,4 +68,13 @@ h4 {
 .field-wrap {
     background-color: white;
     margin: 5px;
+}
+
+.facebook_login {
+    float: right;
+    margin-top: -40px;
+}
+
+.categories {
+    margin-top: 10px;
 }
