@@ -36,8 +36,11 @@ module.exports = function (app) {
 
     //READ ALL SNIPPETS
     app.get('/api/view/', function (req, res) {
+        console.log("find all");
+        console.log(req.user);
         db.Snippets.findAll({
             include: [db.Categories, db.Users],
+            where: {userId: req.user[0].id},
             order: '"updatedAt" DESC'
         }).then(function(data) {
             console.log('\nfindall categories data\n');
@@ -53,7 +56,8 @@ module.exports = function (app) {
             console.log(req.params);
             db.Snippets.findAll({
             include: [db.Categories, db.Users],
-            where: {category_id: req.params.category},
+            where: {category_id: req.params.category, 
+                                 userId: req.user[0].id},
             order: '"updatedAt" DESC'
         }).then(function(data) {
             console.log("\nfind snippets by category\n");

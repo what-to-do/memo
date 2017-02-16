@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+  
 var status = 0;
 
 view_all();
