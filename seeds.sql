@@ -6,12 +6,24 @@ INSERT INTO `Users` (`name`, `oauthId`, `createdAt`, `updatedAt`) VALUES ('Rick 
 																					 ('Jeff "Party Boy" Searinger', 6666, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO `Categories` (`category`, `createdAt`, `updatedAt`) VALUES ('entertainment', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-																	   ('sports', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-																	   ('music', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-																	   ('education', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `Categories` (`category`, `userCategoryId`, `createdAt`, `updatedAt`) VALUES ('entertainment', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('sports', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('music', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('education', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('entertainment', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('sports', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('music', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('education', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('entertainment', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('sports', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('music', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('education', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('entertainment', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('sports', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('music', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+																	   ('education', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO `Snippets` (`userId`, `category_id`, `snippet`, `importance`, `completed`, `createdAt`, `updatedAt`) VALUES (1, 1, 'rick entertainment snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+INSERT INTO `Snippets` (`userId`, `categoryId`, `snippet`, `importance`, `completed`, `createdAt`, `updatedAt`) VALUES (1, 1, 'rick entertainment snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																													 	 (1, 1, 'rick entertainment snippet 2', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																														 (1, 2, 'rick sports snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																														 (1, 2, 'rick sports snippet 2', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
