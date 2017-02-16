@@ -16,8 +16,8 @@ var Snippets = sequelize.define('Snippets', {
 
 
 	},
-	//category_id joins snippets to categories
-	category_id: {
+	//categoryId joins snippets to categories
+	categoryId: {
 		type: DataTypes.INTEGER,
 
 		//allowNull: false
@@ -59,7 +59,7 @@ var Snippets = sequelize.define('Snippets', {
 					foreignKey: 'userId'
 				});
 				Snippets.belongsTo(models.Categories, {
-					foreignKey: 'category_id'
+					foreignKey: 'categoryId'
 				});
 			}
 		}

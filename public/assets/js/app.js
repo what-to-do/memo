@@ -3,8 +3,6 @@ $(document).ready(function(){
     var status = 0;
     var arrow_direction = "ASC"
 
-
-
     view_all();
     making_cat_buttons()
 

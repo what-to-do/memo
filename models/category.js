@@ -11,13 +11,19 @@ var Categories = sequelize.define('Categories', {
 		validate: {
 			len: [1, 20]
 		}
+	},
+	userCategoryId: {
+		type: DataTypes.INTEGER
 	}
 
 }, {
 	class_methods: {
 		associate: function(models){
 			Categories.hasMany(models.Snippets,{
-				foreignKey: 'category_id'
+				foreignKey: 'categoryId'
+			});
+			Categories.belongsTo(models.Users, {
+				foreignKey: 'userCategoryId'
 			});
 		}
 	}
