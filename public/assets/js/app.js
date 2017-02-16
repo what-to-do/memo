@@ -3,6 +3,7 @@ $(document).ready(function(){
 
   
 var status = 0;
+var arrow_direction = 0;
 
 view_all();
 making_cat_buttons()
@@ -150,8 +151,6 @@ function view_all(){
 function render_view(data){
       $("#content").html("");
 
-
-
       var table = $("<table>");
       table.addClass("table table-hover");
       table.appendTo("#content");
@@ -159,18 +158,31 @@ function render_view(data){
       thead.appendTo(table);
       var tr = $("<tr>");
 
-
-
-
-
       tr.appendTo(thead);
-      var heading = ["#","Created","Snippet","Category" , "Importance","Actions"];
+      var heading = ["#","Created", "Snippet", "Category" ,"Importance", "Actions"];
         for (let i = 0; i < heading.length; i++) {    
           var th = $("<th>");
           th.text(heading[i]);
-          th.appendTo(tr);
+          //th.attr("class", "fa fa-angle-down");
+          th.appendTo(tr); 
+
+          var arrowDown =$('<i>');
+          if (arrow_direction == 0) {
+            arrowDown.attr({
+              "class" : "fa fa-angle-down fa-2x sort",
+              "data-index" : heading[i].toLowerCase()
+              });
+          } else {
+            arrowDown.attr({
+              "class" : "fa fa-angle-up fa-2x sort",
+              "data-index" : heading[i].toLowerCase()
+              });
+          }
+          arrowDown.appendTo(th)
           } // End of For Loop I
-           
+
+
+
         var tbody = $("<tbody>");
         tbody.appendTo(table);
           for (let i = 0; i < data.length; i++) {
@@ -200,8 +212,6 @@ function render_view(data){
             }
 
             tr2.appendTo(tbody);
-
-
 
             let th = $("<th>");
             th.attr({
@@ -260,6 +270,13 @@ function render_view(data){
             } // End of For Loop I
 
 }
+
+  $('.content').on('click', '.sort', function(){
+      $.get("/api/sort", function(data) {
+            
+      });
+  })
+
   //USER SIGNUP
   $("#signup_submit").on("click", function(){
       var new_user = {
@@ -306,5 +323,3 @@ function render_view(data){
       });
    });
 });
-
-
