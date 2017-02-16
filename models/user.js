@@ -19,8 +19,11 @@ var Users = sequelize.define('Users', {
 }, {
 	class_methods: {
 		associate: function(models){
-			User.hasMany(models.Snippets, {
+			Users.hasMany(models.Snippets, {
 				foreignKey: 'id'
+			});
+			Users.hasMany(models.Categories, {
+				foreingKey: 'id'
 			});
 		}
 	}/*,

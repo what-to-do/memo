@@ -11,6 +11,9 @@ var Categories = sequelize.define('Categories', {
 		validate: {
 			len: [1, 20]
 		}
+	},
+	userCategoryId: {
+		type: DataTypes.INTEGER
 	}
 
 }, {
@@ -18,6 +21,9 @@ var Categories = sequelize.define('Categories', {
 		associate: function(models){
 			Categories.hasMany(models.Snippets,{
 				foreignKey: 'category_id'
+			});
+			Categories.belongsTo(models.Users, {
+				foreignKey: 'userCategoryId'
 			});
 		}
 	}

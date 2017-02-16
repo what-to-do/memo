@@ -26,7 +26,7 @@ module.exports = function (app) {
     app.post('/api/add/category', function(req, res){
         db.Categories.create({
             category: req.body.category,
-            SnippetId: 1
+            userCategoryId: req.user[0].id
         }).then(function (data) {
             res.json(data);
         }).catch(function (err) {
@@ -72,6 +72,7 @@ module.exports = function (app) {
     //READ ALL CATEGORIES TO PRODUCE CATEGORY BUTTONS
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
+            where: {userCategoryId: req.user[0].id}
         }).then(function(data){
             
             res.json(data);
