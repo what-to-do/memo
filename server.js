@@ -36,7 +36,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var authConfig = require('./oauth/oauth');
 
-nodemailer('ellioy37@gmail.com', 'From Server', 'test message');
+//nodemailer('ellioy37@gmail.com', 'From Server', 'test message');
 
 //Passport
 // serialize and deserialize

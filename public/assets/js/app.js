@@ -162,13 +162,23 @@ function render_view(data){
 
 
       tr.appendTo(thead);
-      var heading = ["#","Created","Snippet","Category" , "Importance","Actions"];
+      var heading = ["#","Created", "Snippet", "Category" ,"Importance", "Actions"];
         for (let i = 0; i < heading.length; i++) {    
           var th = $("<th>");
           th.text(heading[i]);
-          th.appendTo(tr);
+          //th.attr("class", "fa fa-angle-down");
+          th.appendTo(tr); 
+
+          var arrowDown =$('<button>');
+          arrowDown.attr({
+            "class" : "fa fa-angle-down",
+            "type" : "button",
+            });
+          arrowDown.appendTo(tr)
           } // End of For Loop I
-           
+
+
+
         var tbody = $("<tbody>");
         tbody.appendTo(table);
           for (let i = 0; i < data.length; i++) {
