@@ -11,7 +11,8 @@ module.exports = function (app) {
         db.Snippets.create({
             snippet: req.body.snippet,
             importance: req.body.urgency,
-            category_id: req.body.category
+            category_id: req.body.category,
+            userId: req.user[0].id
         }).then(function (data) {
             console.log("\ncreated snippet\n");
             res.json(data);
