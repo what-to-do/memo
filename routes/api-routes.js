@@ -11,7 +11,7 @@ module.exports = function (app) {
         db.Snippets.create({
             snippet: req.body.snippet,
             importance: req.body.urgency,
-            category_id: req.body.category,
+            categoryId: req.body.category,
             userId: req.user[0].id
         }).then(function (data) {
             console.log("\ncreated snippet\n");
@@ -57,7 +57,7 @@ module.exports = function (app) {
             console.log(req.params);
             db.Snippets.findAll({
             include: [db.Categories, db.Users],
-            where: {category_id: req.params.category, 
+            where: {categoryId: req.params.category, 
                                  userId: req.user[0].id},
             order: '"updatedAt" DESC'
         }).then(function(data) {

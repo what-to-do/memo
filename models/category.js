@@ -20,7 +20,7 @@ var Categories = sequelize.define('Categories', {
 	class_methods: {
 		associate: function(models){
 			Categories.hasMany(models.Snippets,{
-				foreignKey: 'category_id'
+				foreignKey: 'categoryId'
 			});
 			Categories.belongsTo(models.Users, {
 				foreignKey: 'userCategoryId'
