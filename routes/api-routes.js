@@ -1,7 +1,7 @@
 var db = require('../models');
 var path = require('path');
 
-/*=========================SNIPPET QUERRIES===================================*/
+/*=========================USER SNIPPET QUERRIES===================================*/
 
 /*RETRIEVING DATA FROM THE SQL DATABASE*/
 module.exports = function (app) {
@@ -107,63 +107,27 @@ module.exports = function (app) {
         });
     });
 
-/*========================END OF SNIPPET QUERRIES============================*/
-
-/*=============================USER QUERRIES=================================*/
-    //CREATE USER LOGIN DATA
-    app.post('/signup/complete', function(req, res){
-       console.log(req.body);
-        db.Users.create({
-                username: req.body.email,
-                password: req.body.password
-            }).then(function(data){
-                console.log(data);
-            }).catch(function(err){
-                console.log(err);
-            });
-    });
-
-    //CHECK IF USERNAME & PASSWORD ARE CORRECT
-    //IF CORRECT REDIRECT TO /view/:user?
-    app.post('/login', function(req, res){
-        db.Users.count({
-            where: {username: req.body.username, password: req.body.password}
-        }).then(function(data){
-            /*if count is true that means the username/password match
-            redirect the user to the url that finds all their snippets*/
-            if(count == 1){
-              
-            }else{
-                alert("incorrect username/password, please try again");
-                res.redirect('/login');
-            }
-        });
-    });
-
-    //FIND ALL SNIPPETS BY USER_ID
-    app.get('/view/:user_id?', function(req, res){
+    //SORT
+    
+    app.get('api/sort/', function(req, res){
+        var direction;
+        /*if(req.params.arrow === 0){
+            direction = ' ASC';
+        } else{
+            direction = ' DESC';
+        }*/
         db.Snippets.findAll({
-            include: [db.Categories, db.Users],
-            where: {user_id: req.body.user}
-        }).then(function(data){
+            include: [db.Users, db.Categories],
+            where: {userId: req.user[0].id},
+            order: req.params.row + req.params.arrow
+        }).then(function(data) {
             res.json(data);
-        }).catch(function(err){
+        }).catch(function (err) {
             console.log(err);
         });
     });
-
-    //READ USER SNIPPETS BY CATEGORY
-
-
-    //READ ALL USER CATEGORIES TO PRODUCE CATEGORY BUTTONS
-
-
-
-    //UPDATE USER SNIPPET
-
     
-
-    //DELETE USER SNIPPET
+/*========================END OF SNIPPET QUERRIES============================*/
 
 
 
