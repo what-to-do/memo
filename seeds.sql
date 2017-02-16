@@ -1,6 +1,6 @@
 /*Use for testing the sequelize models*/
 USE `memo_db`
-INSERT INTO `Users` (`username`, `password`, `createdAt`, `updatedAt`) VALUES ('Rick Dotchin', 1123, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), 
+INSERT INTO `Users` (`name`, `oauthId`, `createdAt`, `updatedAt`) VALUES ('Rick Dotchin', 1123, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), 
 																					 ('Justin Bestman', 2154, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																					 ('Jessica Prado', 3521, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																					 ('Jeff "Party Boy" Searinger', 6666, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
@@ -11,7 +11,7 @@ INSERT INTO `Categories` (`category`, `createdAt`, `updatedAt`) VALUES ('enterta
 																	   ('music', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																	   ('education', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO `Snippets` (`user_id`, `category_id`, `snippet`, `importance`, `completed`, `createdAt`, `updatedAt`) VALUES (1, 1, 'rick entertainment snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+INSERT INTO `Snippets` (`oauthId`, `category_id`, `snippet`, `importance`, `completed`, `createdAt`, `updatedAt`) VALUES (1, 1, 'rick entertainment snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																													 	 (1, 1, 'rick entertainment snippet 2', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																														 (1, 2, 'rick sports snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																														 (1, 2, 'rick sports snippet 2', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
