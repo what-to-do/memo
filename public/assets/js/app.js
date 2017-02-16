@@ -3,10 +3,10 @@ $(document).ready(function(){
     var status = 0;
     var arrow_direction = {
 
-        arrow_created : "DESC",
-        arrow_snippet : "DESC",
-        arrow_category : "DESC",
-        arrow_importance: "DESC"
+        arrow_created : "ASC",
+        arrow_snippet : "ASC",
+        arrow_category : "ASC",
+        arrow_importance: "ASC"
 
     }
 
