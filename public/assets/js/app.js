@@ -33,6 +33,8 @@ function making_cat_buttons() {
   });
 }
 
+
+
 making_cat_buttons()
 
   $(".categories").on('click', '.category_buttons', function(){
@@ -270,6 +272,22 @@ function render_view(data){
                
       });
   });
+
+  //Create New Category
+  $('.this_is_submit').on('click', '#create_new_cat_button',function(){
+    var created_cat = {
+      category: $('#category_modal').val().trim()
+    };
+    console.log(created_cat);
+    $.post('/api/add/category', created_cat).
+    done(function(data){
+       
+        $(".categories").html('');
+        making_cat_buttons();
+      });
+   
+   });
+
 
 });
 
