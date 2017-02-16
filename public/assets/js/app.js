@@ -272,9 +272,34 @@ function render_view(data){
 }
 
   $('.content').on('click', '.sort', function(){
-      $.get("/api/sort", function(data) {
+
+        var user = $(this).data("index");
+
+        var sorting = {
+
+            arrow : arrow_direction,
+            column : user
+
+        }
+
+      $.get("/api/sort/" , sorting , function(data) {
             
+        console.log(data);
+
       });
+
+
+      if (arrow_direction == 0) {
+
+          arrow_direction = 1;
+
+      } else {
+
+          arrow_direction = 0;
+          
+      }
+
+
   })
 
   //USER SIGNUP
