@@ -11,7 +11,7 @@ INSERT INTO `Categories` (`category`, `createdAt`, `updatedAt`) VALUES ('enterta
 																	   ('music', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																	   ('education', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO `Snippets` (`oauthId`, `category_id`, `snippet`, `importance`, `completed`, `createdAt`, `updatedAt`) VALUES (1, 1, 'rick entertainment snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+INSERT INTO `Snippets` (`userId`, `category_id`, `snippet`, `importance`, `completed`, `createdAt`, `updatedAt`) VALUES (1, 1, 'rick entertainment snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																													 	 (1, 1, 'rick entertainment snippet 2', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																														 (1, 2, 'rick sports snippet 1', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 																														 (1, 2, 'rick sports snippet 2', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),

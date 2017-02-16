@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+  
 var status = 0;
 var arrow_direction = 0;
 
