@@ -26,7 +26,7 @@ module.exports = function (app) {
     app.post('/api/add/category', function(req, res){
         db.Categories.create({
             category: req.body.category,
-            SnippetId: 1
+            userCategoryId: req.user[0].id
         }).then(function (data) {
             res.json(data);
         }).catch(function (err) {
@@ -42,7 +42,7 @@ module.exports = function (app) {
         db.Snippets.findAll({
             include: [db.Categories, db.Users],
             where: {userId: req.user[0].id}/*,
-            order: '"updatedAt" DESC'*/
+            order: '"importance" DESC'*/
         }).then(function(data) {
             console.log('\nfindall categories data\n');
             res.json(data);
@@ -72,6 +72,7 @@ module.exports = function (app) {
     //READ ALL CATEGORIES TO PRODUCE CATEGORY BUTTONS
     app.get('/api/categories', function(req, res){
         db.Categories.findAll({
+            where: {userCategoryId: req.user[0].id}
         }).then(function(data){
             
             res.json(data);
@@ -111,18 +112,12 @@ module.exports = function (app) {
     //SORT
     
     app.get('/api/sort/:arrow/:column', function(req, res){
-        var direction;
-        if(req.params.arrow === 0){
-            direction = ' ASC';
-        } else{
-            direction = ' DESC';
-        }
+        console.log(req.params.arrow);
         db.Snippets.findAll({
             include: [db.Users, db.Categories],
             where: {userId: req.user[0].id},
-            order: req.params.column + direction
+            order: req.params.column + ' ' + req.params.arrow
         }).then(function(data) {
-            console.log(data);
             res.json(data);
         }).catch(function (err) {
             console.log(err);
