@@ -40,8 +40,8 @@ module.exports = function (app) {
         console.log(req.user);
         db.Snippets.findAll({
             include: [db.Categories, db.Users],
-            where: {userId: req.user[0].id},
-            order: '"updatedAt" DESC'
+            where: {userId: req.user[0].id}/*,
+            order: '"updatedAt" DESC'*/
         }).then(function(data) {
             console.log('\nfindall categories data\n');
             res.json(data);
@@ -109,18 +109,19 @@ module.exports = function (app) {
 
     //SORT
     
-    app.get('api/sort/', function(req, res){
+    app.get('/api/sort/:arrow/:column', function(req, res){
         var direction;
-        /*if(req.params.arrow === 0){
+        if(req.params.arrow === 0){
             direction = ' ASC';
         } else{
             direction = ' DESC';
-        }*/
+        }
         db.Snippets.findAll({
             include: [db.Users, db.Categories],
             where: {userId: req.user[0].id},
-            order: req.params.row + req.params.arrow
+            order: req.params.column + direction
         }).then(function(data) {
+            console.log(data);
             res.json(data);
         }).catch(function (err) {
             console.log(err);

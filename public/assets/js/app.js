@@ -312,12 +312,12 @@ function render_view(data){
             arrow : arrow_direction,
             column : user
 
-        }
+        };
 
-      $.get("/api/sort/" , sorting , function(data) {
+      $.get("/api/sort/" + arrow_direction + '/' + user , function(data) {
             
         console.log(data);
-
+         
       });
 
 
