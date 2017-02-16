@@ -1,14 +1,9 @@
 $(document).ready(function(){
 
     var status = 0;
-    var arrow_direction = {
+    var arrow_direction = "ASC"
 
-        arrow_created : "DESC",
-        arrow_snippet : "DESC",
-        arrow_category : "DESC",
-        arrow_importance: "DESC"
 
-    }
 
     view_all();
     making_cat_buttons()
@@ -33,102 +28,27 @@ $(document).ready(function(){
 
         var column = $(this).data("index");
 
-        var arrow = "";
+        
 
-        switch(column){
-
-            case "createdAt":
-
-                arrow = arrow_direction.arrow_created;
-
-                break;
-
-            case "snippet":
-
-                arrow = arrow_direction.arrow_snippet;
-
-                break;
-
-            case "category":
-
-                arrow = arrow_direction.arrow_category;
-
-                break;
-
-            case "importance":
-
-                arrow = arrow_direction.arrow_importance;
-
-                break;
-
-        }
-
-      $.get("/api/sort/" + arrow + '/' + column , function(data) {
+      $.get("/api/sort/" + arrow_direction + '/' + column , function(data) {
 
         render_view(data);
          
       });
 
-      console.log(column);
+      console.log(arrow_direction);
 
-      switch(column){
+      if (arrow_direction == "DESC"){
 
-        case "createdAt":
+        console.log("check");
 
-            if (arrow_direction.arrow_created == "DESC") {
+        arrow_direction = "ASC";
 
-                arrow_direction.arrow_created = "ASC";
+      } else {
 
-            } else {
+        arrow_direction = "DESC"
 
-                arrow_direction.arrow_created = "DESC";
-
-            }
-
-            break;
-        case "snippet":
-
-            if (arrow_direction.arrow_snippet == "DESC") {
-
-                arrow_direction.arrow_snippet = "ASC";
-
-            } else {
-
-                arrow_direction.arrow_snippet = "DESC";
-
-            }
-
-            break;
-
-        case "category":
-
-            if (arrow_direction.arrow_category == "DESC") {
-
-                arrow_direction.arrow_category = "ASC";
-
-            } else {
-
-                arrow_direction.arrow_category = "DESC";
-
-            }
-
-            break;
-
-        case "importance": 
-
-            if (arrow_direction.arrow_importance == "DESC") {
-
-                arrow_direction.arrow_importance = "ASC";
-
-            } else {
-
-                arrow_direction.arrow_importance = "DESC";
-
-            }
-
-            break;
-
-      } // End of Switch Statement
+      }
 
 
     });
@@ -343,113 +263,30 @@ $(document).ready(function(){
             //th.attr("class", "fa fa-angle-down");
             th.appendTo(tr); 
 
-            if (heading[i] == "#" || heading[i] == "Actions") {
+            var arrowDown =$('<i>');
 
-            } else {
-
-                var arrowDown =$('<i>');
-              
-                switch(heading[i]){
-
-                    case "Created":
-                      
-                        if (arrow_direction.arrow_created == "DESC"){
-
-                            arrowDown.attr({
-                            "class" : "fa fa-angle-down fa-2x sort",
-                            "data-index" : "createdAt"
-                            });
-
-                        } else {
-
-                            arrowDown.attr({
-                              "class" : "fa fa-angle-up fa-2x sort",
-                              "data-index" : "createdAt"
-                            });
-
-                        } 
-
-                        break;
-
-                    case "Snippet":
-
-                        if (arrow_direction.arrow_snippet == "DESC"){
-
-                            arrowDown.attr({
-                            "class" : "fa fa-angle-down fa-2x sort",
-                            "data-index" : heading[i].toLowerCase()
-                            });
-
-                        } else {
-
-                            arrowDown.attr({
-                              "class" : "fa fa-angle-up fa-2x sort",
-                              "data-index" : heading[i].toLowerCase()
-                            });
-
-                        } 
-
-                        break;
+            if (heading[i] == "Importance") {
 
 
-                    case "Category":
+                if (arrow_direction == "DESC"){
 
-                        if (arrow_direction.arrow_category == "DESC"){
-
-                            arrowDown.attr({
-                            "class" : "fa fa-angle-down fa-2x sort",
-                            "data-index" : heading[i].toLowerCase()
-                            });
-
-                        } else {
-
-                            arrowDown.attr({
-                              "class" : "fa fa-angle-up fa-2x sort",
-                              "data-index" : heading[i].toLowerCase()
-                            });
-
-                        } 
-
-                        break;
-
-                    case "Importance":
-
-                        if (arrow_direction.arrow_importance == "DESC"){
-
-                            arrowDown.attr({
-                            "class" : "fa fa-angle-down fa-2x sort",
-                            "data-index" : heading[i].toLowerCase()
-                            });
-
-                        } else {
-
-                            arrowDown.attr({
-                              "class" : "fa fa-angle-up fa-2x sort",
-                              "data-index" : heading[i].toLowerCase()
-                            });
-
-                        } 
-
-                        break;
-
-
-
-
-                } // End of Switch Statement
-
-
-
-
-               
-                if (arrow_direction == 0) {
-
+                    arrowDown.attr({
+                    "class" : "fa fa-angle-down fa-2x sort",
+                    "data-index" : heading[i].toLowerCase()
+                    });
 
                 } else {
 
-                }
-                arrowDown.appendTo(th)
+                    arrowDown.attr({
+                      "class" : "fa fa-angle-up fa-2x sort",
+                      "data-index" : heading[i].toLowerCase()
+                    });
 
-            } 
+                } 
+
+                arrowDown.appendTo(th);
+
+            }
 
         } // End of For Loop I
 
