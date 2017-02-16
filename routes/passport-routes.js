@@ -16,14 +16,17 @@ module.exports = function(app, passport) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function(req, res) {
-        	console.log("auth/facebook/callback");
+        /*	console.log("auth/facebook/callback");*/
         	//user facebook data after login
-        	console.log(req.user[0].id);
+        	/*console.log(req.user[0].id);
         	console.log(req.user[0].name);
-        	console.log(req.user[0].oauthId);
+        	console.log(req.user[0].oauthId);*/
         	
-        	
-      
+        	//Send back a response to finish this request.
+        	/*res.setHeader('Access-Control-Allow-Origin','*');*/
+        	//See if the new page request actually has session information
+        	//Courtesy of Assport.js 
+      		res.redirect('/');
         });
 
     app.get('/login', function(req, res) {
