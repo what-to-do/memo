@@ -36,8 +36,3 @@ module.exports = function(sequelize, DataTypes) {
 };
 
 /*===============================END CATEGORIES TABLE MODEL===========================================*/
-
-
-
-
-	
