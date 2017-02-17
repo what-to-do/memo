@@ -105,13 +105,13 @@ module.exports = function(app) {
     });
 
     app.post('/api/email', function(req, res) {
-        nodemailer(req.body.recipient, req.body.title, req.body.message);
+        nodemailer(req.body.recipient, req.body.title, req.body.message, req.user[0].name);
     });
 
     //DELETE SNIPPET
     /*Delete the users snippet they select*/
     app.post('/api/delete', function(req, res) {
-        console.log(req.body);
+    
         db.Snippets.destroy({
             where: {
                 id: req.body.user_delete
