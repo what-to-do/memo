@@ -87,7 +87,7 @@ require("./routes/passport-routes.js")(app, passport);
 
 //syncing our sequlize models then starting our express app.  
 //Use force:true after models have been altered or first running the app on a local machine
-db.sequelize.sync( /*{force: true}*/ ).then(function() {
+db.sequelize.sync( {force: true} ).then(function() {
     app.listen(PORT, function() {
         console.log("listening on http://localhost:" + PORT);
     });
