@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     var status = 0;
     var arrow_direction = "ASC"
 
@@ -131,16 +130,28 @@ $(document).ready(function(){
     of this snippet so it can be sent in an email*/
     $("#content").on("click", ".email", function(event){
         var user = $(this).data("index");
-  
+        var message = $(this).parent().parent().find(".snippet_td").text();
+ 
         $("#email-btn").on("click", function(){
           var email = {
-            snippet_id: user,
-            snippet: $("#snippet_modal").val().trim(), //Jeff update snippet
-            email: $("#email").val().trim(),
+//            snippet_id: user,
+            message: message,
+            recipient: $("#email").val().trim(),
+            title: "Your Requested Snippet"
 
           };
+          var recipient = $("#email").val().trim();
+
           console.log(email);
           //Jeff route here like below
+
+          $.post("/api/email", email).
+          done(function(data){
+            console.log(data);
+
+          });
+
+
         });
     });
 
@@ -174,6 +185,8 @@ $(document).ready(function(){
 
 
     });
+
+
 
     $("#content").on("click" , ".del" , function(event){
       
@@ -298,7 +311,7 @@ $(document).ready(function(){
                 } 
 
                 arrowDown.appendTo(th);
-
+//
             }
 
         } // End of For Loop I
@@ -317,7 +330,7 @@ $(document).ready(function(){
 
 
               switch(importance_type){
-
+//
                 case 1: 
                   break;
                 case 2:
