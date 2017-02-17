@@ -1,6 +1,13 @@
 'use strict';
+
+// nodemailer is an npm package allowing node to send email
+// through a SMTP server.  this is configured to use the 
+// snippets2017@gmail.com account for emailing a user
+// their requested snippet from the email modal
 const nodemailer = require('nodemailer');
 
+// nodemailer is configured here to be called using a recipient, a title,
+// and a body of an email
 module.exports = function(recipient, title, body) {
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({

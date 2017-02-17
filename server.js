@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var app = express();
-var nodemailer = require('./nodemailer');
 var PORT = process.env.PORT || 8080;
 
 //requiring our models for syncing
@@ -85,9 +84,9 @@ require("./routes/html-routes.js")(app);
 require("./routes/passport-routes.js")(app, passport);
 
 
-//syncing our sequlize models then starting our express app.  
+//syncing our sequelize models then starting our express app.  
 //Use force:true after models have been altered or first running the app on a local machine
-db.sequelize.sync( {force: true} ).then(function() {
+db.sequelize.sync(/*{force: true}*/ ).then(function() {
     app.listen(PORT, function() {
         console.log("listening on http://localhost:" + PORT);
     });
