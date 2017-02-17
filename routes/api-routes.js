@@ -1,4 +1,5 @@
 var db = require('../models');
+var nodemailer = require('../public/assets/js/nodemailer.js');
 
 /*=========================USER SNIPPET QUERRIES===================================*/
 
@@ -101,6 +102,10 @@ module.exports = function(app) {
         }).catch(function(err) {
             console.log(err);
         });
+    });
+
+    app.post('/api/email', function(req, res) {
+        nodemailer(req.body.recipient, req.body.title, req.body.message);
     });
 
     //DELETE SNIPPET
