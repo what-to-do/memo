@@ -1,5 +1,5 @@
 #grad {
-    background: linear-gradient(to bottom right, #e3f2fd, #607d8b); /* Standard syntax */
+    background: linear-gradient(to bottom right, #bdbdbd, #82b1ff); /* Standard syntax */
     height: 1600px;
 }
 
@@ -8,7 +8,9 @@ body {
 
 }
 
-button {
+.submit,
+.facebook_login,
+.categories button {
     position: relative;
     //display:block;
     height: 45px;
@@ -17,10 +19,9 @@ button {
     padding: 5px 5px;
     font-weight: 700;
     font-size: 15px;
-    color: #383736;
-    border: 2px white solid;
+    color: #fafafa !important;
+    border: 2px #fafafa solid;
     border-radius: 4px;
-    text-transform: uppercase;
     outline: 0;
     overflow:hidden;
     background: none;
@@ -31,18 +32,22 @@ button {
     -ms-transition:     0.08s ease-in;
     -moz-transition:    0.08s ease-in;
     -webkit-transition: 0.08s ease-in;
-    font-family: 'Signika', sans-serif;
     cursor:pointer;
 }
 
+.submit:hover,
+.facebook_login:hover,
 .fill:hover {
-  color: whitesmoke;
+  color: #383736 !important;
 }
 
+.submit:before,
+.facebook_login:before,
 .fill:before {
   content: "";
   position: absolute;
-  background: #383736;
+  background: #fafafa;
+  color: #383736 !important;
   bottom: 0;
   left: 0;
   right: 0;
@@ -51,6 +56,8 @@ button {
   -webkit-transition: top 0.09s ease-in;
 }
 
+.submit:hover:before,
+.facebook_login:hover:before,
 .fill:hover:before {
   top: 0;
 }
@@ -71,16 +78,27 @@ button {
     font-family: 'Rubik', sans-serif;
 }
 
+.login {
+    margin-top: 5%;
+    display: block;
+}
+
+.login_div {
+    padding-top: 30px;
+}
+
 .content {
     margin-top: 30px;
     height: 80%;
-    background: rgba(250, 250, 250, 0.1);
+    background: rgba(250, 250, 250, 0.0);
     overflow:auto;
 }
 
-.add_snippet {
+.add_snippet button{
     align-content: right;
+    float: right;
     margin-top: 10px;
+    cursor:pointer;
 }
 
 .filter {
@@ -94,6 +112,11 @@ h1 {
 h4 {
     font-family: 'Signika', sans-serif;
     text-align: center;
+}
+
+h6 {
+    font-size: 12px;
+    font-family: 'Signika', sans-serif;
 }
 
 .login {
@@ -112,6 +135,51 @@ h4 {
     margin-top: -40px;
 }
 
+.fa-facebook {
+    float: left;
+    padding-top: 5px;
+    height: 20px;
+}
+
 .categories {
     margin-top: 10px;
+}
+
+#selected_category {
+    position: relative;
+}
+
+.sort {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 18px
+}
+
+.table {
+    border-collapse:separate;
+    border-spacing: 0 10px;
+}
+
+th, td {
+    text-align: center;
+}
+
+tr {
+    background: rgba(250, 250, 250, 0.7);
+    border-radius: 25px;
+    border: 2px solid #fafafa;
+    padding: 20px; 
+    width: 100%;
+    height: 70px; 
+    margin: auto;  
+}
+
+.modal-content {
+    background-color: #cfd8dc;
+    font-family: 'Signika', sans-serif;
+}
+
+form {
+    position: relative;
+    padding-left: 50px;
 }
