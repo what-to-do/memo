@@ -17,11 +17,6 @@ $(document).ready(function(){
           }     
     }); 
 
-
-
-
-
-
     $('.content').on('click', '.sort', function(){
 
         var column = $(this).data("index");
@@ -146,7 +141,7 @@ $(document).ready(function(){
 
           $.post("/api/edit", edited_category).
           done(function(data){
-
+            console.log(data);
 
           });
 
