@@ -141,12 +141,12 @@ $(document).ready(function(){
           };
           var recipient = $("#email").val().trim();
 
-          console.log(email);
+         
           //Jeff route here like below
 
           $.post("/api/email", email).
           done(function(data){
-            console.log(data);
+           
 
           });
 
@@ -167,7 +167,6 @@ $(document).ready(function(){
           urgency: $("input[name='group2']:checked").val()
           };
 
-          console.log(edited_category);
 
           $.post("/api/edit", edited_category).
           done(function(data){
@@ -176,7 +175,7 @@ $(document).ready(function(){
           });
 
           if(status === 0){
-              console.log("Here");
+             
 
               view_all();
           } else{
@@ -270,7 +269,7 @@ $(document).ready(function(){
     function view_all(){
         status = 0;
         $.get("/api/view", function(data) {
-            console.log(data);
+            
               render_view(data);
         });
 
@@ -280,7 +279,11 @@ $(document).ready(function(){
 
     function render_view(data){
         $("#content").html("");
+      
         console.log(data);
+
+
+
         var table = $("<table>");
         table.addClass("table table-hover");
         table.appendTo("#content");
@@ -349,7 +352,7 @@ $(document).ready(function(){
               td_snippet.attr({
                 "class" : "snippet_td"
               });
-              console.log(data[i].snippet);
+            
               td_snippet.text(data[i].snippet);
               td_snippet.appendTo(tr2)
 
