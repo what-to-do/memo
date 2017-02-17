@@ -1,5 +1,5 @@
 #grad {
-    background: linear-gradient(to bottom right, #e3f2fd, #607d8b); /* Standard syntax */
+    background: linear-gradient(to bottom right, #bdbdbd, #82b1ff); /* Standard syntax */
     height: 1600px;
 }
 
@@ -8,6 +8,7 @@ body {
 
 }
 
+.submit,
 .facebook_login,
 .categories button {
     position: relative;
@@ -34,11 +35,13 @@ body {
     cursor:pointer;
 }
 
+.submit:hover,
 .facebook_login:hover,
 .fill:hover {
   color: #383736 !important;
 }
 
+.submit:before,
 .facebook_login:before,
 .fill:before {
   content: "";
@@ -53,6 +56,7 @@ body {
   -webkit-transition: top 0.09s ease-in;
 }
 
+.submit:hover:before,
 .facebook_login:hover:before,
 .fill:hover:before {
   top: 0;
@@ -110,6 +114,11 @@ h4 {
     text-align: center;
 }
 
+h6 {
+    font-size: 12px;
+    font-family: 'Signika', sans-serif;
+}
+
 .login {
     float: right;
     margin-right: 10%;
@@ -126,8 +135,18 @@ h4 {
     margin-top: -40px;
 }
 
+.fa-facebook {
+    float: left;
+    padding-top: 5px;
+    height: 20px;
+}
+
 .categories {
     margin-top: 10px;
+}
+
+#selected_category {
+    position: relative;
 }
 
 .sort {
@@ -141,6 +160,26 @@ h4 {
     border-spacing: 0 10px;
 }
 
+th, td {
+    text-align: center;
+}
+
 tr {
-    background: rgba(250, 250, 250, 0.5);
+    background: rgba(250, 250, 250, 0.7);
+    border-radius: 25px;
+    border: 2px solid #fafafa;
+    padding: 20px; 
+    width: 100%;
+    height: 70px; 
+    margin: auto;  
+}
+
+.modal-content {
+    background-color: #cfd8dc;
+    font-family: 'Signika', sans-serif;
+}
+
+form {
+    position: relative;
+    padding-left: 50px;
 }
