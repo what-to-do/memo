@@ -8,7 +8,8 @@ body {
 
 }
 
-button {
+.facebook_login,
+.categories button {
     position: relative;
     //display:block;
     height: 45px;
@@ -17,10 +18,9 @@ button {
     padding: 5px 5px;
     font-weight: 700;
     font-size: 15px;
-    color: #383736;
-    border: 2px white solid;
+    color: #fafafa !important;
+    border: 2px #fafafa solid;
     border-radius: 4px;
-    text-transform: uppercase;
     outline: 0;
     overflow:hidden;
     background: none;
@@ -31,18 +31,20 @@ button {
     -ms-transition:     0.08s ease-in;
     -moz-transition:    0.08s ease-in;
     -webkit-transition: 0.08s ease-in;
-    font-family: 'Signika', sans-serif;
     cursor:pointer;
 }
 
+.facebook_login:hover,
 .fill:hover {
-  color: whitesmoke;
+  color: #383736 !important;
 }
 
+.facebook_login:before,
 .fill:before {
   content: "";
   position: absolute;
-  background: #383736;
+  background: #fafafa;
+  color: #383736 !important;
   bottom: 0;
   left: 0;
   right: 0;
@@ -51,6 +53,7 @@ button {
   -webkit-transition: top 0.09s ease-in;
 }
 
+.facebook_login:hover:before,
 .fill:hover:before {
   top: 0;
 }
@@ -71,6 +74,15 @@ button {
     font-family: 'Rubik', sans-serif;
 }
 
+.login {
+    margin-top: 5%;
+    display: block;
+}
+
+.login_div {
+    padding-top: 30px;
+}
+
 .content {
     margin-top: 30px;
     height: 80%;
@@ -80,6 +92,7 @@ button {
 
 .add_snippet {
     align-content: right;
+    float: right;
     margin-top: 10px;
 }
 
@@ -114,4 +127,10 @@ h4 {
 
 .categories {
     margin-top: 10px;
+}
+
+.sort {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 18px
 }

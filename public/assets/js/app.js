@@ -298,27 +298,27 @@ $(document).ready(function(){
               var tr2 = $("<tr>");
 
 
-              var importance_type = data[i].importance;
+              // var importance_type = data[i].importance;
 
 
-              switch(importance_type){
+              // switch(importance_type){
 
-                case 1: 
-                  break;
-                case 2:
-                  tr2.addClass("table-success");
-                  break;
-                case 3:
-                  tr2.addClass("table-info");
-                  break;
-                case 4:
-                  tr2.addClass("yellow accent-1");
-                  break;
-                case 5:
-                  tr2.addClass("table-danger");
-                  break;
+              //   case 1: 
+              //     break;
+              //   case 2:
+              //     tr2.addClass("table-success");
+              //     break;
+              //   case 3:
+              //     tr2.addClass("table-info");
+              //     break;
+              //   case 4:
+              //     tr2.addClass("yellow accent-1");
+              //     break;
+              //   case 5:
+              //     tr2.addClass("table-danger");
+              //     break;
 
-              } // End of Switch Statement
+              // } // End of Switch Statement
 
               tr2.appendTo(tbody);
 
