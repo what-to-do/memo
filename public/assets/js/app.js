@@ -125,6 +125,26 @@ $(document).ready(function(){
 
     });
 
+    //EMAIL SNIPPET
+    /*When the user clicks on the email button it will grab the 
+    index number of the snippet selected then provide the data
+    of this snippet so it can be sent in an email*/
+    $("#content").on("click", ".email", function(event){
+        var user = $(this).data("index");
+  
+        $("#email-btn").on("click", function(){
+          var email = {
+            snippet_id: user,
+            snippet: $("#snippet_modal").val().trim(), //Jeff update snippet
+            email: $("#email").val().trim(),
+
+          };
+          console.log(email);
+          //Jeff route here like below
+        });
+    });
+
+
     $("#content").on("click" , ".edit" , function(event){
 
         var user = $(this).data("index");
