@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 
 // nodemailer is configured here to be called using a recipient, a title,
 // and a body of an email
-module.exports = function(recipient, title, body) {
+module.exports = function(recipient, title, body , user) {
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
 	service: 'gmail',
@@ -22,10 +22,12 @@ let transporter = nodemailer.createTransport({
 let mailOptions = {
 	from: '"Snippets" <snippets2017@gmail.com>', 	// sender address
 	to: recipient, 	// list of receivers
-	subject: title, 	// subject line
+	subject: "You have recieved a snippet from " + user, 	// subject line
 	text: body, 	// text body
 	html: body	// html body
 };
+
+console.log(mailOptions);
 
 // send mail with defined transport object
 transporter.sendMail(mailOptions, (error, info) => {
