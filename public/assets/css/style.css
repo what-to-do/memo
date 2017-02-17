@@ -1,5 +1,5 @@
 #grad {
-    background: linear-gradient(to bottom right, #81d4fa, #a7ffeb); /* Standard syntax */
+    background: linear-gradient(to bottom right, #e3f2fd, #607d8b); /* Standard syntax */
     height: 1600px;
 }
 
@@ -8,9 +8,51 @@ body {
 
 }
 
-.fixed-action-btn {
-    bottom: 45px; 
-    right: 24px;
+button {
+    position: relative;
+    //display:block;
+    height: 45px;
+    width: 150px;
+    margin: 10px 7px;
+    padding: 5px 5px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #383736;
+    border: 2px white solid;
+    border-radius: 4px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow:hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition:         0.08s ease-in;
+    -o-transition:      0.08s ease-in;
+    -ms-transition:     0.08s ease-in;
+    -moz-transition:    0.08s ease-in;
+    -webkit-transition: 0.08s ease-in;
+    font-family: 'Signika', sans-serif;
+    cursor:pointer;
+}
+
+.fill:hover {
+  color: whitesmoke;
+}
+
+.fill:before {
+  content: "";
+  position: absolute;
+  background: #383736;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  -webkit-transition: top 0.09s ease-in;
+}
+
+.fill:hover:before {
+  top: 0;
 }
 
 #modal_btn {
@@ -43,11 +85,6 @@ body {
 
 .filter {
     margin-left: 90%;
-}
-
-button {
-    font-family: 'Signika', sans-serif;
-    cursor:pointer;
 }
 
 h1 {
