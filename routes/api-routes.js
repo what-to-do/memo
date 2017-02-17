@@ -98,7 +98,7 @@ module.exports = function(app) {
             }
         }).then(function(data) {
             res.redirect('/');
-            console.log("\Nupdated snippet\n");
+            console.log("\nupdated snippet\n");
         }).catch(function(err) {
             console.log(err);
         });
