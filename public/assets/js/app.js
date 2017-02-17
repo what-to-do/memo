@@ -78,7 +78,7 @@ $(document).ready(function(){
             var cat_btn = $("<button>");
             cat_btn.text(data.category);
             cat_btn.attr({
-            "class" : "btn btn-primary category_buttons",
+            "class" : "btn category_buttons",
             "type" : "button",
             "data-toggle" : "collapse",
             "data-target" : "#collapseExample",
@@ -192,7 +192,7 @@ $(document).ready(function(){
           var cat_btn = $("<button>");
           cat_btn.text(data[i].category);
           cat_btn.attr({
-            "class" : "btn btn-primary category_buttons",
+            "class" : "btn category_buttons",
             "type" : "button",
             "data-toggle" : "collapse",
             "data-target" : "#collapseExample",
@@ -333,6 +333,9 @@ $(document).ready(function(){
               td_created.text(data[i].createdAt);
               td_created.appendTo(tr2);
               let td_snippet = $("<td>");
+              td_snippet.attr({
+                "class" : "snippet_td"
+              });
               td_snippet.text(data[i].snippet);
               td_snippet.appendTo(tr2)
 
