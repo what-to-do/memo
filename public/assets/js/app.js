@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     $(".categories").on('click', '.category_buttons', function(){
         var category_id = $(this).data('index');
-        if(category_id === 0){
+        if(category_id == 0){
           view_all();
         }else{
         console.log(category_id);
@@ -97,6 +97,8 @@ $(document).ready(function(){
 // ---------------------------------------------------------------------------
 
 
+    // Adding a new snippet
+
     $(".modal-footer").on("click", ".submit" , function(event) {
 
         var new_category = {
@@ -110,11 +112,8 @@ $(document).ready(function(){
         .done(function(data) {
 
           
-
-
-
-          });
-          if(status === 0){
+        });
+          if(status == 0){
             view_all();
           } else{
             view_category(status);
@@ -158,8 +157,8 @@ $(document).ready(function(){
 
     $("#content").on("click" , ".edit" , function(event){
 
+
         var user = $(this).data("index");
-          // Question: What does this code do?
 
         $("#edit-btn").on("click", function(){
         var edited_category = {
@@ -172,16 +171,24 @@ $(document).ready(function(){
 
           $.post("/api/edit", edited_category).
           done(function(data){
-            console.log(data);
+           
 
           });
 
+          if(status === 0){
+              console.log("Here");
+
+              view_all();
+          } else{
+              view_category(status);
+          }
+
+          
+
         });
-        if(status === 0){
-            view_all();
-        } else{
-            view_category(status);
-        }
+
+
+
 
 
     });
@@ -202,7 +209,7 @@ $(document).ready(function(){
         /*if status === 0 that means the user is currently viewing all snippets.  If 
         status === a number it means they are viewing by category and will show the 
         appropriate category*/
-          if(status === 0){
+          if(status == 0){
             view_all();
           } else{
             view_category(status);
@@ -263,6 +270,7 @@ $(document).ready(function(){
     function view_all(){
         status = 0;
         $.get("/api/view", function(data) {
+            console.log(data);
               render_view(data);
         });
 
@@ -272,7 +280,7 @@ $(document).ready(function(){
 
     function render_view(data){
         $("#content").html("");
-
+        console.log(data);
         var table = $("<table>");
         table.addClass("table table-hover");
         table.appendTo("#content");
@@ -325,30 +333,6 @@ $(document).ready(function(){
 
               var tr2 = $("<tr>");
 
-
-
-              var importance_type = data[i].importance;
-
-
-              switch(importance_type){
-//
-                case 1: 
-                  break;
-                case 2:
-                  tr2.addClass("table-success");
-                  break;
-                case 3:
-                  tr2.addClass("table-info");
-                  break;
-                case 4:
-                  tr2.addClass("yellow accent-1");
-                  break;
-                case 5:
-                  tr2.addClass("table-danger");
-                  break;
-
-              } // End of Switch Statement
-
               tr2.appendTo(tbody);
 
               let th = $("<th>");
@@ -365,6 +349,7 @@ $(document).ready(function(){
               td_snippet.attr({
                 "class" : "snippet_td"
               });
+              console.log(data[i].snippet);
               td_snippet.text(data[i].snippet);
               td_snippet.appendTo(tr2)
 
