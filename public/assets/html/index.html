@@ -18,11 +18,11 @@
     <!--container for whole website-->
     <div class="container">
         <!-- LOGIN button -->
-        <div class="panel panel-default">
-            <div class="panel-body text-center">
-                <a class="btn btn-primary facebook_login btn-sm" href="/auth/facebook">
+        <div class="panel panel-default login_div">
+            <div class="panel-body login">
+                <a class="btn facebook_login btn-sm" href="/auth/facebook">
                 <i class="fa fa-facebook"></i>
-                Login With Facebook
+                <h6>Login With Facebook</h6>
                 </a>
             </div>
         </div>
@@ -30,9 +30,9 @@
         <!--categories bar & filter-->
        <div class="row refresh_cat">
             <!--categories buttons-->
-            <div class="categories fill col-md-11">
-                <button type="button" class="add_new_cat btn" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">Add Category...</button>
-                <button type="button" class="btn category_buttons" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
+            <div class="categories col-md-11">
+                <button type="button" class="add_new_cat btn fill" data-toggle='modal' data-target='#add-category_button' aria-expanded=false aria-controls="add-category_button">Add Category...</button>
+                <button type="button" class="btn category_buttons fill" data-toggle='collapse' data-target='#collapseExample' aria-expanded=false aria-controls="collapseExample" data-index='0'>Show all</button>
             </div>
             <!--ADD NEW NOTE BUTTON-->
             <div class="add_snippet col-md-1">
@@ -63,7 +63,7 @@
                 </div>
                 <!--Footer-->
                 <div class="this_is_submit modal-footer">
-                    <button type="button" id='create_new_cat_button' class="new_cat_submit btn btn-secondary" data-dismiss="modal">Create New Category</button>
+                    <button type="button" id='create_new_cat_button' class="new_cat_submit submit btn" data-dismiss="modal">Create New Category</button>
                 </div>
             </div>
             <!--/.Content-->
@@ -81,7 +81,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title w-100" id="myModalLabel">Add New Memo</h4>
+                    <h4 class="modal-title w-100" id="myModalLabel">ADD NEW MEMO</h4>
                 </div>
                 <!--Body-->
                 <div class="modal-body">
@@ -90,14 +90,14 @@
                             <label for="form1" class="">Snippet</label>
                         </div>
                                 
-                        <h3>Choose your category</h3>
+                        <h4>CATEGORY</h4>
                         <br>
                         <select id="selected_category" class="btn-group">
                             
                         </select>
 
                         <p>
-                        <h3>Importance</h3>
+                        <h4>IMPORTANCE</h4>
                         <br>
                     <form class="form-inline">
                         <fieldset class="form-group">
@@ -128,7 +128,7 @@
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">
-                    <button type="button" class="submit btn btn-secondary" data-dismiss="modal">Submit</button>
+                    <button type="button" class="submit btn" data-dismiss="modal">Submit</button>
                 </div>
             </div>
             <!--/.Content-->
@@ -194,7 +194,7 @@
                     </form>
                     
                     <div class="text-center">
-                        <button class="btn btn-default" id="edit-btn">Submit</button>
+                        <button class="btn submit" id="edit-btn">Submit</button>
                     </div>
 
                 </div>
@@ -233,7 +233,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button class="btn btn-default" id="email-btn">Submit</button>
+                        <button class="btn submit" id="email-btn">Submit</button>
                     </div>
 
                 </div>

@@ -326,6 +326,7 @@ $(document).ready(function(){
               var tr2 = $("<tr>");
 
 
+
               var importance_type = data[i].importance;
 
 
