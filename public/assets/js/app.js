@@ -73,25 +73,27 @@ $(document).ready(function(){
 // ---------------------------------------------------------------------------
   // Adding a new snippet
   $(".modal-footer").on("click", ".submit" , function(event) {
-
+    $('input').val('');
     var new_category = {
       snippet: $("#snippet_modal").val().trim(),
       category: $("#selected_category :selected").val(),
       urgency: $("input[name='group1']:checked").val()
     };
-
+    console.log(new_category);
     //empties out modal
-    $('input').val('');
+    //
 
     $.post("/api/add/snippet", new_category)
     .done(function(data) {
       //console.log(data);
+
     });
       if(status == 0){
         view_all();
       } else{
         view_category(status);
       }
+    
   });
 
   //EMAIL SNIPPET

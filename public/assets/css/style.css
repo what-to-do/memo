@@ -193,3 +193,10 @@ form {
     padding-left: 50px;
 }
 
+h1 {
+    font-size: 78px;
+    font-family: 'Signika', sans-serif;
+    color: #fafafa;
+    float: left;
+    margin-left: 15px;
+}
