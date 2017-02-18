@@ -33,6 +33,7 @@ body {
     -moz-transition:    0.08s ease-in;
     -webkit-transition: 0.08s ease-in;
     cursor:pointer;
+    font-family: 'Rubik', sans-serif;
 }
 
 .submit:hover,
@@ -140,6 +141,13 @@ h6 {
     float: left;
     padding-top: 5px;
     height: 20px;
+}
+
+.fa-circle {
+    margin-left: 25px;
+    margin-top: 5px;
+    -webkit-filter: blur(1px)
+    
 }
 
 .categories {

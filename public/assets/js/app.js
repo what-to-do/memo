@@ -72,7 +72,7 @@ $(document).ready(function(){
 // --------------------------------- CRUD ------------------------------------
 // ---------------------------------------------------------------------------
   // Adding a new snippet
-  $(".this_is_submit").on("click", ".submit" , function(event) {
+  $(".modal-footer").on("click", ".submit" , function(event) {
 
     var new_category = {
       snippet: $("#snippet_modal").val().trim(),
@@ -148,6 +148,7 @@ $(document).ready(function(){
   $("#content").on("click" , ".del" , function(event){
     
     var user_delete = $(this).data("index");
+    console.log(user_delete);
 
     $.post("/api/delete" , {user_delete: user_delete}).
     done(function(data){
@@ -226,7 +227,7 @@ $(document).ready(function(){
         var tr = $("<tr>");
 
         tr.appendTo(thead);
-        var heading = ["#","Created", "Snippet", "Category" ,"Importance", "Actions"];
+        var heading = ["","Created", "Snippet", "Category" ,"Importance", "Actions"];
 
         for (let i = 0; i < heading.length; i++) {    
             var th = $("<th>");
@@ -268,9 +269,29 @@ $(document).ready(function(){
 
               let th = $("<th>");
               th.attr({
-                "scope": i + 1
+                "class": "fa fa-circle fa-2x"
               });
-              th.text(i);
+              var importance_type = data[i].importance;
+
+             switch(importance_type){
+
+               case 1: 
+               th.css("color", "#fafafa");
+                 break;
+               case 2:
+                 th.css("color", "#64b5f6");
+                 break;
+               case 3:
+                 th.css("color", "#66bb6a");
+                 break;
+               case 4:
+                 th.css("color", "#ffca28");
+                 break;
+               case 5:
+                 th.css("color", "#b71c1c");
+                 break;
+             };
+
               th.appendTo(tr2);
 
               let td_created = $("<td>");
