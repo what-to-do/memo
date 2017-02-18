@@ -79,7 +79,7 @@ $(document).ready(function(){
       category: $("#selected_category :selected").val(),
       urgency: $("input[name='group1']:checked").val()
     };
-    console.log(new_category);
+    //console.log(new_category);
     //empties out modal
     //$('input').val('');
 
@@ -172,7 +172,7 @@ $(document).ready(function(){
 
 
     function format_time(time){
-        console.log(time);
+        //console.log(time);
         var date = new Date(time);
         var formatOptions = { 
                day:    '2-digit', 
@@ -250,7 +250,7 @@ $(document).ready(function(){
         $("#content").html("");
       
 
-        console.log(data);
+        //console.log(data);
 
 
         //dynamically creates table off snippet db
@@ -304,7 +304,7 @@ $(document).ready(function(){
               var testing_time =  data[i].createdAt;
               var new_time = format_time(testing_time);
 
-              console.log(new_time);
+              //console.log(new_time);
               var tr2 = $("<tr>");
 
               tr2.appendTo(tbody);
