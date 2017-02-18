@@ -129,7 +129,7 @@ $(document).ready(function(){
         snippet: $("#snippet_edit").val().trim(),
         urgency: $("input[name='group2']:checked").val()
       };
-
+      console.log(edited_category);
       $.post("/api/edit", edited_category).
       done(function(data){
        
