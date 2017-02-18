@@ -73,7 +73,7 @@ $(document).ready(function(){
 // ---------------------------------------------------------------------------
   // Adding a new snippet
   $(".modal-footer").on("click", ".submit" , function(event) {
-    $('input').val('');
+    
     var new_category = {
       snippet: $("#snippet_modal").val().trim(),
       category: $("#selected_category :selected").val(),
@@ -81,7 +81,7 @@ $(document).ready(function(){
     };
     console.log(new_category);
     //empties out modal
-    //
+    //$('input').val('');
 
     $.post("/api/add/snippet", new_category)
     .done(function(data) {
@@ -95,7 +95,7 @@ $(document).ready(function(){
       }
     
   });
-
+  
   //EMAIL SNIPPET
   /*When the user clicks on the email button it will grab the 
   index number of the snippet selected then provide the data
@@ -344,7 +344,7 @@ $(document).ready(function(){
               td_created.appendTo(tr2);
               let td_snippet = $("<td>");
               td_snippet.attr({
-                "class" : "snippet_td"
+                "class" : "snippet_td",
               });
             
               td_snippet.text(data[i].snippet);
