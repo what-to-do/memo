@@ -1,289 +1,223 @@
 $(document).ready(function(){
-    var status = 0;
-    var arrow_direction = "ASC"
+  var status = 0;
+  var arrow_direction = "ASC"
 
-    view_all();
-    making_cat_buttons()
+  view_all();
+  making_cat_buttons()
 
-
-    $(".categories").on('click', '.category_buttons', function(){
-        var category_id = $(this).data('index');
-        if(category_id == 0){
-          view_all();
-        }else{
-        console.log(category_id);
-        view_category(category_id);
-          }     
-    }); 
-
-    $('.content').on('click', '.sort', function(){
-
-        var column = $(this).data("index");
-
-        
-
-      $.get("/api/sort/" + arrow_direction + '/' + column , function(data) {
-
-        render_view(data);
-         
-      });
-
-      console.log(arrow_direction);
-
-      if (arrow_direction == "DESC"){
-
-        console.log("check");
-
-        arrow_direction = "ASC";
-
+  //When clicking on specific categories, this will only show the selected category
+  $(".categories").on('click', '.category_buttons', function(){
+    var category_id = $(this).data('index');
+    if(category_id == 0){
+      view_all();
       } else {
+      //console.log(category_id);
+      view_category(category_id);
+    }     
+  }); 
 
+  //When arrow key is press, located on the table header, it will sort ASC to DESC
+  $('.content').on('click', '.sort', function(){
+    var column = $(this).data("index");
+    $.get("/api/sort/" + arrow_direction + '/' + column , function(data) {
+      render_view(data); 
+    }); 
+    //console.log(arrow_direction);
+      if (arrow_direction == "DESC"){
+        console.log("check");
+        arrow_direction = "ASC";
+      } else {
         arrow_direction = "DESC"
-
       }
+    }); //end of SORTING onclick handler
 
+  // Create New Category
+  $('.this_is_submit').on('click', '#create_new_cat_button',function(){
 
+    var created_cat = {
+      category: $('#category_modal').val().trim()
+    };
+
+    $.post('/api/add/category', created_cat).
+    done(function(data){
+    //console.log(data);
+      //creates category button and adds it to database
+      var cat_btn = $("<button>");
+      cat_btn.text(data.category);
+
+      cat_btn.attr({
+      "class" : "fill btn category_buttons",
+      "type" : "button",
+      "data-toggle" : "collapse",
+      "data-target" : "#collapseExample",
+      "aria-expanded": false,
+      "aria-controls": "collapseExample",
+      "data-index" : data.id
+      });
+
+      cat_btn.appendTo(".categories");
+
+      //takes the category db and appends a dropdown of categories to snippet modal
+      var dropdown_cat = $('<option>');
+      dropdown_cat.text(data.category);
+      dropdown_cat.attr({
+        "value" : data.id
+      });
+      dropdown_cat.appendTo('#selected_category');
     });
+    //empties out modal
+    $('input').val('');
+  });
 
-    //USER SIGNUP
-    $("#signup_submit").on("click", function(){
-      var new_user = {
-            email: $("#email_val").val().trim(),
-            password: $("#password_val").val().trim()
+// --------------------------------- CRUD ------------------------------------
+// ---------------------------------------------------------------------------
+  // Adding a new snippet
+  $(".this_is_submit").on("click", ".submit" , function(event) {
+
+    var new_category = {
+      snippet: $("#snippet_modal").val().trim(),
+      category: $("#selected_category :selected").val(),
+      urgency: $("input[name='group1']:checked").val()
+    };
+
+    //empties out modal
+    $('input').val('');
+
+    $.post("/api/add/snippet", new_category)
+    .done(function(data) {
+      //console.log(data);
+    });
+      if(status == 0){
+        view_all();
+      } else{
+        view_category(status);
+      }
+  });
+
+  //EMAIL SNIPPET
+  /*When the user clicks on the email button it will grab the 
+  index number of the snippet selected then provide the data
+  of this snippet so it can be sent in an email*/
+  $("#content").on("click", ".email", function(event){
+    var user = $(this).data("index");
+    var message = $(this).parent().parent().find(".snippet_td").text();
+
+    $("#email-btn").on("click", function(){
+      var email = {
+        //snippet_id: user,
+        message: message,
+        recipient: $("#email").val().trim(),
+        title: "Your Requested Snippet"
       };
-      console.log(new_user);
-      $.post("/signup/complete", new_user).
+      var recipient = $("#email").val().trim();
+      //Jeff route here like below
+
+      $.post("/api/email", email).
       done(function(data){
-            console.log("signup\n");
-            console.log(data);
-               
+       
       });
     });
+  });
 
-    //Create New Category
-    $('.this_is_submit').on('click', '#create_new_cat_button',function(){
-        var created_cat = {
-          category: $('#category_modal').val().trim()
-        };
-        console.log(created_cat);
-        $.post('/api/add/category', created_cat).
-        done(function(data){
-          console.log(data);
-            var cat_btn = $("<button>");
-            cat_btn.text(data.category);
-            cat_btn.attr({
-            "class" : "btn category_buttons",
-            "type" : "button",
-            "data-toggle" : "collapse",
-            "data-target" : "#collapseExample",
-            "aria-expanded": false,
-            "aria-controls": "collapseExample",
-            "data-index" : data.id
-            });
-          cat_btn.appendTo(".categories");
+  //Edit snippet
+  $("#content").on("click" , ".edit" , function(event){
+    var user = $(this).data("index");
 
-          var dropdown_cat = $('<option>');
-            dropdown_cat.text(data.category);
-            dropdown_cat.attr({
-              "value" : data.id
-            });
-            dropdown_cat.appendTo('#selected_category');
-          });
-    });
+    $("#edit-btn").on("click", function(){
+      var edited_category = {
+        snippet_id: user,
+        snippet: $("#snippet_edit").val().trim(),
+        urgency: $("input[name='group2']:checked").val()
+      };
 
-
-
-// --------------------------------- CRUD ------------------------------------
-// ---------------------------------------------------------------------------
-
-
-    // Adding a new snippet
-
-    $(".modal-footer").on("click", ".submit" , function(event) {
-
-        var new_category = {
-          snippet: $("#snippet_modal").val().trim(),
-          category: $("#selected_category :selected").val(),
-          urgency: $("input[name='group1']:checked").val()
-        };
-
-        // Question: What does this code do??
-        $.post("/api/add/snippet", new_category)
-        .done(function(data) {
-
-          
-        });
-          if(status == 0){
-            view_all();
-          } else{
-            view_category(status);
-          }
-         
-
-
-    });
-
-    //EMAIL SNIPPET
-    /*When the user clicks on the email button it will grab the 
-    index number of the snippet selected then provide the data
-    of this snippet so it can be sent in an email*/
-    $("#content").on("click", ".email", function(event){
-        var user = $(this).data("index");
-        var message = $(this).parent().parent().find(".snippet_td").text();
- 
-        $("#email-btn").on("click", function(){
-          var email = {
-//            snippet_id: user,
-            message: message,
-            recipient: $("#email").val().trim(),
-            title: "Your Requested Snippet"
-
-          };
-          var recipient = $("#email").val().trim();
-
-         
-          //Jeff route here like below
-
-          $.post("/api/email", email).
-          done(function(data){
-           
-
-          });
-
-
-        });
-    });
-
-
-    $("#content").on("click" , ".edit" , function(event){
-
-
-        var user = $(this).data("index");
-
-        $("#edit-btn").on("click", function(){
-        var edited_category = {
-          snippet_id: user,
-          snippet: $("#snippet_edit").val().trim(),
-          urgency: $("input[name='group2']:checked").val()
-          };
-
-
-          $.post("/api/edit", edited_category).
-          done(function(data){
-           
-
-          });
-
-          if(status === 0){
-             
-
-              view_all();
-          } else{
-              view_category(status);
-          }
-
-          
-
-        });
-
-
-
-
-
-    });
-
-
-
-    $("#content").on("click" , ".del" , function(event){
-      
-        
-        var user_delete = $(this).data("index");
-
+      $.post("/api/edit", edited_category).
+      done(function(data){
        
+      });
 
-        $.post("/api/delete" , {user_delete: user_delete}).
-        done(function(data){
-
-        });
-        /*if status === 0 that means the user is currently viewing all snippets.  If 
-        status === a number it means they are viewing by category and will show the 
-        appropriate category*/
-          if(status == 0){
-            view_all();
-          } else{
-            view_category(status);
-          }
+      if(status === 0){
+        view_all();
+      } else {
+        view_category(status);
+      }
     });
+  });
+
+
+  //Delete snippet
+  $("#content").on("click" , ".del" , function(event){
+    
+    var user_delete = $(this).data("index");
+
+    $.post("/api/delete" , {user_delete: user_delete}).
+    done(function(data){
+
+    });
+    /*if status === 0 that means the user is currently viewing all snippets.  If 
+    status === a number it means they are viewing by category and will show the 
+    appropriate category*/
+      if(status == 0){
+        view_all();
+      } else {
+        view_category(status);
+      }
+  });
 
 // ---------------------------------------------------------------------------
-// --------------------------------- CRUD ------------------------------------
+// --------------------------------- END CRUD ---------------------------------
 
+  function making_cat_buttons() {
+    $.get("/api/categories" , function(data){
+      for (let i = 0; i < data.length; i++) {
+        var cat_btn = $("<button>");
+        cat_btn.text(data[i].category);
+        cat_btn.attr({
+          "class" : "fill btn category_buttons",
+          "type" : "button",
+          "data-toggle" : "collapse",
+          "data-target" : "#collapseExample",
+          "aria-expanded": false,
+          "aria-controls": "collapseExample",
+          "data-index" : data[i].id
+          });
+        cat_btn.appendTo(".categories");
+      };
 
-
-    function making_cat_buttons() {
-        $.get("/api/categories" , function(data){
-        for (let i = 0; i < data.length; i++) {
-          var cat_btn = $("<button>");
-          cat_btn.text(data[i].category);
-          cat_btn.attr({
-            "class" : "btn category_buttons",
-            "type" : "button",
-            "data-toggle" : "collapse",
-            "data-target" : "#collapseExample",
-            "aria-expanded": false,
-            "aria-controls": "collapseExample",
-            "data-index" : data[i].id
-            });
-          cat_btn.appendTo(".categories");
-        };
-
-          for (let i = 0; i < data.length; i++) {
-            var dropdown_cat = $('<option>');
-            dropdown_cat.text(data[i].category);
-            dropdown_cat.attr({
-              "value" : data[i].id
-            });
-            dropdown_cat.appendTo('#selected_category');
-
-          };
+      for (let i = 0; i < data.length; i++) {
+        var dropdown_cat = $('<option>');
+        dropdown_cat.text(data[i].category);
+        dropdown_cat.attr({
+          "value" : data[i].id
         });
+        dropdown_cat.appendTo('#selected_category');
+      };
+    });
+  } // End of making cat buttons functions
 
-    } // End of making cat buttons functions
+  //retrieves all snippets by category
+  function view_category(category_id){
+    status = category_id;
 
+    $.get("/api/view/" + category_id, function(data){
+      render_view(data);
+    });
+  } // End of View Cat function
 
+  //retrieves all snippets for the user
+  function view_all(){
+    status = 0;
 
-    //retrieves all snippets by category
-    function view_category(category_id){
-
-        status = category_id;
-
-        $.get("/api/view/" + category_id, function(data){
-         
-
-          render_view(data);
-        });
-
-    } // End of View Cat function
-
-    //retrieves all snippets for the user
-    function view_all(){
-        status = 0;
-        $.get("/api/view", function(data) {
-            
-              render_view(data);
-        });
-
-    } // End of View All Function
+    $.get("/api/view", function(data) {  
+      render_view(data);
+    });
+  } // End of View All Function
 
 
 
     function render_view(data){
         $("#content").html("");
       
-        console.log(data);
-
-
-
+        //dynamically creates table off snippet db
         var table = $("<table>");
         table.addClass("table table-hover");
         table.appendTo("#content");
@@ -311,20 +245,14 @@ $(document).ready(function(){
                     "class" : "fa fa-angle-down fa-2x sort",
                     "data-index" : heading[i].toLowerCase()
                     });
-
                 } else {
-
                     arrowDown.attr({
                       "class" : "fa fa-angle-up fa-2x sort",
                       "data-index" : heading[i].toLowerCase()
                     });
-
                 } 
-
                 arrowDown.appendTo(th);
-//
             }
-
         } // End of For Loop I
 
 
