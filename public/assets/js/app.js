@@ -219,6 +219,30 @@ $(document).ready(function(){
 // --------------------------------- CRUD ------------------------------------
 
 
+    function format_time(time){
+        console.log(time);
+        var date = new Date(time);
+        var formatOptions = { 
+               day:    '2-digit', 
+               month:  '2-digit', 
+               year:   'numeric',
+               hour:   '2-digit', 
+               minute: '2-digit',
+               hour12: true 
+        };
+        var dateString = date.toLocaleDateString('en-US', formatOptions);
+        // => "02/17/2017, 11:32 PM"
+
+        dateString = dateString.replace(',', '')
+                               .replace('PM', 'p.m.')
+                               .replace('AM', 'a.m.');
+        // => "02/17/2017 11:32 p.m."
+
+        return dateString;
+
+
+    } // End of Format time functon
+
 
     function making_cat_buttons() {
         $.get("/api/categories" , function(data){
@@ -282,8 +306,6 @@ $(document).ready(function(){
       
         console.log(data);
 
-
-
         var table = $("<table>");
         table.addClass("table table-hover");
         table.appendTo("#content");
@@ -294,7 +316,9 @@ $(document).ready(function(){
         tr.appendTo(thead);
         var heading = ["#","Created", "Snippet", "Category" ,"Importance", "Actions"];
 
-        for (let i = 0; i < heading.length; i++) {    
+        for (let i = 0; i < heading.length; i++) {   
+  
+
             var th = $("<th>");
             th.text(heading[i]);
             //th.attr("class", "fa fa-angle-down");
@@ -334,6 +358,10 @@ $(document).ready(function(){
 
             for (let i = 0; i < data.length; i++) {
 
+              var testing_time =  data[i].createdAt;
+              var new_time = format_time(testing_time);
+
+              console.log(new_time);
               var tr2 = $("<tr>");
 
               tr2.appendTo(tbody);
@@ -346,7 +374,10 @@ $(document).ready(function(){
               th.appendTo(tr2);
 
               let td_created = $("<td>");
-              td_created.text(data[i].createdAt);
+
+
+
+              td_created.text(new_time);
               td_created.appendTo(tr2);
               let td_snippet = $("<td>");
               td_snippet.attr({
